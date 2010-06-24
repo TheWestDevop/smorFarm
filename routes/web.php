@@ -15,37 +15,12 @@ if (App::environment('production')) {
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-Route::get('/admin/login', function () {
-    return view('login');
-})->name('admin-login');;
+Route::get('/', function(){
+    return view('welcome')->render();
+} )->name('home');
 
 
-Route::get('/product/image/{id}',function($id){
 
-      // Get the file to find the ID
-      $dir = '/';
-      $recursive = false; // Get subdirectories also?
-      $contents = collect(Storage::cloud()->listContents($dir, $recursive));
-      $file = $contents
-          ->where('type', '=', 'file')
-          ->where('filename', '=', pathinfo($id, PATHINFO_FILENAME))
-          ->where('extension', '=', pathinfo($id, PATHINFO_EXTENSION))
-          ->first(); // there can be duplicate file names!
-      // Change permissions
-      // - https://developers.google.com/drive/v3/web/about-permissions
-      // - https://developers.google.com/drive/v3/reference/permissions
-      $service = Storage::cloud()->getAdapter()->getService();
-      $permission = new \Google_Service_Drive_Permission();
-      $permission->setRole('reader');
-      $permission->setType('anyone');
-      $permission->setAllowFileDiscovery(false);
-      $permissions = $service->permissions->create($file['basename'], $permission);
-      return Storage::cloud()->url($file['path']);
-}
-);
 
 
 Route::get('/api/auth/logout','UserController@logout');
@@ -55,7 +30,7 @@ Route::post('/api/auth/register','UserController@register');
 
 //CategoriesController
 Route::get('/api/all/categories','CategoriesController@index');
-Route::get('/api/categories/{id}','CategoriesController@show');
+
 
 //ProductController
 Route::get('/api/all/products','ProductController@index');
@@ -81,29 +56,24 @@ Auth::routes();
 
 //AdminController
 Route::middleware('auth')->get('/admin/home','AdminController@index');
+Route::middleware('auth')->get('/api/auth/admin/init','AdminController@init');
 
 //UserController
 Route::middleware('auth')->get('/api/auth/init','UserController@init');
 
-//AdminController
-Route::middleware('auth')->get('/api/auth/admin/init','AdminController@init');
-Route::middleware('auth')->get('/api/admin/orders','AdminController@orders');
-Route::middleware('auth')->get('/admin/products','AdminController@products');
-
 
 //ProductController
+Route::middleware('auth')->get('/admin/products','AdminController@products');
 Route::middleware('auth')->post('/api/new/product','ProductController@store');
 Route::middleware('auth')->post('/api/update/product/{id}','ProductController@update');
 Route::middleware('auth')->get('/api/delete/product/{id}','ProductController@destroy');
 
 
-//CategoriesController
-Route::middleware('auth')->post('/api/all/categories','CategoriesController@store');
-Route::middleware('auth')->post('/api/update/categories/{id}','CategoriesController@update');
-Route::middleware('auth')->get('/api/delete/categories/{id}','CategoriesController@destroy');
 
 //OrderController
+Route::middleware('auth')->get('/api/admin/orders','AdminController@orders');
 Route::middleware('auth')->get('/api/order/{id}','OrderController@findOnlyOrder');
+Route::middleware('auth')->get('/api/user/{id}/order','OrderController@findOrderbyUser');
 Route::middleware('auth')->post('/api/user/{id}/order/','OrderController@customerstore');
 Route::middleware('auth')->get('/api/order/{id}/delivered','OrderController@update');
 Route::middleware('auth')->get('/api/order/{id}/delivered/revised','OrderController@re_update');
@@ -137,6 +107,10 @@ Route::middleware('auth')->get('/api/staff/{id}','StaffController@show');
 Route::middleware('auth')->post('/api/staff/{id}/update','StaffController@update');
 Route::middleware('auth')->post('/api/staff/{id}/delete','StaffController@destroy');
 
+//UserInfo
+Route::middleware('auth')->get('/api/user/{id}','ProfileController@index');
+Route::middleware('auth')->post('/api/user/update/{id}','ProfileController@update');
+
 //CustomerController
 Route::middleware('auth')->get('/api/all/customer/','CustomerController@index');
 Route::middleware('auth')->post('/api/customer/new','CustomerController@store');
@@ -147,6 +121,13 @@ Route::middleware('auth')->post('/api/customer/{id}/delete','CustomerController@
 
 Route::middleware('auth')->get('/api/all/fast/user','CustomerController@allFastUser');
 Route::middleware('auth')->post('/api/fast/user/{id}/delete','CustomerController@deleteFastUser');
+
+//CategoriesController
+Route::middleware('auth')->get('/api/categories','CategoriesController@getAll');
+Route::middleware('auth')->post('/api/add/category/','CategoriesController@store');
+Route::middleware('auth')->get('/api/delete/category/{id}','CategoriesController@destroy');
+Route::middleware('auth')->post('/api/update/category/{id}','CategoriesController@update');
+Route::middleware('auth')->get('/api/category/{id}','CategoriesController@show');
 
 
 

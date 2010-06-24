@@ -2,7 +2,7 @@
   <div class="main-content">
     <!-- Navbar -->
        <Navbar/>
-            
+
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
             {{flash.success}}
@@ -92,7 +92,7 @@
                 </div>
                 <div class="col-md-12 mb-20">
                     <label>Product Description</label>
-                  <textarea name="description" v-model="description" cols="45" rows="5"></textarea>
+                  <textarea name="description" v-model="description" class=" form-control w-100"></textarea>
                 </div>
                 <div class="mt-2 p-2 font-italic text-danger">{{errorDescription}}</div>
                 <div class="col-12">
@@ -112,7 +112,7 @@
 
 <script>
 import Flash from "../../util/flash";
-import Auth from "../util/adminAuth";
+import Auth from "../util/Auth";
 import { post, get } from "../util/api";
 import Navbar from '../components/navbar'
 
@@ -151,7 +151,7 @@ export default {
      /* let $this = this;
       if(Auth.state.api_token === ''|| Auth.state.api_token === null
        && Auth.state.admin_id === '' || Auth.state.admin_id === null) {
-          
+
        }*/
   },
   methods: {
@@ -233,7 +233,7 @@ export default {
           console.log(response.data);
           if (response.data.message) {
           Flash.setSuccess("You have successfully upload new product to SmorFarm!");
-          
+
           $this.title = '';
           $this.price =  '';
           $this.price_per_unit='';
@@ -248,7 +248,7 @@ export default {
 
           } else{
             Flash.setError("You are Unauthorized!!!");
-            
+
           }
         });
       }

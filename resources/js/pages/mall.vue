@@ -1,7 +1,7 @@
 <template>
     <div class="page-section  mb-60">
-        
-       
+
+
         <!-- Begin Product Area -->
         <div class="product-area pt-60 pb-50">
 
@@ -142,7 +142,7 @@ export default {
         $this.app.getAllProduct;
         $this.app.getAllDiscount;
         Event.$on('Loggedin...',()=>{
-            this.init()
+            this.app.initUser()
             Auth.init()
         })
         $this.app.spin = false;

@@ -18,6 +18,11 @@ import Admin_Product from './admin/pages/products';
 //deliveries
 import Admin_Deliveries from './admin/pages/deliveries';
 
+//Categories
+import Admin_Categories from './admin/pages/categories';
+import Admin_New_Category from './admin/pages/new_category';
+import Admin_Edit_Category from './admin/pages/edit_category';
+
 
 //customer
 import Admin_Customer from './admin/pages/customer';
@@ -51,116 +56,132 @@ export default new VueRouter({
     name:'admin.home'
    },
    {
-    path: '/profile',
+    path: '/Profile',
     component: Admin_Profile,
     name:'admin_profile'
    },
    {
-    path: '/order',
+    path: '/Order',
     component: Admin_Orders,
     name:'admin.order'
    },
    {
-    path: '/order/:id/info',
+    path: '/Order/:id/Info',
     component:Admin_Order_Info,
     name:'admin.info_order',
     props:true
    },
    {
-    path: '/upload/product',
+    path: '/Upload/Product',
     component:Admin_Upload_Product,
     name:'admin.upload_product'
    },
    {
-    path: '/edit/product/:id',
+    path: '/Edit/Product/:id',
     component:Admin_Edit_Product,
     name:'admin.edit_product',
     props:true
    },
    {
-    path: '/product/:id/more/info',
+    path: '/Product/:id/Info',
     component:Admin_Info_Product,
     name:'admin.info_product',
     props:true
    },
    {
-    path: '/products',
+    path: '/Products',
     component:Admin_Product,
     name:'admin.product'
    },
    {
-    path: '/deliveries',
+    path: '/Deliveries',
     component:Admin_Deliveries,
     name:'admin.deliveries'
    },
    {
-    path: '/driver',
+    path: '/Driver',
     component:Admin_Driver,
     name:'admin.driver'
    },
    {
-    path: '/Add/driver',
+    path: '/Add/Driver',
     component:Admin_New_Driver,
     name:'admin.new_driver'
    },
    {
-    path: '/Edit/:id/driver',
+    path: '/Edit/:id/Driver',
     component:Admin_Edit_Driver,
     name:'admin.edit_driver',
     props:true
    },
    {
-    path: '/customers',
+    path: '/Customers',
     component:Admin_Customer,
     name:'admin.customer'
    },
    {
-    path: '/Add/customer',
+    path: '/Add/Customer',
     component:Admin_New_Customer,
     name:'admin.new_customer'
    },
    {
-    path: '/Edit/:id/customer',
+    path: '/Edit/:id/Customer',
     component:Admin_Edit_Customer,
     name:'admin.edit_customer',
     props:true
    },
    {
-    path: '/staffs',
+    path: '/Staffs',
     component:Admin_Staff,
     name:'admin.staff'
    },
    {
-    path: '/Add/staff',
+    path: '/Add/Staff',
     component:Admin_New_Staff,
     name:'admin.new_staff'
    },
    {
-    path: '/Edit/:id/staff',
+    path: '/Edit/:id/Staff',
     component:Admin_Edit_Staff,
     name:'admin.edit_staff',
     props:true
    },
    {
-    path: '/Info/:id/staff',
+    path: '/Info/:id/Staff',
     component:Admin_Info_Staff,
     name:'admin.info_staff',
     props:true
    },
    {
-    path: '/logistics',
+    path: '/Logistics',
     component:Admin_Logistics,
     name:'admin.logistics'
    },
    {
-    path: '/New/logistics',
+    path: '/New/Logistics',
     component:Admin_New_Logistics,
     name:'admin.new_logistics'
    },
    {
-    path: '/Edit/:id/logistics',
+    path: '/Edit/:id/Logistics',
     component:Admin_Edit_Logistics,
     name:'admin.edit_logistics',
+    props:true
+   },
+   {
+    path: '/Categories',
+    component:Admin_Categories,
+    name:'admin.categories'
+   },
+   {
+    path: '/Add/Category',
+    component:Admin_New_Category,
+    name:'admin.new_category'
+   },
+   {
+    path: '/Edit/:id/Category',
+    component:Admin_Edit_Category,
+    name:'admin.edit_category',
     props:true
    },
      ],

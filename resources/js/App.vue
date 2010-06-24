@@ -64,6 +64,17 @@ export default {
             last_page:0
              }
             },
+            orders:{
+            data:{} ,
+            paginations:{
+            total: 0,
+            per_page: 2,
+            from: 1,
+            to: 0,
+            current_page: 1,
+            last_page:0
+             }
+            },
             trending:'',
             tools:'',
             meat: '',
@@ -94,11 +105,12 @@ export default {
     },
     methods: {
         initUser() {
-            
+
             get(BASE_URL + '/api/auth/init').then((response) => {
                 if (response.data.id) {
                     Auth.set(response.data.api_token, response.data.id);
                     this.user = response.data;
+                    this.getOrders(response.data.id);
                 }else{
                     console.log('')
                 }
@@ -154,6 +166,22 @@ export default {
                 }
             });
         },
+        getOrders(id){
+            let $this = this;
+          get(BASE_URL+`/api/user/${id}/order`).then(function (response) {
+                    if (response.data) {
+
+                        $this.orders.data = response.data.data
+                        $this.orders.paginations.current_page = response.data.current_page;
+                        $this.orders.paginations.total = response.data.total;
+                        $this.orders.paginations.per_page = response.data.per_page;
+                        $this.orders.paginations.last_page = response.data.last_page;
+                        $this.orders.paginations.from = response.data.from;
+                        $this.orders.paginations.to = response.data.to;
+                    }
+
+                })
+        }
 
 
     },
@@ -167,7 +195,7 @@ export default {
         this.initUser()
         Event.$on('Loggedin...',()=>{
             this.initUser()
-            
+
         })
         this.spin = false;
     },

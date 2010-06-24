@@ -2967,14 +2967,14 @@ fieldset:disabled a.btn {
 
 .btn-warning {
     color: #212529;
-    background-color: #ffc107;
-    border-color: #ffc107
+    background-color: #23539b;
+    border-color: #23539b
 }
 
 .btn-warning:hover {
     color: #212529;
-    background-color: #e0a800;
-    border-color: #d39e00
+    background-color: #23539b;
+    border-color: #23539b
 }
 
 .btn-warning.focus,

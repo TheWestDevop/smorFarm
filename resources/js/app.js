@@ -15,9 +15,10 @@ import App from './App.vue';
 
 require('./bootstrap');
 
-Vue.config.devtools = false
+Vue.config.devtools =true
 Vue.config.debug = false
 Vue.config.silent = true
+Vue.config.productionTips=false
 
 
 

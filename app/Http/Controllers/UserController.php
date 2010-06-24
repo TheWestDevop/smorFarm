@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -35,7 +36,8 @@ class UserController extends Controller
         $data = request()->validate([
             'name' => 'required|max:255',
             'email'=>'required|email|unique:users',
-            'password'=>'required|between:7,25'
+            'password'=>'required|between:7,25',
+            'gender' => 'required|max:255',
             ]);
         $user = User::where('email',$data['email'] )->first();
 
@@ -46,10 +48,20 @@ class UserController extends Controller
         $user = new User();
         $user->name = $data['name'];
         $user->email = $data['email'];
-        $admin->usertype = 'customer';
+        $user->usertype = 'customer';
         $user->api_token = Str::random(60);
         $user->password = bcrypt($data['password']);
         $user->save();
+
+        $profile =  new Profile();
+        $profile->name = $data['name'];
+        $profile->user_id = $user->id;
+        $profile->user_image = 'avatar.png';
+        $profile->gender = $data['gender'];
+        $profile->email = $data['email'];
+
+        $profile->save();
+
          Auth::login($user);
         return response()->json($user, 200);
     }
@@ -58,4 +70,6 @@ class UserController extends Controller
         $user = Auth::User();
         return response()->json($user, 200);
     }
+
+
 }

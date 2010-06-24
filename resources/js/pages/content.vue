@@ -1,11 +1,9 @@
 <template>
-    <div>
+    <div style="margin-top:-20px!important;">
         <!-- Begin Slider With Banner Area -->
         <div class="slider-with-banner">
-            <div class="container">
-                <div class="row">
-                    <!-- Begin Slider Area -->
-                    <div class="col-lg-8 col-md-8">
+
+
                         <div class="slider-area">
                             <div class="slider-active owl-carousel">
                                 <!-- Begin Single Slide Area -->
@@ -67,24 +65,8 @@
                                 <!-- Single Slide Area End Here -->
                             </div>
                         </div>
-                    </div>
-                    <!-- Slider Area End Here -->
-                    <!-- Begin Li Banner Area -->
-                    <div class="col-lg-4 col-md-4 text-center pt-xs-30">
-                        <div class="li-banner">
-                            <a href="#/product/category/Fruit">
-                                <img src="images/slider/1.png" alt />
-                            </a>
-                        </div>
-                        <div class="li-banner mt-15 mt-sm-30 mt-xs-30">
-                            <a href="#/product/category/Fruit">
-                                <img src="images/slider/58.jpeg" alt />
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Li Banner Area End Here -->
-                </div>
-            </div>
+
+
         </div>
         <!-- Slider With Banner Area End Here -->
         <!-- Begin Product Area -->
@@ -111,7 +93,7 @@
 
                                         <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                        
+
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -191,7 +173,7 @@
 
                                         <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                        
+
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -266,7 +248,7 @@
 
                                         <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                        
+
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -366,7 +348,7 @@
 
                                                 <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                                
+
                                             </div>
                                             <div class="product_desc">
                                                 <div class="product_desc_info">
@@ -374,7 +356,7 @@
                                                         <h5 class="manufacturer">
                                                             {{product.description}}
                                                         </h5>
-                                                        
+
                                                     </div>
                                                     <h4><a class="product_name" href="#">{{product.title}}</a></h4>
                                                     <div class="price-box">
@@ -410,7 +392,7 @@
 
                                                 <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                                
+
                                             </div>
                                             <div class="product_desc">
                                                 <div class="product_desc_info">
@@ -418,7 +400,7 @@
                                                         <h5 class="manufacturer">
                                                             {{product.description}}
                                                         </h5>
-                                                        
+
                                                     </div>
                                                     <h4><a class="product_name" href="#">{{product.title}}</a></h4>
                                                     <div class="price-box">
@@ -473,7 +455,7 @@
 
                                         <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
 
-                                        
+
                                     </div>
                                     <div class="product_desc">
                                         <div class="product_desc_info">
@@ -507,8 +489,8 @@
                                 </div>
 
                             </div>
-                            
-                       
+
+
                         </div>
                         <div class="row" v-else>
 

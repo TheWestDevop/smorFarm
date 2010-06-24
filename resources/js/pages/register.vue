@@ -19,11 +19,22 @@
                             <input class="mb-0" type="text" v-model="lname" v-bind:class="{'is-invalid':errorLname}" placeholder="Last Name" />
                             <div class="mt-2 p-2 font-italic text-danger">{{errorLname}}</div>
                         </div>
-                        <div class="col-md-12 mb-20">
-                            <label>Email Address*</label>
+                        <div class="col-md-6 mb-20">
+                            <label>Email Address</label>
                             <input class="mb-0" type="email" v-model="email" v-bind:class="{'is-invalid':errorEmail}" placeholder="Email Address" />
                             <div class="mt-2 p-2 font-italic text-danger">{{errorEmail}}</div>
                         </div>
+                          <div class="col-md-6 mb-20">
+                  <label>Gender</label>
+                  <select
+                    v-model="gender"
+                  >
+                  <option value="">-----------------------------</option>
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                  </select>
+                  <div class="mt-2 p-2 font-italic text-danger">{{errorGender}}</div>
+                </div>
                         <div class="col-md-6 mb-20">
                             <label>Password</label>
                             <input class="mb-0" type="password" v-model="password" v-bind:class="{'is-invalid':errorPassword}" placeholder="Password" />
@@ -67,6 +78,8 @@ export default {
         fullname: '',
         email: '',
         errorEmail: '',
+        gender: '',
+        errorGender: '',
         password: '',
         errorPassword: '',
         passwordConf: '',
@@ -88,7 +101,7 @@ export default {
                 this.errorFname = null;
             }
             if (this.lname.length < 3 || this.lname === '') {
-                this.errorLname = "Lasst Name is Required";
+                this.errorLname = "Last Name is Required";
                 this.errors.push(this.errorLname);
             } else {
                 this.errorLname = null;
@@ -99,6 +112,12 @@ export default {
                 this.errors.push(this.errorEmail);
             } else {
                 this.errorEmail = null;
+            }
+           if (this.gender === '' || this.gender === null ) {
+                this.errorGender = "Email is Required";
+                this.errors.push(this.errorGender);
+            } else {
+                this.errorGender = null;
             }
 
             if (this.email.length < 10) {
@@ -126,7 +145,7 @@ export default {
             } else {
                 this.errorPasswordConf = null;
             }
-            
+
             $this.fullname = this.fname + ' ' + this.lname;
 
             if (!this.errors.length) {
@@ -134,6 +153,7 @@ export default {
                 let data = {
                     name: $this.fullname,
                     email: $this.email,
+                    gender:$this.gender,
                     password: this.password,
                     password: this.passwordConf
                 }

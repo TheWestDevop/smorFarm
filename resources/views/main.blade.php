@@ -41,8 +41,13 @@
  <script src="{{asset('js/argon-dashboard.min.js?v=1.1.0')}}"></script>
 
 <script>
-localStorage.setItem('admin_id', @json($admin->id));
-localStorage.setItem('api_token', @json($admin->api_token));
+
+if (@json($admin)) {
+  localStorage.setItem('admin_id', @json($admin->id));
+  localStorage.setItem('admin_api_token', @json($admin->api_token));
+}
+
+
 </script>
 
 

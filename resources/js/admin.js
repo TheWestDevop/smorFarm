@@ -15,9 +15,8 @@ import App from './Admin.vue';
 
 require('./bootstrap');
 
-Vue.config.devtools = false
-Vue.config.debug = false
-Vue.config.silent = true
+
+
 
 
 

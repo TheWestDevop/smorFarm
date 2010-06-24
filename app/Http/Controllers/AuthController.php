@@ -27,7 +27,7 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
+        
         return redirect('/admin/login');
     }
     public function register(Request $request)

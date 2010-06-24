@@ -37,13 +37,13 @@
                                  </td>
                                  <td>&#8358;{{total}}</td>
                                  <td>{{created_time }}</td>
-                                 
+
                                  <td >
-                                                <span v-if="status_0(status)" class="btn btn-warning">Pending</span>
+                                                <span v-if="status_0(status)" class="btn btn-warning text-white">Pending ...</span>
                                                 <span v-if="status_1(status)" class="btn btn-success"> <i class="fa fa-check text-white"></i> Completed</span>
-                                           
+
                                             </td>
-                                            
+
                              </tr>
                          </tbody>
 

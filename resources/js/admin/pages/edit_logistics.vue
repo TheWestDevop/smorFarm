@@ -59,7 +59,7 @@
 
 <script>
 import Flash from "../../util/flash";
-import Auth from "../util/adminAuth";
+import Auth from "../util/Auth";
 import {
     post,
     get

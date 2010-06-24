@@ -15,27 +15,20 @@
         <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
           <form v-on:submit.prevent="onUpdate">
             <div class="login-form">
-              <h4 class="login-staff text-center">Edit Driver </h4>
+              <h4 class="login-staff text-center">Edit Category </h4>
               <div class="row">
-                <div class="col-md-6 mb-20">
-                  <label>Staff </label>
-                   <input type="text" class="form-control" v-model="staff" id="" readonly>
-                  <div class="mt-2 p-2 font-italic text-danger">{{errorStaff}}</div>
+                <div class="col-md-12 mb-20">
+                  <label>Title </label>
+                   <input type="text" class="form-control" v-model="title" id="" >
+                  <div class="mt-2 p-2 font-italic text-danger">{{errorTitle}}</div>
                 </div>
-                <div class="col-md-6 mb-20">
-                  <label>Logistics</label>
-                  <select
-                    v-model="ride"
-                    class="form-control"
-                  >
-                  <option value="" > Select Logistics Method Here </option>
-                    <option v-for="ride in admin.logistics.data"
-                    :key="ride.id" >{{ride.title}}</option>
-                  </select>
-                  <div class="mt-2 p-2 font-italic text-danger">{{errorRide}}</div>
+                <div class="col-md-12 mb-20">
+                  <label>Description</label>
+                  <textarea name="description" v-model="description" class=" form-control w-100"></textarea>
+                  <div class="mt-2 p-2 font-italic text-danger">{{errorDescription}}</div>
                 </div>
                 <div class="col-12">
-<router-link :to="{name:'admin.driver'}" class="float-left">
+<router-link :to="{name:'admin.categories'}" class="float-left">
                                             <button class="btn btn-secondary mt-0">
                                                 <i class="fa fa-arrow-left"></i> Back
                                             </button>
@@ -61,7 +54,7 @@ import { post, get } from "../util/api";
 import Navbar from '../components/navbar'
 
 export default {
-  name: "New_Driver",
+  name: "Edit_Category",
   props: ["admin"],
    components:{
         Navbar
@@ -69,11 +62,11 @@ export default {
   data() {
     return {
       id:'',
-      staff: "",
-      ride: "",
+      title: "",
+      description: "",
       flash:Flash.state,
-      errorStaff: "",
-      errorRide: "",
+      errorTitle: "",
+      errorDescription: "",
       errors: []
     };
   },
@@ -86,41 +79,56 @@ export default {
   },
   mounted(){
       this.id = this.$route.params.id;
-      this.getDriver(this.id)
+      this.getCategory(this.id)
   },
   methods: {
     onUpdate() {
-
+       
              let $this = this;
+            this.errors = [];
 
+      if (this.title.length < 1 && this.title === "") {
+        this.errorTitle = "Title is Required";
+        this.errors.push(this.errorTitle);
+      } else {
+        this.errorTitle = null;
+      }
+      if (this.description === null || this.description === "" ) {
+        this.errorDescription = "Description is Required";
+        this.errors.push(this.errorDescription);
+      } else {
+        this.errorDescription = null;
+      }
+
+        if (!this.errors.length) {
        let form = new FormData();
-       form.append('logistics_id',$this.ride)
+       form.append('title',$this.title)
+       form.append('description',$this.description)
        let data = form
-        post(BASE_URL + `/api/driver/${this.id}/update`, data).then(function(response) {
-          console.log(response.data);
+        post(BASE_URL + `/api/update/category/${this.id}`, data).then(function(response) {
+
           if (response.data) {
 
-          $this.staff = '';
-          $this.ride =  '';
+          $this.title = '';
+          $this.description =  '';
             $this.$router.push({
-                name: "admin.driver",
+                name: "admin.categories",
             });
-            Flash.setSuccess("Driver Updated !!!");
+            Flash.setSuccess("Category Updated !!!");
           } else{
             Flash.setError("You are Unauthorized!!!");
 
           }
         });
-
+        }
     },
-     getDriver(id){
+     getCategory(id){
         let $this = this;
-        get(BASE_URL + `/api/driver/${id}/info`).then(function(response) {
-          console.log(response.data)
+        get(BASE_URL + `/api/category/${id}/`).then(function(response) {
           if (response.data) {
 
-          $this.staff = response.data.staff;
-          $this.ride =  response.data.ride;
+          $this.title = response.data.title;
+          $this.description =  response.data.description;
 
           }
         });

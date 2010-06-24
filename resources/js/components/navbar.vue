@@ -1,55 +1,7 @@
 <template>
     <!-- Begin Header Area -->
     <header>
-        <!-- Begin Header Top Area -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row">
-                    <!-- Begin Header Top Left Area -->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header-top-left d-lg-flex">
-                            <div class="m-2">
-                                <span>Telephone Enquiry:</span>
-                                <a href="#">(+123) 123 321 345</a>
-                            </div>
-                            <div class="m-2">
-                                <span>Email:</span>
-                                <a href="#">info@smorfarm.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Header Top Left Area End Here -->
-                    <!-- Begin Header Top Right Area -->
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header-top-right">
-                            <ul class="ht-menu" v-if="valid">
-                                <!-- Begin Setting Area -->
-                                <li>{{ app.user.name }}</li>
-                                <li v-if="valid">
-                                    <router-link :to="{name:'profile'}">Profile</router-link>
-                                </li>
-                                <li v-if="valid">
-                                    <a @click.stop="logout" href="javascript:;">Log out</a>
-                                </li>
-                            </ul>
-                            <ul class="ht-menu" v-else>
-                                <li>
-                                    <i class="fa fa-user text-black"></i>
-                                </li>
-                                <li class="font-italic text-black">
-                                    <router-link :to="{name:'auth.login'}" class="text-black">Login</router-link>
-                                </li>
-                                <li class="font-italic text-black">
-                                    <router-link :to="{name:'auth.register'}" class="text-black">Register</router-link>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Header Top Right Area End Here -->
-                </div>
-            </div>
-        </div>
-        <!-- Header Top Area End Here -->
+
         <!-- Begin Header Middle Area -->
         <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
             <div class="container">
@@ -120,7 +72,7 @@
                                                     <div v-if="cartEmpty">
 
                                                     </div>
-                                                    <router-link :to="{name:'checkout'}" v-else class="li-button li-button-fullwidth"  data-dismiss="modal">
+                                                    <router-link :to="{name:'checkout'}" v-else class="li-button li-button-fullwidth" data-dismiss="modal">
                                                         <span>Checkout</span>
                                                     </router-link>
 
@@ -148,38 +100,59 @@
         <div class="header-bottom header-sticky d-none d-lg-block d-xl-block justify-content-center">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-2 col-lg-2"></div>
-                    <div class="col-lg-10">
+                    <div class="col-xl-2 col-lg-2">
+                    </div>
+                    <div class="col-lg-8">
                         <!-- Begin Header Bottom Menu Area -->
                         <div class="hb-menu">
                             <nav>
-                                <ul>
+                                <ul >
                                     <li>
                                         <router-link :to="{name:'home'}">Home</router-link>
                                     </li>
                                     <li class="megamenu-holder">
                                         <a href="#">Categories</a>
-                                        <div class="megamenu hb-megamenu container-fluid">
+                                        <div class="megamenu hb-megamenu container-fluid d-inline-flex">
 
-                                            <router-link class="category" :to="{name:'mall'}">&nbsp;All&nbsp; </router-link>
                                             <br>
-            <router-link class="category" v-for="category in app.categories" :key="category.id" :to="{name:'ProductByCategory', params:{category:category.title}}">
-                &nbsp;{{category.title}}&nbsp;
-            </router-link>
 
+                                            <div class="list-group">
+                                                <router-link class="list-group-item list-group-item-action category" :to="{name:'mall'}">All</router-link>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Vegetables')">
+                                                    Vegetable</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Rice')">
+                                                    Rice</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Cereals')">
+                                                    Cereals</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Fruit')">
+                                                    Fruit</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Cooking oil')">
+                                                    Oil</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Pepper')">
+                                                    Pepper</div>
 
+                                            </div>
+                                            <div class="list-group">
 
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Chicken')">
 
+                                                    Chicken & Turkey</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Meats')">
+                                                    Meat</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Fish')">
+                                                    Fish</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('spices')">
+                                                    Spices</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Kitchen Tools')">
+                                                    Kitchen Utensils</div>
+                                                <div class="list-group-item list-group-item-action category" @click="Category('Others')">
+                                                    Others</div>
 
+                                            </div>
 
                                         </div>
                                     </li>
-                                    <li>
-                                        <a href="#">Smor Restuarant</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Smor Caterer</a>
-                                    </li>
+
                                     <li>
                                         <router-link :to="{name:'order_status'}">Check Order Status</router-link>
                                     </li>
@@ -189,6 +162,27 @@
                                     <li>
                                         <a href="#">Contact</a>
                                     </li>
+                                    <li v-if="valid" class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                    <strong class="d-inline"> <i class="fa fa-user"></i> {{ app.user.name }}  </strong>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <router-link class="dropdown-item" :to="{name:'profile'}"> <i class="fa fa-user-circle"></i>&nbsp;Profile</router-link>
+
+                                <router-link class="dropdown-item" :to="{name:'order'}"><i class="fa  fa-stack-exchange"></i>&nbsp;Orders</router-link>
+                                <a  class="dropdown-item" href="#"><i class="fa fa-money"></i>&nbsp;Wallet</a>
+                                <a @click.stop="logout" class="dropdown-item" href="javascript:;"><i class="fa fa-sign-out"></i>&nbsp;Log out</a>
+                            </div>
+                            </li>
+                                    <li v-if="!valid" class="font-italic">
+                                <router-link :to="{name:'auth.login'}" class="text-white bold">Login</router-link> &nbsp;
+                                <i class="fa fa-sign-in"></i>
+                            </li>
+                            <li v-if="!valid" class="font-italic">
+                                <router-link :to="{name:'auth.register'}" class="text-black">Register</router-link> &nbsp;
+                                <i class="fa fa-user "></i>
+                            </li>
 
                                 </ul>
 
@@ -196,6 +190,7 @@
                         </div>
                         <!-- Header Bottom Menu Area End Here -->
                     </div>
+
                 </div>
             </div>
         </div>
@@ -221,24 +216,24 @@ import {
     get
 } from "../util/api";
 
-
-
 export default {
     name: "Navbar",
     props: ["app"],
 
     created() {
-        Event.$on("CartRemove", ()=>{this.refCart()});
+        Event.$on("CartRemove", () => {
+            this.refCart()
+        });
         this.refCart(),
 
-       Event.$on('Loggedin...',()=>{
-            this.app.initUser()
-            Auth.init()
-        })
+            Event.$on('Loggedin...', () => {
+                this.app.initUser()
+                Auth.init()
+            })
     },
     data() {
         return {
-            word:''
+            word: ''
         };
     },
     computed: {
@@ -249,7 +244,7 @@ export default {
             return false;
         },
         cartEmpty() {
-            if (this.app.cart.length===0) {
+            if (this.app.cart.length === 0) {
                 return true;
             }
             return false;
@@ -293,18 +288,28 @@ export default {
             }
 
         },
-        search(){
+        search() {
             let $this = this;
             Event.$emit('Search')
 
             $this.$router.push({
-                    name: "Search",
-                    params:{statement:this.word}
-                });
-                this.word = '';
+                name: "Search",
+                params: {
+                    statement: this.word
+                }
+            });
+            this.word = '';
 
-
-
+        },
+        Category(category) {
+            console.log(category)
+            this.$router.push({
+                name: "ProductByCategory",
+                params: {
+                    category: category
+                }
+            });
+            Event.$emit('productCategory')
         }
 
     }

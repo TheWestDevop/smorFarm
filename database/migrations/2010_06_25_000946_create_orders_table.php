@@ -23,7 +23,8 @@ class CreateOrdersTable extends Migration
             $table->biginteger('driver_name');
             $table->tinyinteger('status');
             $table->string('ticket_id');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

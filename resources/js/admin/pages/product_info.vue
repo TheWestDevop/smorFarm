@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import Auth from "../util/adminAuth";
+import Auth from "../util/Auth";
 import { post, get } from "../util/api";
 import Navbar from '../components/navbar'
 

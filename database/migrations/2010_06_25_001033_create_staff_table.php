@@ -29,7 +29,8 @@ class CreateStaffTable extends Migration
             $table->string('next_of_kin');
             $table->string('next_of_kin_address');
             $table->string('next_of_kin_phone');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

@@ -53,7 +53,7 @@ class OrderController extends Controller
         return response()->json($order->ticket_id, 200);
 
         }
-       
+
 
 
 
@@ -105,7 +105,7 @@ class OrderController extends Controller
          }
 
 
-        
+
 
         $order = new Order();
         $order->Orders = $request->cart;
@@ -154,7 +154,11 @@ class OrderController extends Controller
        ];
         return response()->json($order_info, 200);
     }
-
+    public function findOrderbyUser($id){
+        $user = User::findorfail($id);
+        $order= Order::where('user',$user->name)->Where('user_type','Registered Customer')->latest()->paginate();
+        return response()->json($order, 200);
+    }
 
 
     public function update($id)

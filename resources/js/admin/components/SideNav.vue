@@ -46,10 +46,10 @@
               <span>My profile</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="/auth/admin/logout" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
+            <a  href="/admin/login"  class="dropdown-item">
+                                    <i class="ni ni-user-run"></i>
+                                    <span>Logout</span>
+                                </a>
           </div>
         </li>
       </ul>
@@ -99,6 +99,11 @@
              </router-link>
           </li>
           <li class="nav-item">
+              <router-link :to="{name:'admin.categories'}" class="nav-link ">
+              <i class="ni ni-archive-2 text-success"></i> Categories
+             </router-link>
+          </li>
+          <li class="nav-item">
             <router-link :to="{name:'admin.order'}" class="nav-link ">
               <i class="ni ni-cart text-red"></i> Orders
             </router-link>
@@ -137,8 +142,16 @@
 </template>
 
 <script>
+import Auth from '../util/Auth';
+import {
+    get
+} from '../util/api'
 export default {
-
+  name:'side_nav',
+  props: ["admin"],
+  methods:{
+     
+  }
 }
 </script>
 

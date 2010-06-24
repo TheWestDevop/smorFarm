@@ -18,8 +18,12 @@ class CategoriesController extends Controller
        return response()->json($categories,200);
     }
 
-    
 
+    public function getAll()
+    {
+       $categories = Categories::paginate(10);
+       return response()->json($categories,200);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -34,9 +38,7 @@ class CategoriesController extends Controller
         $category->description = $request->description;
 
         $category->save();
-
-        $categories = Categories::paginate(5);
-        return response()->json($categories,200);
+        return response()->json($category,200);
     }
 
     /**
@@ -67,9 +69,8 @@ class CategoriesController extends Controller
         $category->description  = $request->description;
         $category->save();
 
-        $categories = Categories::paginate(5);
-        return response()->json($categories,200);
-        
+        return response()->json($category,200);
+
     }
 
     /**
@@ -83,7 +84,6 @@ class CategoriesController extends Controller
         $category = Categories::findorfail($id);
         $category->delete();
 
-        $categories = Categories::paginate(5);
-        return response()->json($categories,200);
+        return response()->json(['message'=>'Deleted'],200);
     }
 }

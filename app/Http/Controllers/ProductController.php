@@ -29,8 +29,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $filename = $request->file('image')->getClientOriginalName();
-        //$request->file("image")->storeAs('public/images/product/', $filename);
-        Storage::cloud()->put($filename,\Carbon\Carbon::now()->toDateTimeString());
+        $request->file("image")->storeAs('public/images/product/', $filename);
+
 
 
         $product =  new Product();
@@ -122,7 +122,7 @@ class ProductController extends Controller
         }
 
             $filename = $request->file('image')->getClientOriginalName();
-            Storage::cloud()->put($filename,\Carbon\Carbon::now()->toDateTimeString());
+            $request->file("image")->storeAs('public/images/product/', $filename);
 
             $product =  Product::findorfail($id);
         $product->title = $request->title;

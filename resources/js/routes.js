@@ -5,6 +5,7 @@ import Login from './pages/login';
 import Register from './pages/register';
 import Mall from './pages/mall';
 import Profile from './pages/profile';
+import Edit_Profile from './pages/edit_profile';
 import CheckOut from './pages/checkout';
 import Orders from './pages/orders';
 import Fast_Track from './pages/fast_track';
@@ -47,6 +48,11 @@ export default new VueRouter({
         path: '/profile',
         component: Profile,
         name:'profile'
+       },
+       {
+        path: '/edit/profile',
+        component: Edit_Profile,
+        name:'edit_profile'
        },
        {
         path: '/checkout',

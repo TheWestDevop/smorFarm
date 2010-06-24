@@ -1,18 +1,16 @@
 
 
-  
+
   /*# sourceMappingURL=dashboard-free.css.map */
 
 .text-gray{
     color: #c7c3c3;
 }
 .category{
-     margin:5px;
-     padding: 2px;
      color:#40174b;
      font-family: 'Times New Roman', Times, serif!important;
      font-size: 15px!important;
-     font-weight: 600!important;
+     font-weight: 400!important;
 }
 
 .category:hover {
@@ -21,7 +19,9 @@
     font-weight: 300!important;
 }
 
-
+.list-group-item{
+	border:none!important;
+}
 
 
 
@@ -73,7 +73,8 @@ body {
 	font-size: 14px;
 	font-style: normal;
 	font-weight: normal;
-	overflow-x: hidden;
+    overflow-x: hidden;
+    background-color:rgb(250, 245, 245)!important
 }
 
 a {
@@ -309,13 +310,14 @@ textarea {
 /*----------------------------------------*/
 /*  1.4 Default Button
 /*----------------------------------------*/
+
 button.li-btn {
 	border: none;
 	background: #753585;
 	color: #fcfafa;
 	font-size: 20px;
 	width: 45px;
-	border-radius: 0 2px 2px 0;
+	border-radius: 0 5px 5px 0;
 	height: 45px;
 	line-height: 45px;
 	position: absolute;
@@ -1840,7 +1842,6 @@ textarea:focus {
 }
 .megamenu > li {
 	padding: 0 20px;
-	min-width: 250px;
 	border-right: 1px solid #ebebeb;
 }
 .megamenu > li:first-child {

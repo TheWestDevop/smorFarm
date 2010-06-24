@@ -13,35 +13,28 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-          <form v-on:submit.prevent="onUpdate">
+          <form v-on:submit.prevent="onAdd">
             <div class="login-form">
-              <h4 class="login-staff text-center">Edit Driver </h4>
+              <h4 class="login-staff text-center">Add New Category </h4>
               <div class="row">
-                <div class="col-md-6 mb-20">
-                  <label>Staff </label>
-                   <input type="text" class="form-control" v-model="staff" id="" readonly>
-                  <div class="mt-2 p-2 font-italic text-danger">{{errorStaff}}</div>
+                <div class="col-md-12 mb-20">
+                  <label>Title </label>
+                   <input type="text" class="form-control" v-model="title" id="" >
+                  <div class="mt-2 p-2 font-italic text-danger">{{errorTitle}}</div>
                 </div>
-                <div class="col-md-6 mb-20">
-                  <label>Logistics</label>
-                  <select
-                    v-model="ride"
-                    class="form-control"
-                  >
-                  <option value="" > Select Logistics Method Here </option>
-                    <option v-for="ride in admin.logistics.data"
-                    :key="ride.id" >{{ride.title}}</option>
-                  </select>
-                  <div class="mt-2 p-2 font-italic text-danger">{{errorRide}}</div>
+                <div class="col-md-12 mb-20">
+                  <label>Description</label>
+                  <textarea name="description" v-model="description" class=" form-control w-100"></textarea>
+                  <div class="mt-2 p-2 font-italic text-danger">{{errorDescription}}</div>
                 </div>
                 <div class="col-12">
-<router-link :to="{name:'admin.driver'}" class="float-left">
+<router-link :to="{name:'admin.categories'}" class="float-left">
                                             <button class="btn btn-secondary mt-0">
                                                 <i class="fa fa-arrow-left"></i> Back
                                             </button>
                                         </router-link>
-                  <button type="submit" class="btn btn-info mt-0 float-right">
-                    <i class="fa fa-upload"></i> Update
+                  <button type="submit" class="btn btn-primary mt-0 float-right">
+                    <i class="fa fa-plus"></i> Add
                   </button>
                 </div>
               </div>
@@ -61,7 +54,7 @@ import { post, get } from "../util/api";
 import Navbar from '../components/navbar'
 
 export default {
-  name: "New_Driver",
+  name: "New_Category",
   props: ["admin"],
    components:{
         Navbar
@@ -69,11 +62,11 @@ export default {
   data() {
     return {
       id:'',
-      staff: "",
-      ride: "",
+      title: "",
+      description: "",
       flash:Flash.state,
-      errorStaff: "",
-      errorRide: "",
+      errorTitle: "",
+      errorDescription: "",
       errors: []
     };
   },
@@ -84,47 +77,49 @@ export default {
 
        }*/
   },
-  mounted(){
-      this.id = this.$route.params.id;
-      this.getDriver(this.id)
-  },
+
   methods: {
-    onUpdate() {
-
+    onAdd() {
+       
              let $this = this;
+            this.errors = [];
 
+      if (this.title.length < 1 && this.title === "") {
+        this.errorTitle = "Title is Required";
+        this.errors.push(this.errorTitle);
+      } else {
+        this.errorTitle = null;
+      }
+      if (this.description === null || this.description === "" ) {
+        this.errorDescription = "Description is Required";
+        this.errors.push(this.errorDescription);
+      } else {
+        this.errorDescription = null;
+      }
+
+        if (!this.errors.length) {
        let form = new FormData();
-       form.append('logistics_id',$this.ride)
+       form.append('title',$this.title)
+       form.append('description',$this.description)
        let data = form
-        post(BASE_URL + `/api/driver/${this.id}/update`, data).then(function(response) {
+        post(BASE_URL + `/api/add/category/`, data).then(function(response) {
           console.log(response.data);
           if (response.data) {
 
-          $this.staff = '';
-          $this.ride =  '';
+          $this.title = '';
+          $this.description =  '';
             $this.$router.push({
-                name: "admin.driver",
+                name: "admin.categories",
             });
-            Flash.setSuccess("Driver Updated !!!");
+            Flash.setSuccess("Category Created !!!");
           } else{
             Flash.setError("You are Unauthorized!!!");
 
           }
         });
-
+        }
     },
-     getDriver(id){
-        let $this = this;
-        get(BASE_URL + `/api/driver/${id}/info`).then(function(response) {
-          console.log(response.data)
-          if (response.data) {
-
-          $this.staff = response.data.staff;
-          $this.ride =  response.data.ride;
-
-          }
-        });
-    },
+    
 
 
   },

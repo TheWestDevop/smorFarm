@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SideNav />
+        <SideNav :admin="this" />
         <router-view :admin="this"></router-view>
     </div>
 </template>
@@ -10,6 +10,7 @@ import SideNav from "./admin/components/SideNav";
 import {
     get
 } from "./admin/util/api";
+import Auth from "./admin/util/Auth";
 export default {
     name: "admin",
     components: {
@@ -17,8 +18,19 @@ export default {
     },
     data() {
         return {
-
-            categories: [],
+            admin:[],
+            auth: Auth.state,
+            categories: {
+                data: [],
+                pagination: {
+                    total: 0,
+                    per_page: 2,
+                    from: 1,
+                    to: 0,
+                    current_page: 1,
+                    last_page: 0
+                }
+            },
             products: {
                 products: [],
                 pagination: {
@@ -119,15 +131,32 @@ export default {
         this.getStaff();
         this.getCustomer();
         this.getLogistics();
-        
     },
     methods: {
+        initAdmin() {
+            
+            get(BASE_URL + '/api/auth/admin/init').then((response) => {
+                if (response.data.id) {
+                    Auth.set(response.data.api_token, response.data.id);
+                    this.admin = response.data;
+                }else{
+                    console.log('')
+                }
+
+            })
+        },
         getCategory() {
 
             let $this = this;
-            get(BASE_URL + "/api/all/categories").then(function (response) {
+            get(BASE_URL + "/api/categories").then(function (response) {
                 if (response.data) {
-                    $this.categories = response.data;
+                    $this.categories.data = response.data.data;
+                    $this.categories.pagination.current_page = response.data.current_page;
+                    $this.categories.pagination.total = response.data.total;
+                    $this.categories.pagination.per_page = response.data.per_page;
+                    $this.categories.pagination.last_page = response.data.last_page;
+                    $this.categories.pagination.from = response.data.from;
+                    $this.categories.pagination.to = response.data.to;
                 }
             });
         },

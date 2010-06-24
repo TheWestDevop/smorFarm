@@ -42,6 +42,12 @@ class AdminController extends Controller
     {
         return view('admin.products', compact(User::latest()->paginate(20)));
     }
+    public function init()
+    {
+        $admin = Auth::User();
+        return response()->json($admin, 200);
+    }
+
 
 
 

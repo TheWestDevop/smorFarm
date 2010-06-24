@@ -25,7 +25,8 @@ class CreateProductsTable extends Migration
             $table->string('made_in_nigeria');
             $table->string('discount')->nullable();
             $table->string('ordered_quantities')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 

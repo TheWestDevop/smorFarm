@@ -89,7 +89,8 @@ export default {
     },
     created() {
         this.viewCart();
-      
+        this.app.initUser();
+
     },
     computed:{
         check(){
@@ -107,8 +108,8 @@ export default {
         }
     },
     methods: {
-         
-            
+
+
         viewCart() {
             if (localStorage.getItem('cart')) {
                 this.cart = JSON.parse(localStorage.getItem('cart'));
