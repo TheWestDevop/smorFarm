@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function index()
     {
         $admin = Auth::user();
-        return view('admin.main',['admin'=>$admin]);
+        return view('main',['admin'=>$admin]);
     }
     public function orders()
     {
@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         return view('admin.products', compact(User::latest()->paginate(20)));
     }
-    
+
 
 
 
