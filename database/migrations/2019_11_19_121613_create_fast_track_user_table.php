@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFastTrackUsersTable extends Migration
+class CreateFastTrackUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFastTrackUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('fast_track_users', function (Blueprint $table) {
+        Schema::create('fast_track_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
@@ -33,6 +33,6 @@ class CreateFastTrackUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fast_track_users');
+        Schema::dropIfExists('fast_track_user');
     }
 }
