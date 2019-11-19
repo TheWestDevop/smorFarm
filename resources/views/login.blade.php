@@ -6,6 +6,7 @@
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <meta csrf_token="{{csrf_token()}}">
+            <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
             <title>SmorFarm Admin</title>
             <!-- Favicon -->
             <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
@@ -73,9 +74,9 @@
                                             @endforeach
 
                                         @endif
-                                       
-                                        
-                                        
+
+
+
                                         <form action="/api/auth/admin/login" method="POST" role="form">
                                             @csrf
                                             <div class="form-group mb-3">

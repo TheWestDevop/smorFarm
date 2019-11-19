@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta csrf_token="{{csrf_token()}}">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
   <title>
  SmorFarm Admin
   </title>
@@ -20,11 +21,11 @@
   <link href="{{asset('js/plugins/fontawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="{{asset('css/argon-dashboard.css?v=1.1.0')}}" rel="stylesheet" />
- 
+
 </head>
 
 <body class="bg-default">
-  
+
   <div id="admin"></div>
   <script>
     const BASE_URL = '{{URL::to('/')}}';
@@ -43,7 +44,7 @@
 localStorage.setItem('admin_id', @json($admin->id));
 localStorage.setItem('api_token', @json($admin->api_token));
 </script>
- 
+
 
 </body>
 
