@@ -23,6 +23,30 @@ Route::get('/admin/login', function () {
 })->name('admin-login');;
 
 
+Route::get('/product/image/{id}',function($id){
+
+      // Get the file to find the ID
+      $dir = '/';
+      $recursive = false; // Get subdirectories also?
+      $contents = collect(Storage::cloud()->listContents($dir, $recursive));
+      $file = $contents
+          ->where('type', '=', 'file')
+          ->where('filename', '=', pathinfo($id, PATHINFO_FILENAME))
+          ->where('extension', '=', pathinfo($id, PATHINFO_EXTENSION))
+          ->first(); // there can be duplicate file names!
+      // Change permissions
+      // - https://developers.google.com/drive/v3/web/about-permissions
+      // - https://developers.google.com/drive/v3/reference/permissions
+      $service = Storage::cloud()->getAdapter()->getService();
+      $permission = new \Google_Service_Drive_Permission();
+      $permission->setRole('reader');
+      $permission->setType('anyone');
+      $permission->setAllowFileDiscovery(false);
+      $permissions = $service->permissions->create($file['basename'], $permission);
+      return Storage::cloud()->url($file['path']);
+}
+);
+
 
 Route::get('/api/auth/logout','UserController@logout');
 Route::post('/api/auth/login','UserController@login');

@@ -27,8 +27,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $filename = $request->file('image')->getClientOriginalName();
-        $request->file("image")->storeAs('public/images/product/', $filename);
-
+        //$request->file("image")->storeAs('public/images/product/', $filename);
+        Storage::cloud()->put($filename,\Carbon\Carbon::now()->toDateTimeString());
 
 
         $product =  new Product();
