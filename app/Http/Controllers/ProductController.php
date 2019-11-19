@@ -30,7 +30,7 @@ class ProductController extends Controller
     {
         $filename = $request->file('image')->getClientOriginalName();
         //$request->file("image")->storeAs('public/images/product/', $filename);
-        Storage::disk('google')->put($filename,\Carbon\Carbon::now()->toDateTimeString());
+        Storage::cloud()->put($filename,\Carbon\Carbon::now()->toDateTimeString());
 
 
         $product =  new Product();
