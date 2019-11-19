@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
+
     public function index()
     {
         $products =  Product::orderBy('created_at','ASC')->paginate(10);
@@ -23,7 +23,7 @@ class ProductController extends Controller
         $products =  Product::latest()->paginate(6);
         return response()->json($products, 200);
     }
-   
+
     public function store(Request $request)
     {
         $filename = $request->file('image')->getClientOriginalName();
@@ -35,7 +35,6 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->description = $request->description;
         $product->product_image = $filename;
-        $product->path = 'public/images/product/';
         $product->price = $request->price;
         $product->price_per_unit = $request->price_per_unit;
         $product->category_id = $request->category_id;
@@ -79,8 +78,8 @@ class ProductController extends Controller
          ], 200);
 
     }
-   
-     
+
+
     public function show($word)
     {
         $stament = '%'.$word.'%';
@@ -96,16 +95,15 @@ class ProductController extends Controller
         return response()->json($product, 200);
     }
 
-    
+
     public function update(Request $request, $id)
     {
-        
+
 
         if ($request->file('image')==null || $request->file('image') == "" ) {
             $product =  Product::findorfail($id);
             $product->title = $request->title;
             $product->description = $request->description;
-            $product->path = 'public/images/product/';
             $product->price = $request->price;
             $product->price_per_unit = $request->price_per_unit;
             $product->category_id = $request->category_id;
@@ -113,14 +111,14 @@ class ProductController extends Controller
             $product->made_in_nigeria = $request->made_in_nigeria;
             $product->discount = $request->discount;
             $product->ordered_quantities = '0';
-    
-            $product->save(); 
-            
+
+            $product->save();
+
             return response()->json(['message' => "Product Updated..."], 200);
 
-  
+
         }
-        
+
             $filename = $request->file('image')->getClientOriginalName();
             $request->file("image")->storeAs('public/images/product/', $filename);
 
@@ -138,9 +136,9 @@ class ProductController extends Controller
         $product->ordered_quantities = '0';
 
         $product->save();
-        
+
         return response()->json(['message' => "Product Updated..."], 200);
-        
+
     }
 
     public function countAll()
@@ -156,9 +154,9 @@ class ProductController extends Controller
 
         ], 200);
     }
-    
 
-    
+
+
     public function destroy($id)
     {
         $product = Product::findorfail($id);
