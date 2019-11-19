@@ -126,7 +126,6 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->description = $request->description;
         $product->product_image = $filename;
-        $product->path = 'public/images/product/';
         $product->price = $request->price;
         $product->price_per_unit = $request->price_per_unit;
         $product->category_id = $request->category_id;
