@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\PreOrder;
 use App\Product;
 use Auth;
 use App\User;
@@ -31,7 +32,13 @@ class AdminController extends Controller
     public function orders()
     {
 
-        $orders = Order::latest()->paginate();
+        $orders = Order::latest()->paginate(20);
+        return response()->json($orders, 200);
+    }
+    public function preorders()
+    {
+
+        $orders = PreOrder::latest()->paginate(20);
         return response()->json($orders, 200);
     }
     public function products()

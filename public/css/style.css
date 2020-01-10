@@ -1,30 +1,119 @@
 
 
 
+.notification-count{
+    margin-top:2px;
+    margin-left :2px;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    display: block;
+    overflow: hidden;
+    min-width: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: rgb(0, 0, 0);
+    background: #ffffff;
+    text-align: center;
+    border-radius: 100%;
+}
+.list-group-item{
+    padding: 10px;
+    margin: 5px;
+    border-radius: 15px!important;
+    font-size: 12px;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+}
+
+
+
   /*# sourceMappingURL=dashboard-free.css.map */
+  .t-over{
+        white-space: nowrap;
+        height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+  }
+ .btn-radio input[type=radio]:checked{
+    color: #50185f!important;
+    border: 1px solid #50185f;
+    background: #50185f!important;
+    width: 50px!important;
+    line-height:0px!important;
+    padding:0px!important;
+    font-size:0px!important;
+    margin-bottom:0px!important;
+
+
+  }
 
 .text-gray{
     color: #c7c3c3;
 }
+.cart-footer{
+    padding:10px;
+    color:#524e4e;
+    background-color:#f3efef;
+    border-radius:10px;
+    width: 100%;
+    height:200px;
+}
+.delivery-time{
+    padding:10px;
+    color:#524e4e;
+    background-color:#f7f7f7;
+    border-radius:10px;
+    width: 100%;
+    height:400px;
+}
 .category{
-     color:#40174b;
+     padding:10px!important;
+     margin:20px!important;
+     color:#40174b!important;
      font-family: 'Times New Roman', Times, serif!important;
-     font-size: 15px!important;
-     font-weight: 400!important;
+     font-size: 20px;
+     cursor: pointer;
 }
-
-.category:hover {
-    color:#572166;
-    font-size: 18px!important;
-    font-weight: 300!important;
-}
-
-.list-group-item{
-	border:none!important;
+.category:hover{
+    color:#8d8d8d!important;
+    padding:10px!important;
+     margin:5px!important;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
 }
 
 
 
+
+
+.card{
+    margin:5px;
+    border-radius:20px;
+    border-color:rgb(202, 175, 175);
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.452);
+}
+.increase{
+    color:white;
+    max-width:100px;
+    max-height:100px;
+    background-color: #8b178b;
+}
+.increase{
+    color:rgb(0, 0, 0);
+    max-width:100px;
+    max-height:100px;
+    border: #000;
+    background-color: #ffffff;
+}
+.image{
+ margin: 10px;
+ max-width:220px !important;
+ max-height: 150px!important;
+}
 
 /* ---------------------------------------------------
     CONTENT STYLE
@@ -69,8 +158,8 @@ a{
 }
 body {
     color: #242424;
-	font-family: 'Rubik', sans-serif;
-	font-size: 14px;
+	font-family: "Source Sans Pro", sans-serif;
+    font-size: 16px;
 	font-style: normal;
 	font-weight: normal;
     overflow-x: hidden;
@@ -98,7 +187,6 @@ a:hover {
 	color: #f1f0e7;
 	text-decoration: none;
 }
-a,
 button,
 input {
 	outline: medium none;
@@ -162,9 +250,8 @@ p {
 	margin-bottom: 15px;
 }
 hr {
-	margin: 60px 0;
 	padding: 0px;
-	border-bottom: 1px solid #eceff8;
+	border-bottom: 1px solid thistle!important;
 	border-top: 0px;
 }
 hr.style-2 {
@@ -395,8 +482,9 @@ a.review-links:hover {
 /*  1.6 Input
 /*----------------------------------------*/
 input {
-	background: #eceff8;
-	border: 2px solid #eceff8;
+    background: #eceff8;
+    border: 2px solid #eceff8;
+    border-radius: 10px;
 	height: 45px;
 	box-shadow: none;
 	padding-left: 10px;
@@ -407,7 +495,8 @@ input {
 select {
 	width: 100%;
 	background: #eceff8;
-	border: 2px solid #eceff8;
+	border: 1px solid #d1cece;
+    border-radius:12px;
 	height: 45px;
 	padding-left: 10px;
 	box-shadow: none;
@@ -908,7 +997,6 @@ textarea:focus {
      background-color: #ffffff;
 }
  .mobile-menu .mean-bar .mean-nav > ul {
-     margin-bottom: 30px;
      border: 1px solid #eeeeee;
      border-top: 0px solid transparent;
      overflow-x: hidden;
@@ -921,7 +1009,7 @@ textarea:focus {
 }
  @media only screen and (max-width: 479px) {
      .mobile-menu .mean-bar .mean-nav > ul {
-         max-height: 220px;
+
          overflow-y: auto;
     }
 }
@@ -1443,7 +1531,7 @@ textarea:focus {
 	background: #fff;
 	border-radius: 5px;
 	border: 1px solid #e1e1e1;
-	min-width: 638px;
+	width: 60%;
 	height: 45px;
 	float: left;
 }
@@ -1576,7 +1664,7 @@ textarea:focus {
 }
 .minicart {
 	border: 1px solid #e5e5e5;
-	padding: 20px;
+	padding: 40px;
 	width: 100%;
 	background: #fffdfd;
 	text-align: left;
@@ -1640,8 +1728,8 @@ textarea:focus {
 .minicart .minicart-product-list li .minicart-product-details {
 	-ms-flex-negative: 100;
 	flex-shrink: 100;
-	width: 100%;
-	margin-right: 10px;
+	width:50%;
+	margin-right:5px;
 }
 .minicart .minicart-product-list li .minicart-product-details h6 {
 	color: #333333;
@@ -2076,7 +2164,7 @@ textarea:focus {
 	display: inline-block;
 	width: 100%;
 	padding-bottom: 10px;
-	border-bottom: 1px solid #e1e1e1;
+
 }
 .li-product-menu li {
 	display: inline-block;
@@ -2345,7 +2433,7 @@ textarea:focus {
 	background: #753585;
 	border: 1px solid #e1e1e1;
 	transition: all 0.3s ease-in-out;
-	width: 120px;
+	width: 100%;
 }
 .add-actions-link li:hover {
     color: #fff;
@@ -2578,7 +2666,7 @@ textarea:focus {
 /*  2.6 Li's Laptop Features
 /*----------------------------------------*/
 .li-section-title {
-	border-bottom: 1px solid #e1e1e1;
+
 	width: 100%;
 	display: inline-block;
 	position: relative;
@@ -3311,11 +3399,7 @@ li.right-menu .cat-mega-menu-2 > li {
 /*----------------------------------------*/
 /*  05. Home Page Four
 /*----------------------------------------*/
-.product-img {
-	width: 30%;
-	float: left;
-	padding: 15px;
-}
+
 .featured-pro-content {
 	width: 70%;
 	float: right;
@@ -3883,8 +3967,9 @@ thead {
 .login-form {
   background-color: #ffffff;
   padding: 30px;
-  -webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.1); }
+  border-radius:25px;
+  -webkit-box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.473);
+  box-shadow: 0px 5px 4px 0px rgba(0, 0, 0, 0.473); }
   .login-form label {
     display: block;
     font-size: 14px;
@@ -3917,8 +4002,8 @@ thead {
   .login-form input {
     width: 100%;
     background-color: transparent;
-    border: 1px solid #999999;
-    border-radius: 0;
+    border: 1px solid #d1cece;
+    border-radius:12px;
     line-height: 23px;
     padding: 10px 20px;
     font-size: 14px;

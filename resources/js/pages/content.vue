@@ -84,47 +84,11 @@
                 </div>
                 <div class="tab-content">
                     <div id="li-new-product" class="tab-pane active show" role="tabpanel">
-                        <div class="row" v-if="validateProduct(app.all_products.data)">
+                        <div class="row box" v-if="validateProduct(app.all_products.data)">
 
-                            <div v-for="product in app.all_products.data" :key="product.id" class="col-lg-4 col-md-4">
+                            <div v-for="product in app.all_products.data" :key="product.id" class="col m-2 item">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-                                                <div class="rating-box">
-                                                    <ul class="rating">
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358;{{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart"><div class="text-center"   @click="addCart(product)">Add to cart</div></li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Product :app="app" :product="product" />
 
                             </div>
 
@@ -165,46 +129,10 @@
 
 
 
-                        <div class="row" v-if="validateProduct(app.discount_products.data)">
-                            <div v-for="product in app.discount_products.data" :key="product.id" class="col-lg-4 col-md-4">
+                        <div class="row box" v-if="validateProduct(app.discount_products.data)">
+                            <div v-for="product in app.discount_products.data" :key="product.id" class="col m-2 item">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-                                                <div class="rating-box">
-                                                    <ul class="rating">
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358; {{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart"><div class="text-center"   @click="addCart(product)">Add to cart</div></li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Product :app="app" :product="product" />
 
                             </div>
                         </div>
@@ -240,46 +168,10 @@
                                 <li><a href="#">Imported</a></li>
                             </ul>
                         </div>
-                        <div class="row" v-if="validateProduct(app.oil)">
-                            <div v-for="product in app.oil" :key="product.id" class="col-lg-4 col-md-4">
+                        <div class="row box" v-if="validateProduct(app.oil)">
+                            <div v-for="product in app.oil" :key="product.id" class="col m-2 item">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-                                                <div class="rating-box">
-                                                    <ul class="rating">
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358; {{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart"><div class="text-center"   @click="addCart(product)">Add to cart</div></li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Product :app="app" :product="product" />
 
                             </div>
                         </div>
@@ -340,38 +232,10 @@
                         </div> <!-- Begin Li's Tab Menu Content Area -->
                         <div class="tab-content li-tab-content li-trending-product-content">
                             <div id="home1" class="tab-pane show fade in active">
-                                <div class="row" v-if="validateProduct(app.trending)">
-                                    <div v-for="product in app.trending.nigeria" :key="product.id" class="col-lg-4 col-md-4">
+                                <div class="row box" v-if="validateProduct(app.trending)">
+                                    <div v-for="product in app.trending.nigeria" :key="product.id" class="col m-2 item">
 
-                                        <div class="single-product-wrap m-2">
-                                            <div class="product-image">
-
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                            </div>
-                                            <div class="product_desc">
-                                                <div class="product_desc_info">
-                                                    <div class="product-review">
-                                                        <h5 class="manufacturer">
-                                                            {{product.description}}
-                                                        </h5>
-
-                                                    </div>
-                                                    <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                                    <div class="price-box">
-                                                        <span class="new-price">&#8358; {{product.price}}</span>
-                                                    </div>
-                                                    <div class="add-action">
-                                                        <ul class="add-actions-link mb-4">
-                                                            <li class="add-cart"><a href="#">Add to cart</a></li>
-                                                            <li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
-                                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Product :app="app" :product="product" />
 
                                     </div>
                                 </div>
@@ -384,38 +248,10 @@
                                 </div>
                             </div>
                             <div id="home2" class="tab-pane fade">
-                                <div class="row" v-if="validateProduct(app.trending)">
-                                    <div v-for="product in app.trending.imported" :key="product.id" class="col-lg-4 col-md-4">
+                                <div class="row box" v-if="validateProduct(app.trending)">
+                                    <div v-for="product in app.trending.imported" :key="product.id" class="col m-2 item">
 
-                                        <div class="single-product-wrap m-2">
-                                            <div class="product-image">
-
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                            </div>
-                                            <div class="product_desc">
-                                                <div class="product_desc_info">
-                                                    <div class="product-review">
-                                                        <h5 class="manufacturer">
-                                                            {{product.description}}
-                                                        </h5>
-
-                                                    </div>
-                                                    <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                                    <div class="price-box">
-                                                        <span class="new-price">&#8358; {{product.price}}</span>
-                                                    </div>
-                                                    <div class="add-action">
-                                                        <ul class="add-actions-link mb-4">
-                                                            <li class="add-cart"><a href="#">Add to cart</a></li>
-                                                            <li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
-                                                            <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Product :app="app" :product="product" />
 
                                     </div>
                                 </div>
@@ -447,46 +283,10 @@
                                 <span class="h4">Kitchen Tools</span>
                             </h2>
                         </div>
-                        <div class="row" v-if="validateProduct(app.tools)">
-                            <div v-for="product in app.tools" :key="product.id" class="col-lg-4 col-md-4">
+                        <div class="row box" v-if="validateProduct(app.tools)">
+                            <div v-for="product in app.tools" :key="product.id" class="col m-2 item">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-                                                <div class="rating-box">
-                                                    <ul class="rating">
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358; {{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart"><div class="text-center"   @click="addCart(product)">Add to cart</div></li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Product :app="app" :product="product" />
 
                             </div>
 
@@ -511,6 +311,7 @@
 </template>
 
 <script>
+import Product from '../components/product.vue'
 import pagination from '../components/pagination.vue'
 import {
     get
@@ -519,7 +320,8 @@ export default {
     name: "Content",
     props: ["app"],
     components: {
-        pagination
+        pagination,
+        Product
     },
     data() {
         return {

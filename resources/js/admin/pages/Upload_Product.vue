@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- Navbar -->
-       <Navbar/>
+       <Navbar :nav="admin"/>
 
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
@@ -233,7 +233,18 @@ export default {
           console.log(response.data);
           if (response.data.message) {
           Flash.setSuccess("You have successfully upload new product to SmorFarm!");
-
+          this.$toast.success('You have successfully upload new product to SmorFarm !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
           $this.title = '';
           $this.price =  '';
           $this.price_per_unit='';
@@ -247,6 +258,7 @@ export default {
           $this.description = '';
 
           } else{
+            
             Flash.setError("You are Unauthorized!!!");
 
           }

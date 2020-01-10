@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar :nav="admin" />
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -68,7 +68,7 @@
                                             </td>
                                             <td>
                                                 {{product.category_id}}
-                                                
+
                                             </td>
                                             <td>
                                                 <div class="dropdown">
@@ -79,17 +79,17 @@
                                                         <button class="btn btn-info" @click="moreInfo(product.id)"><i class="fa fa-info"></i></button>
                                                         <button class="btn btn-primary" @click="editProduct(product.id)"><i class="fa fa-eraser"></i></button>
                                                         <button class="btn btn-danger" @click="deleteProduct(product.id)"><i class="fa fa-trash"></i></button>
-                                                       
+
                                                     </div>
                                                 </div>
-                                                
+
                                             </td>
-                                             
+
                                         </tr>
 
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                             <div class="row justify-content-center">
                                     <div class="col-md-12">
@@ -160,6 +160,18 @@ export default {
         },
         deleteProduct(id) {
             get(BASE_URL + `/api/delete/product/${id}`).then((response) => {
+                this.$toast.success('Product Deleted', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 this.getProducts();
             });
         },

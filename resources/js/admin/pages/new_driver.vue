@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- Navbar -->
-       <Navbar/>
+       <Navbar :nav="admin"/>
 
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
@@ -114,6 +114,18 @@ export default {
         post(BASE_URL + "/api/driver/new", data).then(function(response) {
           console.log(response.data);
           if (response.data) {
+              this.$toast.success('New Driver Added !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
           Flash.setSuccess("Driver Added !!!");
           $this.staff = '';
           $this.ride =  '';

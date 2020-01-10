@@ -1,60 +1,22 @@
 <template>
     <div class="page-section  mb-60">
-   
+
         <!-- Begin Product Area -->
         <div class="product-area pt-60 pb-50">
 
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
-                        <p class="h3 font-weight-bold">You search for {{statement}}</p>
+                        <p class="h3">You search for {{statement}}</p>
                     </div>
                 </div>
                 <div class="tab-content">
                     <div id="li-new-product" class="tab-pane active show" role="tabpanel">
                         <div class="row">
                             <div class="row" v-if="validateProduct(data)">
-                                <div v-for="product in data" :key="product.id" class="col-lg-4 col-md-4">
+                                <div v-for="product in data" :key="product.id" class="col m-2">
 
-                                    <div class="single-product-wrap m-2">
-                                        <div class="product-image">
-
-                                            <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-                                            <span class="sticker">New</span>
-                                        </div>
-                                        <div class="product_desc">
-                                            <div class="product_desc_info">
-                                                <div class="product-review">
-                                                    <h5 class="manufacturer">
-                                                        {{product.description}}
-                                                    </h5>
-                                                    <div class="rating-box">
-                                                        <ul class="rating">
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                            <li class="no-star"><i class="fa fa-star-o"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                                <div class="price-box">
-                                                    <span class="new-price">&#8358;{{product.price}}</span>
-                                                </div>
-                                                <div class="add-action">
-                                                    <ul class="add-actions-link mb-4">
-                                                        <li class="add-cart">
-                                                            <div class="text-center" @click="addCart(product)">Add to cart</div>
-                                                        </li>
-                                                        <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Product :app="app" :product="product" />
 
                                 </div>
                             </div>
@@ -85,6 +47,7 @@
 <script>
 import Auth from '../util/store';
 import pagination from '../components/pagination.vue'
+import Product from '../components/product.vue'
 import {
     get
 } from "../util/api";
@@ -93,11 +56,12 @@ export default {
     name: 'search',
     props: ['app'],
     components: {
-        pagination
+        pagination,
+        Product
     },
     data() {
         return {
-            quantity: 1,
+
             statement: "",
             data: []
         }
@@ -116,7 +80,7 @@ export default {
         this.viewCart()
         this.getSearchProduct()
         $this.app.spin = false;
-        
+
 
 
     },
@@ -147,25 +111,7 @@ export default {
 
         },
 
-        addCart(product) {
-            let $this = this;
-            $this.app.cartadd.id = product.id;
-            $this.app.cartadd.name = product.title;
-            $this.app.cartadd.price = product.price;
-            $this.app.cartadd.image = product.product_image;
-            $this.app.cartadd.quantity = this.quantity;
-            $this.app.cart.push($this.app.cartadd);
-            $this.app.cartadd = {}
-            this.quantity = 1;
-            this.storeCart();
 
-        },
-        storeCart() {
-            let $this = this;
-            let parsed = JSON.stringify($this.app.cart);
-            localStorage.setItem('cart', parsed);
-            this.viewCart();
-        },
         viewCart() {
             let $this = this;
             if (localStorage.getItem('cart')) {

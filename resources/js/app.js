@@ -5,22 +5,25 @@
  */
 
 import Vue from 'vue';
-window.Event = new Vue();
-
-//User
+import Toast from 'vue-toastification';
 import router from './routes';
 import App from './App.vue';
+
+//Toast css
+import 'vue-toastification/dist/index.css';
 
 
 
 require('./bootstrap');
 
 Vue.config.devtools =true
-Vue.config.debug = false
+Vue.config.debug = true
 Vue.config.silent = true
 Vue.config.productionTips=false
 
+window.Event = new Vue();
 
+Vue.use(Toast,{transition: "Vue-Toastification__bounce",maxToast:20,newestOnTop:true});
 
 const app = new Vue({
     el: '#app',

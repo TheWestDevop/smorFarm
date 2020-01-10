@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- Navbar -->
-       <Navbar/>
+       <Navbar :nav="admin"/>
 
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
 

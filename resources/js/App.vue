@@ -13,7 +13,29 @@
              <br><br><br><br><br><br><br><br><br><br><br><br><br>
           </div>
         <router-view :app="this" v-else ></router-view>
+         <div class="modal fade" id="myModalNotification" role="dialog">
+                      <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title text-left">Notification</h4>
+                            <button type="button" class="close text-right" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <ul
+                              class="list-group"
+                              v-for="msg in notify.notification"
+                              :key="msg.id"
+                            >
+                              <li class="text-success list-group-item">{{msg.message}} <br> <small class="text-gray float-right">{{msg.created_at}}</small> </li>
+                            </ul>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
         <Footer></Footer>
+
 
     </div>
 </template>
@@ -41,43 +63,56 @@ export default {
     },
     data() {
         return {
-            user:[],
+
+            notify:[],
+            user:{
+                user:[],
+                profile:[]
+            },
+            fastUser:{
+             fname:'',
+             lname:'',
+             gender:'',
+             deliveryAddress:'',
+             alt_deliveryAddress:'',
+             phone:'',
+             email:'',
+            },
+            deliveryState:0,
+            deliveryOn:{
+                delivery_date:null,
+                delivery_time:null,
+            },
             spin: false,
             badge: 0,
             flash: Flash.state,
             auth: Auth.state,
             categories: [],
-            all:'',
-            latest:'',
-            rice: '',
-            oil: '',
-            pepper: '',
-            vegetable: '',
+
             discount_products:{
-            data:{} ,
-            paginations:{
-            total: 0,
-            per_page: 2,
-            from: 1,
-            to: 0,
-            current_page: 1,
-            last_page:0
-             }
+             data:{} ,
+             paginations:{
+                total: 0,
+                per_page: 2,
+                from: 1,
+                to: 0,
+                current_page: 1,
+                last_page:0
+                }
             },
             orders:{
-            data:{} ,
-            paginations:{
-            total: 0,
-            per_page: 2,
-            from: 1,
-            to: 0,
-            current_page: 1,
-            last_page:0
-             }
+                data:{} ,
+                paginations:{
+                total: 0,
+                per_page: 2,
+                from: 1,
+                to: 0,
+                current_page: 1,
+                last_page:0
+                }
             },
             trending:'',
             tools:'',
-            meat: '',
             nigeria:'',
             imported:'',
             cart: [],
@@ -89,6 +124,7 @@ export default {
                 quantity:''
             },
             totalprice:'',
+            over_total:'',
             all_products:{
             data:{} ,
             paginations:{
@@ -107,12 +143,13 @@ export default {
         initUser() {
 
             get(BASE_URL + '/api/auth/init').then((response) => {
-                if (response.data.id) {
-                    Auth.set(response.data.api_token, response.data.id);
-                    this.user = response.data;
-                    this.getOrders(response.data.id);
+                if (response.data.user.id) {
+                    Auth.set(response.data.user.api_token, response.data.user.id);
+                    this.user.user = response.data.user;
+                    this.user.profile = response.data.profile;
+                    this.getOrders(response.data.user.id);
                 }else{
-                    console.log('')
+                    console.log(response)
                 }
 
             })
@@ -195,6 +232,7 @@ export default {
         this.initUser()
         Event.$on('Loggedin...',()=>{
             this.initUser()
+
 
         })
         this.spin = false;

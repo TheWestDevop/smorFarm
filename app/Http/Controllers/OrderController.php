@@ -7,10 +7,14 @@ use App\Driver;
 use App\Order;
 use App\FastTrackUser;
 use App\Profile;
-use App\Staff;
+use App\PreOrder;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Mail\OrderPlaced;
+use App\Mail\OrderDelivered;
+use App\Mail\OrderRevised;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -49,6 +53,8 @@ class OrderController extends Controller
         $order->ticket_id = Str::random(12);
         $order->user_type = "Registered Customer";
         $order->save();
+         
+         Mail::to($user->email)->send(new OrderPlaced($order));
 
         return response()->json($order->ticket_id, 200);
 
@@ -68,6 +74,8 @@ class OrderController extends Controller
         $order->ticket_id = Str::random(12);
         $order->user_type = "Registered Customer";
         $order->save();
+        
+        Mail::to($user->email)->send(new OrderPlaced($order));
 
         $u_driver = Driver::where('staff_name',$order->driver_name)->first();
         $u_driver->avaliability_status = 0;
@@ -101,6 +109,7 @@ class OrderController extends Controller
         $order->user_type = "Fast Track";
         $order->save();
 
+        Mail::to($user->email)->send(new OrderPlaced($order));
         return response()->json($order->ticket_id, 200);
          }
 
@@ -116,6 +125,8 @@ class OrderController extends Controller
         $order->status = 0;
         $order->ticket_id = Str::random(12);
         $order->user_type = "Fast Track";
+
+        Mail::to($user->email)->send(new OrderPlaced($order));
 
         $order->save();
 
@@ -133,6 +144,9 @@ class OrderController extends Controller
     public function show($id)
     {
         $order= Order::where('ticket_id', $id)->first();
+         if ($order == null || $order == "") {
+             $order = PreOrder::where('ticket_id', $id)->first();
+         }
         return response()->json($order, 200);
     }
 
@@ -160,7 +174,31 @@ class OrderController extends Controller
         return response()->json($order, 200);
     }
 
+    public function updateDriver($id,Request $request)
+    {
+        $Order = Order::findorfail($id);
+        $Order->status = 0;
+        $Order->driver_name = $request->driver;
+        $Order->save();
+        $delivery = Deliveries::where('order_id',$Order->id)->first();
+        if ($delivery == null && $delivery == '') {
+            $delivery = new Deliveries();
+            $delivery->order_id = $Order->id;
+            $delivery->driver_name = $request->driver;
+            $delivery->status = $Order->status;
+            $delivery->save();
+        }
+            $delivery->order_id = $Order->id;
+            $delivery->driver_name = $request->driver ;
+            $delivery->status = $Order->status;
+            $delivery->save();
 
+            $u_driver = Driver::where('staff_name',$request->driver)->first();
+            $u_driver->avaliability_status = 0;
+            $u_driver->save();
+
+        return response()->json(['message' => "Order Driver Updated..."], 200);
+    }
     public function update($id)
     {
         $Order = Order::findorfail($id);
@@ -183,6 +221,14 @@ class OrderController extends Controller
             $u_driver->avaliability_status = 1;
             $u_driver->save();
 
+            $user = User::where('user',$Order->user)->first();
+
+            if ($user == "" || $user == null) {
+                $user = FastTrackUser::where('user',$Order->user)->first();
+            }
+
+            Mail::to($user->email)->send(new OrderDelivered($Order));
+
         return response()->json(['message' => "Order Updated..."], 200);
     }
     public function re_update($id)
@@ -199,6 +245,14 @@ class OrderController extends Controller
         $u_driver = Driver::where('staff_name',$Order->driver_name)->first();
         $u_driver->avaliability_status = 0;
         $u_driver->save();
+
+        $user = User::where('user',$Order->user)->first();
+
+            if ($user == "" || $user == null) {
+                $user = FastTrackUser::where('user',$Order->user)->first();
+            }
+
+            Mail::to($user->email)->send(new OrderRevised($Order));
 
 
         return response()->json(['message' => "Order Updated..."], 200);

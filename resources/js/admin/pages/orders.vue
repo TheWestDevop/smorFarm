@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar :nav="admin" />
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -58,17 +58,22 @@
                                             </th>
 
                                             <td>
-                                                <div class=" align-content-lg-start" v-for="item in JSON.parse(order.Orders)" :key="item.id">{{item.name}},{{item.quantity}}</div>
+                                                <div class=" align-content-lg-start" v-for="item in JSON.parse(order.orders)" :key="item.id">{{item.name}},{{item.quantity}}</div>
                                             </td>
                                             <td>
                                                 &#8358;{{order.total}}
                                             </td>
                                             <td>
                                                 {{order.user_type}}
+                                                <br>
+                                                <small v-if="order.driver_name === 'No Driver Avaliable'" class="text-danger  font-weight-bolder">Delivery Man Unavaliable</small>
                                             </td>
                                             <td>
                                                 <span v-if="status_0(order.status)" class="btn btn-light">Pending</span>
                                                 <span v-if="status_1(order.status)" class="btn btn-success"><i class="fa fa-check"></i> Completed</span>
+                                                <br>
+
+
                                             </td>
                                             <td>
                                                 <div class="dropdown">
@@ -77,7 +82,8 @@
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow p-3">
                                                         <button class="btn btn-info" @click="moreInfo(order.id)"><i class="fa fa-info"></i></button>
-                                                        <button class="btn btn-success" v-if="status_0(order.status)" @click="OrderDeliver(order.id)"><i class="fa fa-check text-white"></i></button>
+                                                        <button class="btn btn-primary" @click="UpdateDriver(order.id)"><i class="ni ni-delivery-fast"></i></button>
+                                                        <button class="btn btn-success" v-if="status_0(order.status)" @click="OrderDeliver(order.id,order.ticket_id,order.user)"><i class="fa fa-check text-white"></i></button>
                                                         <button class="btn btn-light" v-if="status_1(order.status)" @click="OrderDeliveRevised(order.id)"><i class="fa fa-remove text-white"></i></button>
                                                         <button class="btn btn-danger" @click="deleteorder(order.id)"><i class="fa fa-trash"></i></button>
 
@@ -112,7 +118,7 @@ import Navbar from '../components/navbar'
 import Flash from "../../util/flash"
 import Pagination from "../components/pagination";
 import {
-    get
+    get,post
 } from '../util/api'
 export default {
     name: 'orders',
@@ -173,18 +179,61 @@ export default {
         },
         deleteorder(id) {
             get(BASE_URL + `/api/delete/order/${id}`).then((response) => {
+                 this.$toast.success('Order Deleted', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 this.getOrders();
             });
         },
-        OrderDeliver(id) {
+        OrderDeliver(id,ticket,user) {
             get(BASE_URL + `/api/order/${id}/delivered`).then((response) => {
+                 this.$toast.success('Order Delivered Updated', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
+            let message = `Your Order with Ticket ${ticket} Has Been Delivered, Thank You For Your Patronage`;
+                            let form = new FormData();
+                             form.append('message', message)
+                             form.append('user', user)
+                             post(BASE_URL + `/api/create/notification/`, form).then(function (response) {});                     
                 this.getOrders();
             });
+            this.admin.getNotification();
         },
         OrderDeliveRevised(id) {
             get(BASE_URL + `/api/order/${id}/delivered/revised`).then((response) => {
+                 this.$toast.info('Order Delivered Revised', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 this.getOrders();
             });
+            this.admin.getNotification();
         },
         moreInfo(id) {
             let $this = this
@@ -195,6 +244,15 @@ export default {
                 }
             });
         },
+        UpdateDriver(id){
+            let $this = this
+            $this.$router.push({
+                name: "admin.update_driver",
+                params: {
+                    id: id
+                }
+            });
+        }
 
     }
 

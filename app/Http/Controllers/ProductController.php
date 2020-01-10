@@ -16,13 +16,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products =  Product::orderBy('created_at','ASC')->paginate(10);
+        $products =  Product::orderBy('created_at','ASC')->paginate(12);
         return response()->json($products, 200);
     }
 
     public function latestProduct()
     {
-        $products =  Product::latest()->paginate(6);
+        $products =  Product::latest()->paginate(12);
         return response()->json($products, 200);
     }
 
@@ -60,7 +60,7 @@ class ProductController extends Controller
      public function findByLowDiscount()
      {
         $product = Product::where('discount','>',9)
-                            ->latest()->paginate(6);
+                            ->latest()->paginate(12);
         return response()->json($product, 200);
      }
 
@@ -70,10 +70,10 @@ class ProductController extends Controller
     {
         $product_nigeria = Product::where('ordered_quantities','>',10)
                                      ->where('made_in_nigeria',1)
-                                     ->latest()->take(6)->get();
+                                     ->latest()->take(12)->get();
         $product_imported = Product::where('ordered_quantities','>',10)
                                      ->where('made_in_nigeria',0)
-                                     ->latest()->take(6)->get();
+                                     ->latest()->take(12)->get();
         return response()->json([
             'nigeria'=>$product_nigeria,
             'imported' => $product_imported
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $stament = '%'.$word.'%';
 
         $product = Product::where('title','like',$stament)
-                           ->orWhere('description','like',$stament)->paginate(10);
+                           ->orWhere('description','like',$stament)->paginate(12);
         return response()->json($product, 200);
     }
 

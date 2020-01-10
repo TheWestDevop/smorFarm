@@ -54,6 +54,18 @@ export default {
                 },
 
             },
+            pre_orders: {
+                data: [],
+                pagination: {
+                    total: 0,
+                    per_page: 2,
+                    from: 1,
+                    to: 0,
+                    current_page: 1,
+                    last_page: 0
+                },
+
+            },
             deliveries: {
                 data: [],
                 pagination: {
@@ -121,20 +133,30 @@ export default {
                     last_page: 0
                 }
             },
-            
+            notify:{
+                count:0,
+                notification:[]
+            }
+
+
 
         }
 
     },
-    mounted() {
+    created() {
         this.getCategory();
         this.getStaff();
         this.getCustomer();
         this.getLogistics();
+        this.getOrders();
+        this.getPreOrders();
+        this.getDrivers();
+        this.getNotification()
+
     },
     methods: {
         initAdmin() {
-            
+
             get(BASE_URL + '/api/auth/admin/init').then((response) => {
                 if (response.data.id) {
                     Auth.set(response.data.api_token, response.data.id);
@@ -213,8 +235,54 @@ export default {
                 }
             });
         },
-      
-        
+        getOrders() {
+            let $this = this
+            get(BASE_URL + `/api/admin/orders`).then((response) => {
+                $this.orders.data = response.data.data;
+                $this.orders.pagination.current_page = response.data.current_page;
+                $this.orders.pagination.total = response.data.total;
+                $this.orders.pagination.per_page = response.data.per_page;
+                $this.orders.pagination.last_page = response.data.last_page;
+                $this.orders.pagination.from = response.data.from;
+                $this.orders.pagination.to = response.data.to;
+
+            });
+        },
+        getPreOrders() {
+            let $this = this
+            get(BASE_URL + `/api/admin/pre/orders/`).then((response) => {
+                $this.pre_orders.data = response.data.data;
+                $this.pre_orders.pagination.current_page = response.data.current_page;
+                $this.pre_orders.pagination.total = response.data.total;
+                $this.pre_orders.pagination.per_page = response.data.per_page;
+                $this.pre_orders.pagination.last_page = response.data.last_page;
+                $this.pre_orders.pagination.from = response.data.from;
+                $this.pre_orders.pagination.to = response.data.to;
+
+            });
+        },
+        getDrivers() {
+            let $this = this
+            get(BASE_URL + `/api/driver?page=${$this.drivers.pagination.current_page}`).then((response) => {
+                $this.drivers.data = response.data.data;
+                $this.drivers.pagination.current_page = response.data.current_page;
+                $this.drivers.pagination.total = response.data.total;
+                $this.drivers.pagination.per_page = response.data.per_page;
+                $this.drivers.pagination.last_page = response.data.last_page;
+                $this.drivers.pagination.from = response.data.from;
+                $this.drivers.pagination.to = response.data.to;
+
+            });
+        },
+        getNotification() {
+            let $this = this
+            get(BASE_URL + `/api/new/order/notification/`).then((response) => {
+                $this.notify.count = response.data.count;
+                $this.notify.notification = response.data.notification;
+            });
+        },
+
+
     }
 }
 </script>

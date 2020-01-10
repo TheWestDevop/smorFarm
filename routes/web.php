@@ -23,6 +23,10 @@ Route::get('/', function(){
 
 
 
+Route::get('/admin/login', function(){
+    return view('login')->render();
+} )->name('admin-login');
+
 Route::get('/api/auth/logout','UserController@logout');
 Route::post('/api/auth/login','UserController@login');
 Route::post('/api/auth/register','UserController@register');
@@ -43,8 +47,10 @@ Route::get('/api/all/trending/products','ProductController@trending');
 Route::get('/api/count','ProductController@countAll');
 //OrderController
 Route::get('/api/order/verify/{id}','OrderController@show');
-
 Route::post('/api/order/','OrderController@store');
+
+//PreOrderController
+Route::post('/api/pre/order/','PreOrderController@store');
 
 
 //AdminController
@@ -75,6 +81,7 @@ Route::middleware('auth')->get('/api/admin/orders','AdminController@orders');
 Route::middleware('auth')->get('/api/order/{id}','OrderController@findOnlyOrder');
 Route::middleware('auth')->get('/api/user/{id}/order','OrderController@findOrderbyUser');
 Route::middleware('auth')->post('/api/user/{id}/order/','OrderController@customerstore');
+Route::middleware('auth')->post('/api/order/{id}/driver','OrderController@updateDriver');
 Route::middleware('auth')->get('/api/order/{id}/delivered','OrderController@update');
 Route::middleware('auth')->get('/api/order/{id}/delivered/revised','OrderController@re_update');
 Route::middleware('auth')->get('/api/delete/order/{id}','OrderController@destroy');
@@ -85,6 +92,7 @@ Route::middleware('auth')->get('/api/deliveries/address/{id}','DeliveriesControl
 
 //DriverController
 Route::middleware('auth')->get('/api/driver/','DriverController@index');
+Route::middleware('auth')->get('/api/driver/avaliable','DriverController@getAvaliable');
 Route::middleware('auth')->post('/api/driver/new','DriverController@store');
 Route::middleware('auth')->get('/api/driver/{id}','DriverController@show');
 Route::middleware('auth')->get('/api/driver/{id}/info','DriverController@getDriver');
@@ -128,6 +136,24 @@ Route::middleware('auth')->post('/api/add/category/','CategoriesController@store
 Route::middleware('auth')->get('/api/delete/category/{id}','CategoriesController@destroy');
 Route::middleware('auth')->post('/api/update/category/{id}','CategoriesController@update');
 Route::middleware('auth')->get('/api/category/{id}','CategoriesController@show');
+
+//PreOrderController
+Route::middleware('auth')->get('/api/admin/pre/orders','AdminController@preorders');
+Route::middleware('auth')->get('/api/pre/order/{id}','PreOrderController@findOnlyOrder');
+Route::middleware('auth')->post('/api/pre/order/{id}/driver','PreOrderController@updateDriver');
+Route::middleware('auth')->get('/api/user/{id}/pre/order','PreOrderController@findOrderbyUser');
+Route::middleware('auth')->post('/api/user/{id}/pre/order/','PreOrderController@customerstore');
+Route::middleware('auth')->get('/api/pre/order/{id}/delivered','PreOrderController@updateOrderDelivered');
+Route::middleware('auth')->get('/api/pre/order/{id}/delivered/revised','PreOrderController@re_updateOrderDelivered');
+Route::middleware('auth')->get('/api/delete/pre/order/{id}','PreOrderController@destroy');
+
+//NotificationController
+Route::middleware('auth')->get('/api/new/order/notification/','NotificationController@notifyOrder');
+Route::middleware('auth')->get('/api/user/notification/{id}','NotificationController@index');
+Route::middleware('auth')->post('/api/create/notification/','NotificationController@create');
+Route::middleware('auth')->get('/api/delete/notification/{id}','NotificationController@destroy');
+Route::middleware('auth')->get('/api/update/notification/{id}','NotificationController@update');
+Route::middleware('auth')->get('/api/user/{id}/notification','NotificationController@show');
 
 
 

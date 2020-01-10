@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar :nav="admin" />
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -111,7 +111,8 @@ export default {
         Pagination
     },
     mounted() {
-        this.getDeliveries()
+         this.getDeliveries()
+         
     },
     computed: {
         filterDeliveries() {
@@ -129,6 +130,7 @@ export default {
         return {
             flash: Flash.state,
             name: '',
+            
             
 
 

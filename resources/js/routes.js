@@ -12,7 +12,7 @@ import Fast_Track from './pages/fast_track';
 import Search from './pages/search';
 import Order_Status from './pages/order_status';
 import ProductByCategory from './pages/productByCategory'
-
+import Payment from './pages/payment'
 
 
 
@@ -86,7 +86,12 @@ export default new VueRouter({
         component:Order_Status,
         name:'order_status'
        },
-      
+       {
+        path: '/order/payment',
+        component:Payment,
+        name:'payment'
+       },
+
      ],
 
 });

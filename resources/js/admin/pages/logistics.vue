@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar :nav="admin"/>
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -146,7 +146,7 @@ export default {
 
     },
     methods: {
-       
+
 
 
         getLogistics() {
@@ -164,6 +164,18 @@ export default {
         },
         removeLogistics(id) {
             post(BASE_URL + `/api/logistics/${id}/delete`).then((response) => {
+                this.$toast.success('Logistics Removed !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 this.getLogistics();
             });
         },

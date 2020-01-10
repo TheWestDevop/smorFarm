@@ -1,22 +1,22 @@
 <template>
-     
+
     <div class=" d-lg-inline">
         <div class=" mt-3 font-weight-bold">
-            
+
         </div>
     <ul class="pagination">
-        <li class="btn m-1 font-weight-bold">
+        <li class="btn m-1">
             Total : {{paginations.total}}
         </li>
-    <li style="border:1px black solid" class="btn m-1" v-if="paginations.current_page > 1">
+    <li style="color:black;border:1px #c7c3c3 solid" class="btn m-1" v-if="paginations.current_page > 1">
         <a href="javascript:void(0)" aria-label="Previous" v-on:click.prevent="changePage(paginations.current_page - 1)">
             <span aria-hidden="true" class="text-black">Previous</span>
             </a>
         </li>
-    <li style="border:1px black solid" class="btn m-1" v-for="(page,n) in pagesNumber" :class="{'btn-primary': page == paginations.current_page}" :key="n">
-        <a href="javascript:void(0)" v-on:click.prevent="changePage(page)">{{ page }}</a>
+    <li style="color:blackborder:1px #c7c3c3 solid" class="btn m-1" v-for="(page,n) in pagesNumber" :class="{'btn-primary': page == paginations.current_page}" :key="n">
+        <div v-on:click.prevent="changePage(page)">{{ page }}</div>
         </li>
-    <li style="border:1px black solid" class="btn m-1" v-if="paginations.current_page < paginations.last_page">
+    <li style="color:black;border:1px #c7c3c3 solid" class="btn m-1" v-if="paginations.current_page < paginations.last_page">
         <a href="javascript:void(0)" aria-label="Next" v-on:click.prevent="changePage(paginations.current_page + 1)">
             <span aria-hidden="true" class="text-black">Next</span>
             </a>

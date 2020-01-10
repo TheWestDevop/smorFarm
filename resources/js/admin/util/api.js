@@ -8,7 +8,7 @@ export function post(url, data) {
         url: url,
         data: data,
         headers: {
-            'Authorization': `Bearer ${Auth.state.api_token}`
+            'Authorization': `Bearer ${localStorage.getItem('admin_api_token')}`
         }
     });
 }
@@ -19,7 +19,7 @@ export function get(url, data) {
         url: url,
         data: data,
         headers: {
-            'Authorization': `Bearer ${Auth.state.api_token}`
+            'Authorization': `Bearer ${localStorage.getItem('admin_api_token')}`
         }
     });
 }

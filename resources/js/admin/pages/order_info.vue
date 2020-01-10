@@ -1,7 +1,7 @@
 <template>
     <div class="main-content">
         <!-- Navbar -->
-        <Navbar />
+        <Navbar :nav="admin"/>
 
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
 
@@ -185,7 +185,7 @@ export default {
                     $this.order.gender = response.data.user.gender;
                     $this.order.email = response.data.user.email;
                     $this.order.phone = response.data.user.phone;
-                    $this.order.Orders = JSON.parse(response.data.order.Orders);
+                    $this.order.Orders = JSON.parse(response.data.order.orders);
                     $this.order.total = response.data.order.total;
                     $this.order.user_type = response.data.order.user_type;
                     $this.order.ticket_id = response.data.order.ticket_id;

@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- Navbar -->
-       <Navbar/>
+       <Navbar :nav="admin"/>
 
   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     onUpdate() {
-       
+
              let $this = this;
             this.errors = [];
 
@@ -114,8 +114,32 @@ export default {
             $this.$router.push({
                 name: "admin.categories",
             });
+             this.$toast.success('Category Updated !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
             Flash.setSuccess("Category Updated !!!");
           } else{
+              this.$toast.error('You are Unauthorized!!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
             Flash.setError("You are Unauthorized!!!");
 
           }

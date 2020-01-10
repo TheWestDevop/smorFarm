@@ -18,7 +18,7 @@
                              <tr v-for="order in app.orders.data" :key="order.id">
                                  <td>
 
-                                    <p v-for="product in JSON.parse(order.Orders)" :key="product.id">{{product.name}} {{product.quantity}}, </p>
+                                    <p v-for="product in JSON.parse(order.orders)" :key="product.id">{{product.name}} {{product.quantity}}, </p>
 
                                  </td>
                                  <td>&#8358;{{order.total}}</td>

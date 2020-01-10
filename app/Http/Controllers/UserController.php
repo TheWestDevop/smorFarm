@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserRegister;
 use App\Profile;
 use Auth;
 use App\User;
@@ -62,13 +63,17 @@ class UserController extends Controller
 
         $profile->save();
 
+        Mail::to($user->email)->send(new UserRegister($user,$data['password']));
+
          Auth::login($user);
         return response()->json($user, 200);
     }
     public function init()
     {
         $user = Auth::User();
-        return response()->json($user, 200);
+        $profile = Profile::findorfail($user->id);
+        $user_info = ['user' => $user,'profile' => $profile];
+        return response()->json($user_info, 200);
     }
 
 

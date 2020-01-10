@@ -8,6 +8,12 @@ import Admin_Profile from './admin/pages/profile';
 //order
 import Admin_Orders from './admin/pages/orders';
 import Admin_Order_Info from './admin/pages/order_info';
+import Admin_Order_Driver from './admin/pages/update_driver';
+
+//pre order
+import Admin_Pre_Orders from './admin/pages/pre_order';
+import Admin_Pre_Order_Info from './admin/pages/pre_order_info';
+import Admin_Pre_Order_Driver from './admin/pages/update_driver_pre_order';
 
 //product
 import Admin_Upload_Product from './admin/pages/Upload_Product';
@@ -43,6 +49,8 @@ import Admin_Logistics from './admin/pages/logistics';
 import Admin_New_Logistics from './admin/pages/new_logistics';
 import Admin_Edit_Logistics from './admin/pages/edit_logistics';
 
+//store
+import Admin_Store from './admin/pages/store';
 
 
 
@@ -69,6 +77,30 @@ export default new VueRouter({
     path: '/Order/:id/Info',
     component:Admin_Order_Info,
     name:'admin.info_order',
+    props:true
+   },
+   {
+    path: '/Order/:id/Driver',
+    component:Admin_Order_Driver,
+    name:'admin.update_driver',
+    props:true
+   },
+   {
+    path: '/Pre/Order',
+    component: Admin_Pre_Orders,
+    name:'admin.pre_order'
+   },
+   {
+    path: '/Pre/Order/:id/Info',
+    component:Admin_Pre_Order_Info,
+    name:'admin.info_pre_order',
+    props:true
+   },
+   ,
+   {
+    path: '/Pre/Order/:id/Driver',
+    component:Admin_Pre_Order_Driver,
+    name:'admin.update_driver_pre_order',
     props:true
    },
    {
@@ -183,6 +215,11 @@ export default new VueRouter({
     component:Admin_Edit_Category,
     name:'admin.edit_category',
     props:true
+   },
+   {
+    path: '/Product/Store',
+    component: Admin_Store,
+    name:'admin.store'
    },
      ],
 

@@ -22,9 +22,10 @@ class DriverController extends Controller
     }
 
 
-    public function create()
+    public function getAvaliable()
     {
-        //
+        $driver = Driver::where('avaliability_status',1)->get();
+        return response()->json($driver, 200);
     }
 
 
@@ -61,7 +62,7 @@ class DriverController extends Controller
     {
 
         $driver = Driver::where('id',$id)->first();
-        
+
         $driver_info = [
           'staff' => $driver->staff_name,
           'ride' => $driver->logistics_id
@@ -72,7 +73,7 @@ class DriverController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
 
         $driver = Driver::findorfail($id);
         $driver->logistics_id = $request->logistics_id;

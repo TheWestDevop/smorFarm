@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- Navbar -->
-            <Navbar/>
+            <Navbar  :nav="admin"/>
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
             {{flash.success}}
             </div>
@@ -375,7 +375,7 @@ import {
 } from '../util/api'
 export default {
     name:'dashboard',
-
+    props:["admin"],
      components:{
         Navbar
     },
@@ -389,6 +389,7 @@ export default {
  },
  created(){
    this.Count()
+  
  },
  methods:{
      Count(){
@@ -397,6 +398,7 @@ export default {
                 this.users = response.data.users
                 this.staffs = response.data.staffs
             });
+      
      }
   }
 

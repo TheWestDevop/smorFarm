@@ -21,38 +21,9 @@
                     <div id="li-new-product" class="tab-pane active show" role="tabpanel">
                         <div class="row">
 
-                            <div v-for="product in app.all_products.data" :key="product.id" class="col-lg-4 col-md-4">
+                            <div v-for="product in app.all_products.data" :key="product.id" class="col m-2">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358;{{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart">
-                                                        <div class="text-center" @click="addCart(product)">Add to cart</div>
-                                                    </li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <Product :app="app" :product="product" />
 
                             </div>
 
@@ -67,38 +38,9 @@
 
                     <div id="li-bestseller-product" class="tab-pane" role="tabpanel">
                         <div class="row">
-                            <div v-for="product in app.discount_products.data" :key="product.id" class="col-lg-4 col-md-4">
+                            <div v-for="product in app.discount_products.data" :key="product.id" class="col m-2">
 
-                                <div class="single-product-wrap m-2">
-                                    <div class="product-image">
-
-                                        <img :src="`/storage/images/product/${product.product_image}`" alt="Li's Product Image">
-
-                                    </div>
-                                    <div class="product_desc">
-                                        <div class="product_desc_info">
-                                            <div class="product-review">
-                                                <h5 class="manufacturer">
-                                                    {{product.description}}
-                                                </h5>
-
-                                            </div>
-                                            <h4><a class="product_name" href="#">{{product.title}}</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">&#8358; {{product.price}}</span>
-                                            </div>
-                                            <div class="add-action">
-                                                <ul class="add-actions-link mb-4">
-                                                    <li class="add-cart">
-                                                        <div class="text-center" @click="addCart(product)">Add to cart</div>
-                                                    </li>
-                                                    <li><input type="number" v-model="quantity" class="text-center mr-3" style="background: #753585;color:white; width:55px; height:30px;"></li>
-
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               <Product :app="app" :product="product" />
 
                             </div>
 
@@ -120,6 +62,7 @@
 <script>
 import Auth from '../util/store';
 import pagination from '../components/pagination.vue'
+import Product from '../components/product.vue'
 import {
     get
 } from "../util/api";
@@ -128,7 +71,8 @@ export default {
     name: 'Mall',
     props: ['app'],
     components: {
-        pagination
+        pagination,
+        Product
     },
     data() {
         return {

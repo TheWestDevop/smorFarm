@@ -1,7 +1,7 @@
 <template>
     <div class="main-content">
         <!-- Navbar -->
-        <Navbar />
+        <Navbar :nav="admin"/>
 
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
@@ -18,11 +18,11 @@
                                 <h2 class="login-name text-center ">Edit Staff Information </h2>
                                 <div class="row">
                                     <div class="col-md-6 mb-20">
-                                        
+
                     <div v-if="!img" class="mr-5">
                     <img :src="`/storage/images/staff/${this.staff_image}`"  alt="Staff image"   class="product_img" srcset />
                     </div>
-                
+
                                     </div>
                                     <div class="col-md-6 mb-20">
                                         <label>Staff Image</label>
@@ -296,7 +296,7 @@ export default {
             } else {
                 this.errorMarriage_Status = null;
             }
-            
+
 
             if (!this.errors.length) {
 
@@ -339,6 +339,18 @@ export default {
                         $this.$router.push({
                             name: "admin.staff",
                         });
+                        this.$toast.success('Staff Information Updated !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                         Flash.setSuccess("You Have Successfull Updated Staff Information");
 
                     } else {

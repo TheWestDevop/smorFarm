@@ -13,20 +13,22 @@
             Farm
         </div>
       </router-link>
-      
+
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+
+                            <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <i class="ni ni-bell-55"></i><sup v-if="admin.notify.count != 0" class="badge bg-white text-blue">{{admin.notify.count}}</sup>
+                                </div>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+                                <a class="dropdown-item text-success" href="#" v-for="(notification,n) in admin.notify.notification" :key="n.index">New {{notification.user_type}} Order with Total Price {{notification.total}} and Ticket ID  {{notification.ticket_id}} <br> <small class="text-gray float-right m-2">{{notification.created_at}} </small></a>
+                            </div>
+
+                        </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -109,6 +111,11 @@
             </router-link>
           </li>
           <li class="nav-item">
+            <router-link :to="{name:'admin.pre_order'}" class="nav-link ">
+              <i class="ni ni-cart text-green"></i> Pre Orders
+            </router-link>
+          </li>
+          <li class="nav-item">
             <router-link :to="{name:'admin.deliveries'}" class="nav-link ">
               <i class="ni ni-delivery-fast text-purple"></i> Deliveries
             </router-link>
@@ -125,12 +132,17 @@
           </li>
           <li class="nav-item">
             <router-link :to="{name:'admin.customer'}" class="nav-link ">
-              <i class="fa fa-users text-pink"></i> Customers
+              <i class="fa fa-user text-pink"></i> Customers
             </router-link>
           </li>
           <li class="nav-item">
             <router-link :to="{name:'admin.staff'}" class="nav-link ">
               <i class="fa fa-users text-blue"></i> Staffs
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{name:'admin.store'}" class="nav-link ">
+              <i class="fa fa-store text-brown"></i> Store
             </router-link>
           </li>
         </ul>
@@ -150,7 +162,7 @@ export default {
   name:'side_nav',
   props: ["admin"],
   methods:{
-     
+
   }
 }
 </script>

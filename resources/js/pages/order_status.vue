@@ -99,7 +99,7 @@ export default {
                 get(BASE_URL+'/api/order/verify/'+ $this.id).then(function (response) {
                     if (response.data.id) {
 
-                        $this.product_order = JSON.parse(response.data.Orders)
+                        $this.product_order = JSON.parse(response.data.orders)
                         $this.total   = response.data.total
                         $this.created_time = response.data.created_at
                         $this.status = response.data.status

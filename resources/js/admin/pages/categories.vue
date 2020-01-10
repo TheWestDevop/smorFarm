@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar  :nav="admin"/>
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -75,10 +75,10 @@
                                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow p-3">
                                                          <button class="btn btn-primary" @click="editCategory(category.id)"><i class="fa fa-eraser"></i></button>
                                                         <button class="btn btn-danger" @click="deleteCategory(category.id)"><i class="fa fa-trash"></i></button>
-                                                       
+
                                                     </div>
                                                 </div>
-                                                
+
                                             </td>
                                         </tr>
 
@@ -115,14 +115,16 @@ export default {
         Navbar,
         Pagination
     },
+
     mounted() {
         this.getCategory()
+       
     },
     computed: {
         filtercategory() {
             let $this = this
             return $this.admin.categories.data.filter((category) => {
-                
+
                 return category.title.match(this.name);
 
             });
@@ -134,13 +136,14 @@ export default {
         return {
             flash: Flash.state,
             name: '',
-    
+            
+
 
         }
 
     },
     methods: {
-    
+
         getCategory() {
             let $this = this
             get(BASE_URL + `/api/categories?page=${$this.admin.categories.pagination.current_page}`).then((response) => {
@@ -168,6 +171,18 @@ export default {
         deleteCategory(id){
             let $this = this
            get(BASE_URL + `/api/delete/category/${id}`).then((response) => {
+               this.$toast.success('Category Deleted', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                Flash.setSuccess("Category Deleted!!!");
                 $this.getCategory();
             });

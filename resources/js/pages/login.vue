@@ -85,6 +85,7 @@ export default {
                         Auth.set(response.data.api_token,response.data.id);
                         Flash.setSuccess('You are logged in!');
                         Event.$emit('Loggedin...');
+                        $this.app.UserLoggedIn = true
                         $this.app.spin = false;
                         $this.app.$router.push({
                             name: "mall"

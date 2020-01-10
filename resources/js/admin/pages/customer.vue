@@ -1,7 +1,7 @@
 <template>
 
     <div class="main-content">
-        <Navbar />
+        <Navbar  :nav="admin"/>
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="alert alert-success text-center w-50 mx-auto" v-if="flash.success">
                 {{flash.success}}
@@ -261,6 +261,7 @@ export default {
         return {
             flash: Flash.state,
             name: '',
+           
 
         }
 
@@ -268,6 +269,7 @@ export default {
     created(){
        this.getFastUser();
        this.getUser();
+      
     },
     methods: {
 
@@ -287,6 +289,18 @@ export default {
         },
         removeFastUser(id) {
             post(BASE_URL + `/api/fast/user/${id}/delete`).then((response) => {
+                this.$toast.success('Fast Track Customer Deleted', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 Flash.setSuccess("Fast Track Customer Deleted !!!");
                 this.getFastUser();
             });
@@ -305,12 +319,6 @@ export default {
 
             });
         },
-        removeUser(id) {
-            post(BASE_URL + `/api/fast/user/${id}/delete`).then((response) => {
-                Flash.setSuccess("Customer Deleted !!!");
-                this.getFastUser();
-            });
-        },
         editUser(id) {
             let $this = this
             $this.$router.push({
@@ -322,6 +330,18 @@ export default {
         },
         deleteUser(id){
            post(BASE_URL + `/api/customer/${id}/delete`).then((response) => {
+               this.$toast.success('Customer Deleted !!!', {
+                                position: 'top-center',
+                                timeout: 1000,
+                                closeOnClick: true,
+                                pauseOnFocusLoss: true,
+                                pauseOnHover: false,
+                                draggable: true,
+                                draggablePercent: 0.6,
+                                hideCloseButton: false,
+                                hideProgressBar: true,
+                                icon: true,
+                                })
                 Flash.setSuccess("Customer Deleted !!!");
                 this.getFastUser();
             });

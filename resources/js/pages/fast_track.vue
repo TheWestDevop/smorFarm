@@ -20,7 +20,7 @@
                         <div class="col-md-12 mb-20">
                             <label>Gender </label>
                             <select v-model="gender"  class="mb-0">
-                                
+
                                 <option value="1">Male</option>
                                 <option value="0">Female</option>
                             </select>
@@ -47,7 +47,7 @@
                             <div class="mt-2 p-2 font-italic text-danger">{{errorEmail}}</div>
                         </div>
                         <div class="col-12">
-                            <button @click="Order" class="btn btn-primary btn-block mt-0">Confirm Order <i class="fa fa-thumbs-o-up"></i></button>
+                            <button @click="Order" class="btn btn-primary btn-block mt-0">Make Payment <i class="fa fa-thumbs-o-up"></i></button>
                         </div>
                     </div>
                     </div>
@@ -101,7 +101,7 @@ data() {
                 this.errorFname = null;
             }
             if (this.lname.length < 3 || this.lname === '') {
-                this.errorLname = "Lasst Name is Required";
+                this.errorLname = "Last Name is Required";
                 this.errors.push(this.errorLname);
             } else {
                 this.errorLname = null;
@@ -143,33 +143,45 @@ data() {
 
 
             if (!this.errors.length) {
-                let $this = this;
+               let $this = this
+                 $this.app.fastUser.fname = this.fname
+                 $this.app.fastUser.lname = this.lname
+                 $this.app.fastUser.deliveryAddress = this.address
+                 $this.app.fastUser.alt_deliveryAddress = this.alternate_address
+                 $this.app.fastUser.gender = this.gender
+                 $this.app.fastUser.phone = this.phone
+                 $this.app.fastUser.email = this.email
+
+                this.app.$router.push({
+                            name: "payment"
+                        });
+              /*  let $this = this;
                 $this.fullname = this.fname + ' ' + this.lname;
                  let form = new FormData();
-       form.append('name',$this.fullname)
-       form.append('address',$this.address)
-       form.append('alt_address',$this.alternate_address)
-       form.append('phone',$this.phone)
-       form.append('gender',$this.gender)
-       form.append('email',$this.email)
-       form.append('cart',localStorage.getItem('cart'))
-       form.append('total',$this.app.totalprice)
+                    form.append('name',$this.fullname)
+                    form.append('address',$this.address)
+                    form.append('alt_address',$this.alternate_address)
+                    form.append('phone',$this.phone)
+                    form.append('gender',$this.gender)
+                    form.append('email',$this.email)
+                    form.append('cart',localStorage.getItem('cart'))
+                    form.append('total',$this.app.totalprice)
 
-       let data = form
-                 post(BASE_URL + "/api/order", data).then(function(response) {
-                    Flash.setSuccessOrder(`${$this.fullname}, Your Order is on it way and  your Order Ticket Id is ${response.data}`);
-                    $this.app.cart = [];
-                    $this.app.badge = 0;
-                    $this.app.totalprice = '';
-                    localStorage.setItem('cart','');
-                    $this.app.spin =false;
-                    $this.app.$router.push({name: "home"});
-
-
-                 });
+                    let data = form
+                                post(BASE_URL + "/api/order", data).then(function(response) {
+                                    Flash.setSuccessOrder(`${$this.fullname}, Your Order is on it way and  your Order Ticket Id is ${response.data}`);
+                                    $this.app.cart = [];
+                                    $this.app.badge = 0;
+                                    $this.app.totalprice = '';
+                                    localStorage.setItem('cart','');
+                                    $this.app.spin =false;
+                                    $this.app.$router.push({name: "home"});
 
 
+                                });
 
+
+     */
             }
 
         }
