@@ -29,7 +29,7 @@ Vue.use(VueGoogleMaps,{
     load:{
         key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
         libraries: 'places',
-
+        installComponents: true
     }
 }) 
 //Vue.component('gmap-autocomplete', VueGoogleMaps.Autocomplete); 

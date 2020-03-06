@@ -35791,8 +35791,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__, {
     load: {
         key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
-        libraries: 'places'
-
+        libraries: 'places',
+        installComponents: true
     }
 });
 //Vue.component('gmap-autocomplete', VueGoogleMaps.Autocomplete); 
@@ -35921,6 +35921,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination__ = __webpack_require__(233);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pagination__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_api__ = __webpack_require__(10);
+//
 //
 //
 //
@@ -36615,7 +36616,11 @@ var render = function() {
                         {
                           ref: "map",
                           staticStyle: { width: "100%", height: "400px" },
-                          attrs: { center: _vm.executor.center, zoom: 17 }
+                          attrs: {
+                            center: _vm.executor.center,
+                            zoom: 17,
+                            type: "satellite"
+                          }
                         },
                         [
                           _c("gmap-marker", {

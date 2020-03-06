@@ -30,6 +30,7 @@
                                                     ref="map"
                                                     :center="executor.center"
                                                     :zoom="17"
+                                                    type="satellite"
                                                     style="width:100%;height:400px;">
 
                                                   
