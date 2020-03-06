@@ -28,7 +28,6 @@ Vue.use(Toast,{transition: "Vue-Toastification__bounce",maxToast:20,newestOnTop:
 Vue.use(VueGoogleMaps,{
     load:{
         key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
-       libraries: 'places'
     }
 })  
 

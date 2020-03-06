@@ -35790,8 +35790,7 @@ window.Event = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_toastification___default.a, { transition: "Vue-Toastification__bounce", maxToast: 20, newestOnTop: true });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__, {
     load: {
-        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
-        libraries: 'places'
+        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
     }
 });
 
