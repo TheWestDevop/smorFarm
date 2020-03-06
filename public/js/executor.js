@@ -35793,7 +35793,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2
         key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
     }
 });
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('gmap-autocomplete', __WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__["Autocomplete"]);
+//Vue.component('gmap-autocomplete', VueGoogleMaps.Autocomplete); 
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#executor',

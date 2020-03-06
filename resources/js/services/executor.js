@@ -30,7 +30,7 @@ Vue.use(VueGoogleMaps,{
         key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
     }
 }) 
-Vue.component('gmap-autocomplete', VueGoogleMaps.Autocomplete); 
+//Vue.component('gmap-autocomplete', VueGoogleMaps.Autocomplete); 
 
 const app = new Vue({
     el: '#executor',
