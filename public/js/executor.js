@@ -37671,7 +37671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getOrders();
         this.initExecutor();
         this.getNotification();
-        //  this.updatelocation()
+        this.updatelocation();
     },
 
     methods: {
