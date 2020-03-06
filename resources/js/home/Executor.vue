@@ -31,6 +31,7 @@ export default {
                 },
 
             },
+            api_token : localStorage.getItem('executor_api_token'),
             notify:{
                 count:0,
                 notification:[]
@@ -63,8 +64,7 @@ export default {
         },
         getOrders() {
             let $this = this
-            let api_token = localStorage.getItem('executor_api_token');
-            get(BASE_URL + `/api/executor/${api_token}/orders`).then((response) => {
+            get(BASE_URL + `/api/executor/${this.api_token}/orders`).then((response) => {
                 console.log(response.data)
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
@@ -79,8 +79,7 @@ export default {
 
         getNotification() {
             let $this = this
-            let api_token = localStorage.getItem('executor_api_token');
-            get(BASE_URL + `/api/executor/${api_token}/new/order/notification/`).then((response) => {
+            get(BASE_URL + `/api/executor/${this.api_token}/new/order/notification/`).then((response) => {
                 $this.notify.count = response.data.count;
                 $this.notify.notification = response.data.notification;
             });
