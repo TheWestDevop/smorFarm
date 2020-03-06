@@ -13,31 +13,31 @@
                                     <div class="product-details-left">
                                         <div class="product-details-images slider-navigation-1">
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                             <div class="lg-image">
-                                                <img :src="`/storage/images/product/${product.product_image}`" alt="product image">
+                                                <img :src="`images/product/${product.product_image}`" alt="product image">
                                             </div>
                                         </div>
                                         <div class="product-details-thumbs slider-thumbs-1">
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
-                                            <div class="sm-image"><img :src="`/storage/images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
+                                            <div class="sm-image"><img :src="`images/product/${product.product_image}`" alt="product image thumb"></div>
                                         </div>
                                     </div>
                                     <!--// Product Details Left -->

@@ -3,7 +3,7 @@
         <div class="col-lg-3 col-md-5">
             <div class="product-image">
                 <a href="#">
-                    <img :src="`/images/product/${product.product_image}`" alt="Li's Product Image" />
+                    <img :src="`images/product/${product.product_image}`" alt="Li's Product Image" />
                 </a>
             </div>
         </div>
