@@ -17,8 +17,7 @@
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
-                                    lat= executor.center.lat
-                                    lng= executor.center.lng 
+                                    center= executor.center 
                                     width="100%"
                                     height="400px"
                                 >
@@ -52,7 +51,7 @@ export default {
         HereMap
     },
     mounted() {
-         console.log(this.executor.center)
+         
     },
     computed: {
        

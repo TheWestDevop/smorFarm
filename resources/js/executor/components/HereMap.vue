@@ -16,8 +16,7 @@
         props: {
             appId: String,
             appCode: String,
-            lat: String,
-            lng: String,
+            center:Object,
             width: String,
             height: String
         },
@@ -33,7 +32,7 @@
         this.platform.createDefaultLayers().normal.map,
         {
             zoom: 17,
-            center: { lng: this.lng, lat: this.lat }
+            center: center
         }
         );
         }

@@ -35492,7 +35492,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -35507,9 +35506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    mounted: function mounted() {
-        console.log(this.executor.center);
-    },
+    mounted: function mounted() {},
 
     computed: {},
     data: function data() {
@@ -36017,8 +36014,7 @@ var render = function() {
                           appId: "vFeicXHJJygakyap4B5z",
                           appCode:
                             "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                          lat: "executor.center.lat",
-                          lng: "executor.center.lng",
+                          center: "executor.center",
                           width: "100%",
                           height: "400px"
                         }
@@ -38374,8 +38370,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         appId: String,
         appCode: String,
-        lat: String,
-        lng: String,
+        center: Object,
         width: String,
         height: String
     },
@@ -38388,7 +38383,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().normal.map, {
             zoom: 17,
-            center: { lng: this.lng, lat: this.lat }
+            center: center
         });
     }
 });
