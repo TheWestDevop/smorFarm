@@ -40,7 +40,7 @@
                     @click="view(product.id)"
                   >
                     <img
-                      :src="`../images/product/${product.product_image}`"
+                      :src="`images/product/${product.product_image}`"
                       alt="Li's Product Image"
                       class="p-image"
                     />

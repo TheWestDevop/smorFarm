@@ -4,7 +4,7 @@
         <div class="single-product-wrap">
             <div class="product-image">
                 <a href="#">
-                    <img :src="`../images/product/${product.product_image}`" alt="Li's Product Image" />
+                    <img :src="`images/product/${product.product_image}`" alt="Li's Product Image" />
                 </a>
 
             </div>

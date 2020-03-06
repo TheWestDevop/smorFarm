@@ -35,7 +35,7 @@ export default {
     this.$store.dispatch("fetchTrendingProduct");
     this.$store.dispatch("get_available_kitchen");
     this.$store.dispatch("get_unavailable_kitchen");
-     const job = new CronJob("* * * * *",()=>{console.log("cron started...");this.$store.dispatch("updateBooking")});
+     const job = new CronJob("* * * * *",()=>{this.$store.dispatch("updateBooking")});
      job.start()
 
     if (this.$store.getters.AUTH_STATUS === true) {
