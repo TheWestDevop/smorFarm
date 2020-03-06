@@ -55628,10 +55628,7 @@ var render = function() {
           [
             _c(
               "Carousel",
-              {
-                staticClass: "pt-sm-30 pt-xs-30",
-                attrs: { "per-page": 1, autoplay: true }
-              },
+              { staticClass: "pt-sm-30 pt-xs-30", attrs: { autoplay: true } },
               [
                 _c(
                   "Slide",
