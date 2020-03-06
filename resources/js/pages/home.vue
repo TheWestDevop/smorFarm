@@ -3,7 +3,6 @@
      <Carousel/>
      <Hot_Deals />
      <Banner_Product />
-     <Two_Banner />
      <Banner />
      <Trending /> 
     </div>
