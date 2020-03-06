@@ -147,7 +147,7 @@ export default {
     Slide
   },
   methods:{
-    handleSlideClick  = (dataset) => {
+    handleSlideClick(dataset){
     this.app.$route.push('/market');
   }
   }
