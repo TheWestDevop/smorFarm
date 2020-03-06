@@ -260,11 +260,11 @@ export default {
             let form = new FormData();
             form.append('time_out', time_out);
             axios({
-                method: 'POST',
+                method: 'GET',
                 url: BASE_URL + '/api/kitchen/timeout',
                 data: form,
                 headers: {
-                    'Authorization': `Bearer ` +  myToken,
+                    
                     'X-CSRF-TOKEN' : myToken
                 }
             }).then(response => {

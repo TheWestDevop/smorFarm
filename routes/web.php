@@ -63,7 +63,7 @@ Route::post('/api/pre/order/','PreOrderController@store');
 
 Route::get('/api/kitchen/available','KitchenController@available');
 Route::get('/api/kitchen/unavailable','KitchenController@unavailable');
-Route::post('/api/kitchen/timeout','KitchenController@unbook');
+Route::get('/api/kitchen/timeout','KitchenController@unbook');
 
 
 
