@@ -68,8 +68,11 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-            <carousel :autoplay="true" :perPageCustom="[[480, 2], [768, 3]]" class="pt-sm-30 pt-xs-30">
-            <slide>
+            <carousel :autoplay="true" :per-page="1" class="pt-sm-30 pt-xs-30">
+            <slide
+             data-index="0"
+             data-name="MySlideName"
+             @slideclick="handleSlideClick">
               <div class="">
                   <h5>
                     Sale Offer
@@ -135,14 +138,19 @@
 </template>
 
 <script>
-import VueCarousel from 'vue-carousel';
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
   name: "carousel",
   components: {
-  	'carousel': VueCarousel.Carousel,
-    'slide': VueCarousel.Slide
+  	Carousel,
+    Slide
   },
+  methods:{
+    handleSlideClick  = (dataset) => {
+    this.app.$route.push('/market');
+  }
+  }
 };
 </script>
 
