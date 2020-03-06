@@ -55,7 +55,7 @@
 
                         </div>
                         <div class="mt-2 pt-2 font-weight-400">
-                            <p>Locatiion :- {{kitchen.location}}</p>
+                            <p>Location :- {{kitchen.location}}</p>
                         </div>
 
                     </div>

@@ -49,7 +49,7 @@ class PreOrderController extends Controller
         $order_owner->note = $request->note;
         $order_owner->save();
 
-        //Mail::to($user->email)->send(new PreOrderPlaced($order));
+        Mail::to($user->email)->send(new PreOrderPlaced($order));
         return response()->json($order->ticket_id, 200);
 
 
@@ -93,7 +93,7 @@ class PreOrderController extends Controller
         $order_owner->note = $request->note;
         $order_owner->save();
 
-        //Mail::to($user->email)->send(new PreOrderPlaced($order));
+        Mail::to($user->email)->send(new PreOrderPlaced($order));
 
         return response()->json($order->ticket_id, 200);
 

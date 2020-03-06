@@ -61,7 +61,7 @@ class UserController extends Controller
 
         $profile->save();
 
-        //Mail::to($user->email)->send(new UserRegister($user,$request->password));
+        Mail::to($user->email)->send(new UserRegister($user,$request->password));
 
          Auth::login($user);
          $user_info = ['user' => $user,'profile' => $profile];

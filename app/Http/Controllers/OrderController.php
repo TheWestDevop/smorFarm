@@ -58,7 +58,7 @@ class OrderController extends Controller
         $order_owner->note = $request->note;
         $order_owner->save();
 
-        //Mail::to($user->email)->send(new OrderPlaced($order));
+        Mail::to($user->email)->send(new OrderPlaced($order));
 
         return response()->json($order->ticket_id, 200);
 
@@ -90,7 +90,7 @@ class OrderController extends Controller
         $order_owner->note = $request->note;
         $order_owner->save();
 
-        //Mail::to($user->email)->send(new OrderPlaced($order));
+        Mail::to($user->email)->send(new OrderPlaced($order));
 
         $u_driver = Driver::where('staff_name',$order->driver_name)->first();
         $u_driver->avaliability_status = 0;
@@ -135,7 +135,7 @@ class OrderController extends Controller
         $order_owner->note = $request->note_2;
         $order_owner->save();
 
-       // //Mail::to($user->email)->send(new OrderPlaced($order));
+       Mail::to($user->email)->send(new OrderPlaced($order));
         return response()->json($order->ticket_id, 200);
          }
 
@@ -164,7 +164,7 @@ class OrderController extends Controller
         $order_owner->note = $request->note_2;
         $order_owner->save();
 
-        //Mail::to($user->email)->send(new OrderPlaced($order));
+        Mail::to($user->email)->send(new OrderPlaced($order));
 
         
 
@@ -262,7 +262,7 @@ class OrderController extends Controller
                 $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            //Mail::to($user->email)->send(new OrderDelivered($Order));
+            Mail::to($user->email)->send(new OrderDelivered($Order));
 
         return response()->json(['message' => "Order Updated..."], 200);
     }
@@ -287,7 +287,7 @@ class OrderController extends Controller
                 $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            //Mail::to($user->email)->send(new OrderRevised($Order));
+            Mail::to($user->email)->send(new OrderRevised($Order));
 
 
         return response()->json(['message' => "Order Updated..."], 200);

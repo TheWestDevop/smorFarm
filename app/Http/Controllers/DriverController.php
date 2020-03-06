@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Driver;
-use App\Drivers;
 use App\Logistics;
 use App\Staff;
 use Illuminate\Http\Request;

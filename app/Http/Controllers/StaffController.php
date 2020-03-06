@@ -78,7 +78,7 @@ class StaffController extends Controller
                 $user->password = bcrypt($staff->phone);
                 $user->save();
 
-               // Mail::to($user->email)->send(new StaffCreated($user,$staff->phone));
+               Mail::to($user->email)->send(new StaffCreated($user,$staff->phone));
 
                 return response()->json(['message' => "Staff Created..."], 200);
 

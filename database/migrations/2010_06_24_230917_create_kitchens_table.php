@@ -18,9 +18,12 @@ class CreateKitchensTable extends Migration
             $table->string('title');
             $table->string('image');
             $table->string('location');
+            $table->string('category');
             $table->string('booked_user')->nullable();
             $table->string('ticket_cost')->nullable();
             $table->string('time_booked')->nullable();
+            $table->string('time_out')->nullable();
+            $table->string('ticket')->nullable();
             $table->integer('booking_count');
             $table->tinyinteger('status');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
