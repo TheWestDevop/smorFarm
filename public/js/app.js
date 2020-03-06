@@ -57257,9 +57257,7 @@ var render = function() {
                             _c("img", {
                               staticClass: "p-image",
                               attrs: {
-                                src:
-                                  "/storage/images/product/" +
-                                  product.product_image,
+                                src: "images/product/" + product.product_image,
                                 alt: "Li's Product Image"
                               }
                             })
