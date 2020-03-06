@@ -17,7 +17,8 @@
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
-                                    center= executor.center 
+                                    lat= this.lat
+                                    lng= this.lng 
                                     width="100%"
                                     height="400px"
                                 >
@@ -51,7 +52,8 @@ export default {
         HereMap
     },
     mounted() {
-         
+         this.lat = executor.center.lat
+         this.lng = executor.center.lng
     },
     computed: {
        
@@ -60,8 +62,8 @@ export default {
     data() {
         return {
             flash: Flash.state,
-            
-            
+            lat:'',
+            lng:'' 
         }
 
     },

@@ -35492,6 +35492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -35506,13 +35507,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.lat = executor.center.lat;
+        this.lng = executor.center.lng;
+    },
 
     computed: {},
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state
-
+            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state,
+            lat: '',
+            lng: ''
         };
     },
 
@@ -36014,7 +36019,8 @@ var render = function() {
                           appId: "vFeicXHJJygakyap4B5z",
                           appCode:
                             "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                          center: "executor.center",
+                          lat: "this.lat",
+                          lng: "this.lng",
                           width: "100%",
                           height: "400px"
                         }
@@ -38370,7 +38376,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         appId: String,
         appCode: String,
-        center: Object,
+        lat: String,
+        lng: String,
         width: String,
         height: String
     },
@@ -38383,7 +38390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().normal.map, {
             zoom: 17,
-            center: center
+            center: { lng: this.lng, lat: this.lat }
         });
     }
 });
