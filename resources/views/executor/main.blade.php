@@ -34,6 +34,13 @@
     margin-bottom: 15px;
     }
   </style>
+   <script>
+ if (@json($executor->id)) {
+  localStorage.setItem('executor_api_token', @json($executor->api_token));
+  localStorage.setItem('executor_user_id', @json($executor->id));
+
+}
+</script>
 </head>
 
 <body class="bg-default">
@@ -51,13 +58,7 @@
   <script src="{{asset('js/plugins/chart.js/dist/Chart.extension.js')}}"></script>
  <!--   Argon JS   -->
  <script src="{{asset('js/argon-dashboard.min.js?v=1.1.0')}}"></script>
- <script>
- if (@json($executor->id)) {
-  localStorage.setItem('executor_api_token', @json($executor->api_token));
-  localStorage.setItem('executor_user_id', @json($executor->id));
 
-}
-</script>
 
 </body>
 
