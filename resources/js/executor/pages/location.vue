@@ -24,26 +24,16 @@
                             </form>
                             <br>
                             <div class="container">
-                                <gmap-map           
-                                                    ref="map"
-                                                    :center="executor.center"
-                                                    :zoom="17"
-                                                    type="satellite"
-                                                    style="width:100%;height:400px;">
+                                <HereMap 
+                                    appId="vFeicXHJJygakyap4B5z"
+                                    appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
+                                    lat= executor.center.lat
+                                    lng= executor.center.lng 
+                                    width="100%"
+                                    height="835px"
+                                >
 
-                                                  
-
-                                                    <gmap-marker
-                                                        
-                                                        :position="executor.center"
-                                                        @click="center=executor.center"
-                                                            
-                                                    >
-                                                    
-                                                     
-
-                                                    </gmap-marker>
-                                                </gmap-map>
+                                </HereMap>
 
                             </div>
                             
@@ -56,7 +46,8 @@
 </template>
 
 <script>
-import Navbar from '../components/navbar'
+import Navbar from '../components/navbar';
+import HereMap from '../components/HereMap';
 import Flash from "../../util/flash"
 import Pagination from "../components/pagination";
 import {
@@ -67,7 +58,8 @@ export default {
     props: ['executor'],
     components: {
         Navbar,
-        Pagination
+        Pagination,
+        HereMap
     },
     mounted() {
          
@@ -85,39 +77,6 @@ export default {
 
     },
     methods: {
-
-    setPlace(place) {
-      this.destination = place;
-    },
-    getDirection(){
-      let directionsService = new google.maps.DirectionsService;
-      let directionsDisplay = new google.maps.DirectionsRenderer;
-      directionsDisplay.setMap(this.$refs.map.$mapObject);
-      let start = this.executor.center;
-      let stop = {
-        lat:this.destination.geometry.location.lat(),
-        lng:this.destination.geometry.location.lng()
-      }
-      //google maps API's direction service
-      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, stop) {
-        directionsService.route({
-          origin: start,
-          destination: stop,
-          travelMode: 'DRIVING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
-
-      console.log(this.start);
-      console.log(this.stop);
-
-      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.stop);
-        }
     }
 
 }

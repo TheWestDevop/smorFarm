@@ -35917,10 +35917,12 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_navbar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_flash__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pagination__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_api__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_HereMap__ = __webpack_require__(624);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_HereMap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_flash__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pagination__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pagination__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_api__ = __webpack_require__(10);
 //
 //
 //
@@ -35968,72 +35970,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'location',
-  props: ['executor'],
-  components: {
-    Navbar: __WEBPACK_IMPORTED_MODULE_0__components_navbar___default.a,
-    Pagination: __WEBPACK_IMPORTED_MODULE_2__components_pagination___default.a
-  },
-  mounted: function mounted() {},
-
-  computed: {},
-  data: function data() {
-    return {
-      flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
-      destination: ''
-
-    };
-  },
-
-  methods: {
-    setPlace: function setPlace(place) {
-      this.destination = place;
+    name: 'location',
+    props: ['executor'],
+    components: {
+        Navbar: __WEBPACK_IMPORTED_MODULE_0__components_navbar___default.a,
+        Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
+        HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    getDirection: function getDirection() {
-      var directionsService = new google.maps.DirectionsService();
-      var directionsDisplay = new google.maps.DirectionsRenderer();
-      directionsDisplay.setMap(this.$refs.map.$mapObject);
-      var start = this.executor.center;
-      var stop = {
-        lat: this.destination.geometry.location.lat(),
-        lng: this.destination.geometry.location.lng()
-        //google maps API's direction service
-      };function calculateAndDisplayRoute(directionsService, directionsDisplay, start, stop) {
-        directionsService.route({
-          origin: start,
-          destination: stop,
-          travelMode: 'DRIVING'
-        }, function (response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      }
+    mounted: function mounted() {},
 
-      console.log(this.start);
-      console.log(this.stop);
+    computed: {},
+    data: function data() {
+        return {
+            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state,
+            destination: ''
 
-      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.stop);
-    }
-  }
+        };
+    },
+
+    methods: {}
 
 });
 
@@ -36600,29 +36562,17 @@ var render = function() {
                     "div",
                     { staticClass: "container" },
                     [
-                      _c(
-                        "gmap-map",
-                        {
-                          ref: "map",
-                          staticStyle: { width: "100%", height: "400px" },
-                          attrs: {
-                            center: _vm.executor.center,
-                            zoom: 17,
-                            type: "satellite"
-                          }
-                        },
-                        [
-                          _c("gmap-marker", {
-                            attrs: { position: _vm.executor.center },
-                            on: {
-                              click: function($event) {
-                                _vm.center = _vm.executor.center
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      _c("HereMap", {
+                        attrs: {
+                          appId: "vFeicXHJJygakyap4B5z",
+                          appCode:
+                            "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
+                          lat: "executor.center.lat",
+                          lng: "executor.center.lng",
+                          width: "100%",
+                          height: "835px"
+                        }
+                      })
                     ],
                     1
                   )
@@ -39001,6 +38951,122 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-e76895d6", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 624:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(625)
+/* template */
+var __vue_template__ = __webpack_require__(626)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/executor/components/HereMap.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-16980d3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-16980d3e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 625:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "HereMap",
+    data: function data() {
+        return {
+            map: {},
+            platform: {}
+        };
+    },
+
+    props: {
+        appId: String,
+        appCode: String,
+        lat: String,
+        lng: String,
+        width: String,
+        height: String
+    },
+    created: function created() {
+        this.platform = new H.service.Platform({
+            "app_id": this.appId,
+            "app_code": this.appCode
+        });
+    },
+    mounted: function mounted() {
+        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().normal.map, {
+            zoom: 17,
+            center: { lng: this.lng, lat: this.lat }
+        });
+    }
+});
+
+/***/ }),
+
+/***/ 626:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "here-map" }, [
+    _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-16980d3e", module.exports)
   }
 }
 

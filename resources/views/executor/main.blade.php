@@ -52,10 +52,8 @@
   <script src="{{asset('js/executor.js')}}"></script>
   <script src="{{asset('js/plugins/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{asset('js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
-
-  <!--   Optional JS   -->
-  <script src="{{asset('js/plugins/chart.js/dist/Chart.min.js')}}"></script>
-  <script src="{{asset('js/plugins/chart.js/dist/Chart.extension.js')}}"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
  <!--   Argon JS   -->
  <script src="{{asset('js/argon-dashboard.min.js?v=1.1.0')}}"></script>
 
