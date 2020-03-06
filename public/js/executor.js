@@ -35493,16 +35493,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -35517,13 +35507,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        console.log(this.executor.center);
+    },
 
     computed: {},
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state,
-            destination: ''
+            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state
 
         };
     },
@@ -36018,35 +36009,6 @@ var render = function() {
               _c("div", { staticClass: "col-md-12 " }, [
                 _c("div", { staticClass: "card shadow" }, [
                   _c(
-                    "form",
-                    {
-                      staticClass:
-                        "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
-                    },
-                    [
-                      _c("div", { staticClass: "form-group m-5" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group mb-0" }, [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary",
-                            attrs: { type: "submit" },
-                            on: {
-                              click: function($event) {
-                                return _vm.getDirection()
-                              }
-                            }
-                          },
-                          [_vm._v("Direction")]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c(
                     "div",
                     { staticClass: "container" },
                     [
@@ -36058,7 +36020,7 @@ var render = function() {
                           lat: "executor.center.lat",
                           lng: "executor.center.lng",
                           width: "100%",
-                          height: "835px"
+                          height: "400px"
                         }
                       })
                     ],

@@ -13,16 +13,6 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12 ">
                         <div class="card shadow">
-                            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                                            <div class="form-group m-5">
-                                            
-                                                  
-                                            </div>
-                                            <div class="form-group mb-0">
-                                               <button type="submit" class="btn btn-primary" @click="getDirection()">Direction</button> 
-                                            </div>
-                            </form>
-                            <br>
                             <div class="container">
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
@@ -30,7 +20,7 @@
                                     lat= executor.center.lat
                                     lng= executor.center.lng 
                                     width="100%"
-                                    height="835px"
+                                    height="400px"
                                 >
 
                                 </HereMap>
@@ -62,7 +52,7 @@ export default {
         HereMap
     },
     mounted() {
-         
+         console.log(this.executor.center)
     },
     computed: {
        
@@ -71,7 +61,7 @@ export default {
     data() {
         return {
             flash: Flash.state,
-            destination: '',
+            
             
         }
 
