@@ -35997,8 +35997,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
-      destination: '',
-      start: executor.center
+      destination: ''
+
     };
   },
 
@@ -36010,6 +36010,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var directionsService = new google.maps.DirectionsService();
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.map.$mapObject);
+      var start = this.executor.center;
       var stop = {
         lat: this.destination.geometry.location.lat(),
         lng: this.destination.geometry.location.lng()
@@ -36029,9 +36030,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
 
       console.log(this.start);
-      console.log(this.destination);
+      console.log(this.stop);
 
-      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
+      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.stop);
     }
   }
 
@@ -38392,7 +38393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.getOrders();
         this.initExecutor();
-        this.getNotification();
+        // this.getNotification();
         //  this.updatelocation()
     },
 

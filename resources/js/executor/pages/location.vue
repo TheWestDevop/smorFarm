@@ -84,12 +84,12 @@ export default {
         return {
             flash: Flash.state,
             destination: '',
-            start:executor.center,
+            
         }
 
     },
     methods: {
-        
+
     setPlace(place) {
       this.destination = place;
     },
@@ -97,6 +97,7 @@ export default {
       let directionsService = new google.maps.DirectionsService;
       let directionsDisplay = new google.maps.DirectionsRenderer;
       directionsDisplay.setMap(this.$refs.map.$mapObject);
+      let start = this.executor.center;
       let stop = {
         lat:this.destination.geometry.location.lat(),
         lng:this.destination.geometry.location.lng()
@@ -117,9 +118,9 @@ export default {
       }
 
       console.log(this.start);
-      console.log(this.destination);
+      console.log(this.stop);
 
-      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
+      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.stop);
         }
     }
 
