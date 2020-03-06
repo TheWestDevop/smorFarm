@@ -11,7 +11,7 @@
  SmorFarm Executor
   </title>
   <!-- Favicon -->
-  <link href="/img/brand/favicon.png" rel="icon" type="image/png">
+  <link rel="icon" href="icon.png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Font Awesome -->
