@@ -55630,7 +55630,12 @@ var render = function() {
               "Carousel",
               {
                 staticClass: "pt-sm-30 pt-xs-30",
-                attrs: { "per-page": 1, autoplayTimeout: 1000, autoplay: true }
+                attrs: {
+                  "per-page": 1,
+                  autoplayTimeout: 5000,
+                  scrollPerPage: true,
+                  autoplay: true
+                }
               },
               [
                 _c(

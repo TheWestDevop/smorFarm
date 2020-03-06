@@ -68,7 +68,7 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-          <Carousel :per-page="1" :autoplayTimeout="1000" :autoplay="true" class="pt-sm-30 pt-xs-30">
+          <Carousel :per-page="1" :autoplayTimeout="5000" :scrollPerPage="true" :autoplay="true" class="pt-sm-30 pt-xs-30">
             
               <!-- Begin Single Slide Area -->
               <Slide class="single-slide align-center-left animation-style-02 bg-4">
