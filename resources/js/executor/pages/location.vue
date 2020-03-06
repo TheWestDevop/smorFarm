@@ -89,6 +89,7 @@ export default {
 
     },
     methods: {
+        
     setPlace(place) {
       this.destination = place;
     },
@@ -117,7 +118,7 @@ export default {
 
       console.log(this.start);
       console.log(this.destination);
-      
+
       calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
         }
     }
