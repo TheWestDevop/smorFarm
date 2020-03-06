@@ -53,7 +53,7 @@
                     </li>
                     <li class="wishlist github-btn">
                         <a href="#" @click.prevent="wishlist(product)">
-                            <i class="fa fa-heart-o"></i>Add to wishlist
+                            <i class="fa fa-heart-o"></i>Wishlist
                         </a>
                     </li>
                     <li class="github-btn">

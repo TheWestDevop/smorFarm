@@ -59673,7 +59673,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fa fa-heart-o" }),
-                _vm._v("Add to wishlist\n                    ")
+                _vm._v("Wishlist\n                    ")
               ]
             )
           ]),
