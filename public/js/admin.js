@@ -58020,21 +58020,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_2__components_pagination___default.a
     },
     mounted: function mounted() {
-        var _this = this;
-
         this.getDrivers();
-        setInterval(function () {
-            _this.updateDriverLocation();
-        }, 5000);
+
+        this.updateDriverLocation();
     },
 
     computed: {
         filterDrivers: function filterDrivers() {
-            var _this2 = this;
+            var _this = this;
 
             var $this = this;
             return $this.admin.drivers.data.filter(function (driver_info) {
-                return driver_info.staff_name.match(_this2.name);
+                return driver_info.staff_name.match(_this.name);
             });
         }
     },
@@ -58102,7 +58099,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updateDriverLocation: function updateDriverLocation() {
-            var _this3 = this;
+            var _this2 = this;
 
             var $this = this;
             Object(__WEBPACK_IMPORTED_MODULE_3__util_api__["a" /* get */])(BASE_URL + "/api/driver/location").then(function (response) {
@@ -58113,7 +58110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         lng: mark.lng
                     };
                     $this.markers.push({ position: maker, driver_name: mark.driver_name });
-                    console.log(_this3.markers);
+                    console.log(_this2.markers);
                 }
             });
         },

@@ -171,9 +171,8 @@ export default {
     },
     mounted() {
         this.getDrivers()
-        setInterval(() => {
+        
          this.updateDriverLocation()
-        }, 5000);
     },
     computed: {
         filterDrivers() {

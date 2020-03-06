@@ -36535,7 +36535,7 @@ var render = function() {
                         "gmap-map",
                         {
                           staticStyle: { width: "100%", height: "400px" },
-                          attrs: { center: _vm.executor.center, zoom: 12 }
+                          attrs: { center: _vm.executor.center, zoom: 20 }
                         },
                         [
                           _c("gmap-marker", {

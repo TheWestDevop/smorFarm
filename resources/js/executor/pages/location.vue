@@ -17,7 +17,7 @@
                             <div class="container">
                                 <gmap-map
                                                     :center="executor.center"
-                                                    :zoom="12"
+                                                    :zoom="20"
                                                     style="width:100%;height:400px;">
 
                                                   
