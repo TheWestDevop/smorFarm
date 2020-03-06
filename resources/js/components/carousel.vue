@@ -68,7 +68,7 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-            <carousel :autoplay="true" class="pt-sm-30 pt-xs-30">
+            <carousel :autoplay="true" :perPageCustom="[[480, 2], [768, 3]]" class="pt-sm-30 pt-xs-30">
             <slide>
               <div class="">
                   <h5>
