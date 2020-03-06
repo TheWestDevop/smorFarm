@@ -68,12 +68,12 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-            <Carousel :autoplay="true" :per-page="1" class="pt-sm-30 pt-xs-30">
-            <Slide
-             data-index="0"
-             data-name="MySlideName"
-             @slideclick="handleSlideClick">
-              <div class="">
+          <Carousel :per-page="1" class="pt-sm-30 pt-xs-30">
+            
+              <!-- Begin Single Slide Area -->
+              <Slide class="single-slide align-center-left animation-style-02 bg-4">
+                <div class="slider-progress"></div>
+                <div class="slider-content">
                   <h5>
                     Sale Offer
                     <span>-20% Off</span> This Week
@@ -87,11 +87,12 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-            </Slide>
-            <Slide>
-             <div class="align-center-left animation-style-01 bg-5">
-              
-                <div class="">
+              </Slide>
+              <!-- Single Slide Area End Here -->
+              <!-- Begin Single Slide Area -->
+              <Slide class="single-slide align-center-left animation-style-01 bg-5">
+                <div class="slider-progress"></div>
+                <div class="slider-content">
                   <h5>
                     Sale Offer
                     <span>Pot Must Full</span> This Week
@@ -105,12 +106,12 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-              </div>
-            </Slide>
-            <Slide>
-              <div class="single-slide align-center-left animation-style-02 bg-6">
-                
-                <div class="">
+              </Slide>
+              <!-- Single Slide Area End Here -->
+              <!-- Begin Single Slide Area -->
+              <Slide class="single-slide align-center-left animation-style-02 bg-6">
+                <div class="slider-progress"></div>
+                <div class="slider-content">
                   <h5>
                     Sale Offer
                     <span>-50% Off</span> This Week
@@ -124,11 +125,9 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-              
-            </Slide>
+              </Slide>
+              <!-- Single Slide Area End Here -->
           </Carousel>
-          
-         
         </div>
         <!-- Slider Area End Here -->
       </div>
@@ -143,13 +142,8 @@ import { Carousel, Slide } from 'vue-carousel';
 export default {
   name: "carousel",
   components: {
-  	Carousel,
+    Carousel,
     Slide
-  },
-  methods:{
-    handleSlideClick(dataset){
-    this.app.$route.push('/market');
-  }
   }
 };
 </script>
