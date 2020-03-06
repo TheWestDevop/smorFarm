@@ -70,7 +70,7 @@
         <div class="col-lg-9">
             <carousel class="pt-sm-30 pt-xs-30">
             <slide>
-              <div class="slider-content">
+              <div class="">
                   <h5>
                     Sale Offer
                     <span>-20% Off</span> This Week
@@ -88,7 +88,7 @@
             <slide>
              <div class="align-center-left animation-style-01 bg-5">
               
-                <div class="slider-content">
+                <div class="">
                   <h5>
                     Sale Offer
                     <span>Pot Must Full</span> This Week
@@ -107,7 +107,7 @@
             <slide>
               <div class="single-slide align-center-left animation-style-02 bg-6">
                 
-                <div class="slider-content">
+                <div class="">
                   <h5>
                     Sale Offer
                     <span>-50% Off</span> This Week
