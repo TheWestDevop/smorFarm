@@ -68,8 +68,8 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-            <carousel :autoplay="true" :per-page="1" class="pt-sm-30 pt-xs-30">
-            <slide
+            <Carousel :autoplay="true" :per-page="1" class="pt-sm-30 pt-xs-30">
+            <Slide
              data-index="0"
              data-name="MySlideName"
              @slideclick="handleSlideClick">
@@ -87,8 +87,8 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-            </slide>
-            <slide>
+            </Slide>
+            <Slide>
              <div class="align-center-left animation-style-01 bg-5">
               
                 <div class="">
@@ -106,8 +106,8 @@
                   </div>
                 </div>
               </div>
-            </slide>
-            <slide>
+            </Slide>
+            <Slide>
               <div class="single-slide align-center-left animation-style-02 bg-6">
                 
                 <div class="">
@@ -125,8 +125,8 @@
                   </div>
                 </div>
               
-            </slide>
-          </carousel>
+            </Slide>
+          </Carousel>
           
          
         </div>
