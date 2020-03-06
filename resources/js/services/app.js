@@ -18,9 +18,9 @@ import 'vue-toastification/dist/index.css';
 
 require('../bootstrap');
 
-Vue.config.devtools =true
-Vue.config.debug = true
-Vue.config.silent = true
+Vue.config.devtools =false
+Vue.config.debug = false
+Vue.config.silent = false
 Vue.config.productionTips=false
 
 window.Event = new Vue();

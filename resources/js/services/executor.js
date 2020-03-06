@@ -17,9 +17,9 @@ import 'vue-toastification/dist/index.css';
 
 require('../bootstrap');
 
-Vue.config.devtools =true
-Vue.config.debug = true
-Vue.config.silent = true
+Vue.config.devtools =false
+Vue.config.debug = false
+Vue.config.silent = false
 Vue.config.productionTips=false
 
 window.Event = new Vue();
@@ -27,7 +27,7 @@ window.Event = new Vue();
 Vue.use(Toast,{transition: "Vue-Toastification__bounce",maxToast:20,newestOnTop:true});
 Vue.use(VueGoogleMaps,{
     load:{
-        key:" AIzaSyAIIUF1p6P7JmBwgEweGNwhuYy-qb8hb8o"
+        key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
     }
 })  
 

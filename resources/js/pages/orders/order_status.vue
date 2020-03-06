@@ -6,7 +6,7 @@
                 <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb-30">
 
                         <div class="login-form">
-                            <h4 class="login-title">Kindly Enter Order Ticket ID</h4>
+                            <h4 class="login-title">Enter Order Ticket ID</h4>
                             <div class="row">
                                 <div class="col-md-12 col-12 mb-20">
                                     <input class="mb-0" type="text" v-model="id" placeholder="Order Ticket ID" :class="{'is-invalid':errorId}" />

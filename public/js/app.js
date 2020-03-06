@@ -54781,9 +54781,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(57);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = true;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.debug = true;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.silent = true;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = false;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.debug = false;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.silent = false;
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTips = false;
 
 window.Event = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
@@ -65544,7 +65544,7 @@ var render = function() {
           [
             _c("div", { staticClass: "login-form" }, [
               _c("h4", { staticClass: "login-title" }, [
-                _vm._v("Kindly Enter Order Ticket ID")
+                _vm._v("Enter Order Ticket ID")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "row" }, [
