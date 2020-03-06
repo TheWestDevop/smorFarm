@@ -100,11 +100,6 @@
               <i class="fa fa-location-arrow text-blue"></i> Location
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link :to="{name:'direction'}" class="nav-link ">
-              <i class="fa fa-map-marked text-brown"></i> Direction
-            </router-link>
-          </li>
         </ul>
 
 

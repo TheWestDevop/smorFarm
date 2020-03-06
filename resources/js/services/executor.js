@@ -27,7 +27,8 @@ window.Event = new Vue();
 Vue.use(Toast,{transition: "Vue-Toastification__bounce",maxToast:20,newestOnTop:true});
 Vue.use(VueGoogleMaps,{
     load:{
-        key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
+        key:"AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
+       libraries: 'places'
     }
 })  
 

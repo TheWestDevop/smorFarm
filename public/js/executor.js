@@ -35790,7 +35790,8 @@ window.Event = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_toastification___default.a, { transition: "Vue-Toastification__bounce", maxToast: 20, newestOnTop: true });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__, {
     load: {
-        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
+        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
+        libraries: 'places'
     }
 });
 
@@ -35813,17 +35814,14 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__executor_pages_location__ = __webpack_require__(585);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__executor_pages_location___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__executor_pages_location__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__executor_pages_direction__ = __webpack_require__(592);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__executor_pages_direction___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__executor_pages_direction__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__executor_pages_profile__ = __webpack_require__(593);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__executor_pages_profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__executor_pages_profile__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__executor_pages_edit_profile__ = __webpack_require__(598);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__executor_pages_edit_profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__executor_pages_edit_profile__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__executor_pages_orders__ = __webpack_require__(603);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__executor_pages_orders___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__executor_pages_orders__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__executor_pages_order_info__ = __webpack_require__(606);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__executor_pages_order_info___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__executor_pages_order_info__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__executor_pages_profile__ = __webpack_require__(593);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__executor_pages_profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__executor_pages_profile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__executor_pages_edit_profile__ = __webpack_require__(598);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__executor_pages_edit_profile___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__executor_pages_edit_profile__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__executor_pages_orders__ = __webpack_require__(603);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__executor_pages_orders___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__executor_pages_orders__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__executor_pages_order_info__ = __webpack_require__(606);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__executor_pages_order_info___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__executor_pages_order_info__);
 
 
 
@@ -35837,11 +35835,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
   routes: [{
     path: '/',
-    component: __WEBPACK_IMPORTED_MODULE_6__executor_pages_orders___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_5__executor_pages_orders___default.a,
     name: 'home'
   }, {
     path: '/order/:id/info',
-    component: __WEBPACK_IMPORTED_MODULE_7__executor_pages_order_info___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_6__executor_pages_order_info___default.a,
     name: 'order_info',
     props: true
   }, {
@@ -35850,16 +35848,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
     name: 'location'
   }, {
     path: '/profile',
-    component: __WEBPACK_IMPORTED_MODULE_4__executor_pages_profile___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_3__executor_pages_profile___default.a,
     name: 'profile'
   }, {
     path: '/edit/profile',
-    component: __WEBPACK_IMPORTED_MODULE_5__executor_pages_edit_profile___default.a,
+    component: __WEBPACK_IMPORTED_MODULE_4__executor_pages_edit_profile___default.a,
     name: 'edit_profile'
-  }, {
-    path: '/direction',
-    component: __WEBPACK_IMPORTED_MODULE_3__executor_pages_direction___default.a,
-    name: 'direction'
   }]
 
 }));
@@ -35969,6 +35963,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -35987,12 +36000,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
-            name: ''
+            destination: '',
+            start: executor.center
         };
     },
 
     methods: {
-        loadMap: function loadMap() {}
+        getDirection: function getDirection() {
+            var directionsService = new google.maps.DirectionsService();
+            var directionsDisplay = new google.maps.DirectionsRenderer();
+            directionsDisplay.setMap(this.$refs.map.$mapObject);
+
+            //google maps API's direction service
+            function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination) {
+                directionsService.route({
+                    origin: start,
+                    destination: destination,
+                    travelMode: 'DRIVING'
+                }, function (response, status) {
+                    if (status === 'OK') {
+                        directionsDisplay.setDirections(response);
+                    } else {
+                        window.alert('Directions request failed due to ' + status);
+                    }
+                });
+            }
+
+            console.log(this.start);
+            console.log(this.destination);
+            console.log('hmmm yha');
+            calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
+        }
     }
 
 });
@@ -36528,24 +36566,102 @@ var render = function() {
               _c("div", { staticClass: "col-md-12 " }, [
                 _c("div", { staticClass: "card shadow" }, [
                   _c(
+                    "form",
+                    {
+                      staticClass:
+                        "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+                    },
+                    [
+                      _c("div", { staticClass: "form-group mb-0" }, [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "input-group input-group-alternative"
+                          },
+                          [
+                            _vm._m(0),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.destination,
+                                  expression: "destination"
+                                }
+                              ],
+                              staticClass: "products form-control",
+                              attrs: {
+                                placeholder: "Destination Address ",
+                                type: "text"
+                              },
+                              domProps: { value: _vm.destination },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.destination = $event.target.value
+                                }
+                              }
+                            })
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "form-group mb-0" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" },
+                            on: {
+                              click: function($event) {
+                                return _vm.getDirection()
+                              }
+                            }
+                          },
+                          [_vm._v("Direction")]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c(
                     "div",
                     { staticClass: "container" },
                     [
                       _c(
                         "gmap-map",
                         {
+                          ref: "map",
                           staticStyle: { width: "100%", height: "400px" },
-                          attrs: { center: _vm.executor.center, zoom: 15 }
+                          attrs: { center: _vm.executor.center, zoom: 17 }
                         },
                         [
-                          _c("gmap-marker", {
-                            attrs: { position: _vm.executor.center },
-                            on: {
-                              click: function($event) {
-                                _vm.center = _vm.executor.center
+                          _c(
+                            "gmap-marker",
+                            {
+                              attrs: { position: _vm.executor.center },
+                              on: {
+                                click: function($event) {
+                                  _vm.center = _vm.executor.center
+                                }
                               }
-                            }
-                          })
+                            },
+                            [
+                              _c("gmap-marker", {
+                                attrs: { position: this.start }
+                              }),
+                              _vm._v(" "),
+                              _c("gmap-marker", {
+                                attrs: { position: this.destination }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -36562,7 +36678,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-search text-black-50" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -36571,37 +36698,6 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-aaf2eb64", module.exports)
   }
 }
-
-/***/ }),
-
-/***/ 592:
-/***/ (function(module, exports, __webpack_require__) {
-
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = null
-/* template */
-var __vue_template__ = null
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/executor/pages/direction.vue"
-
-module.exports = Component.exports
-
 
 /***/ }),
 
@@ -37299,7 +37395,7 @@ var render = function() {
                                     ],
                                     staticClass: "products form-control",
                                     attrs: {
-                                      placeholder: "Search Driver Name ",
+                                      placeholder: "Search Customer Name ",
                                       type: "text"
                                     },
                                     domProps: { value: _vm.name },
@@ -38473,7 +38569,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38486,11 +38582,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_api__ = __webpack_require__(105);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -38764,25 +38855,6 @@ var render = function() {
                           staticClass: "fa fa-location-arrow text-blue"
                         }),
                         _vm._v(" Location\n          ")
-                      ]
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "li",
-                  { staticClass: "nav-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "nav-link ",
-                        attrs: { to: { name: "direction" } }
-                      },
-                      [
-                        _c("i", { staticClass: "fa fa-map-marked text-brown" }),
-                        _vm._v(" Direction\n          ")
                       ]
                     )
                   ],

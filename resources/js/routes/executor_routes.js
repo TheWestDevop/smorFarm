@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import MyLocation from '../executor/pages/location';
-import SeekDirection from '../executor/pages/direction';
 import Profile from '../executor/pages/profile';
 import Edit_Profile from '../executor/pages/edit_profile';
 import Orders from '../executor/pages/orders';
@@ -40,11 +39,7 @@ export default new VueRouter({
         name:'edit_profile'
        },
 
-       {
-        path: '/direction',
-        component:SeekDirection,
-        name:'direction'
-       },
+       
 
 
      ],

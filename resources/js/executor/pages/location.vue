@@ -13,11 +13,25 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12 ">
                         <div class="card shadow">
-                        
+                            <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                                            <div class="form-group mb-0">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                                                    </div>
+                                                    <input class="products form-control" placeholder="Destination Address " v-model="destination" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0">
+                                               <button type="submit" class="btn btn-primary" @click="getDirection()">Direction</button> 
+                                            </div>
+                            </form>
+                            <br>
                             <div class="container">
-                                <gmap-map
+                                <gmap-map           
+                                                    ref="map"
                                                     :center="executor.center"
-                                                    :zoom="15"
+                                                    :zoom="17"
                                                     style="width:100%;height:400px;">
 
                                                   
@@ -28,6 +42,11 @@
                                                         @click="center=executor.center"
                                                             
                                                     >
+                                                    <gmap-marker :position="this.start">
+                                                    </gmap-marker>
+                                                    <gmap-marker :position="this.destination">
+                                                    </gmap-marker>
+                                                     
 
                                                     </gmap-marker>
                                                 </gmap-map>
@@ -66,13 +85,36 @@ export default {
     data() {
         return {
             flash: Flash.state,
-            name: '',
+            destination: '',
+            start:executor.center,
         }
 
     },
     methods: {
-        loadMap(){
+    getDirection(){
+      let directionsService = new google.maps.DirectionsService;
+      let directionsDisplay = new google.maps.DirectionsRenderer;
+      directionsDisplay.setMap(this.$refs.map.$mapObject);
+       
+      //google maps API's direction service
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination) {
+        directionsService.route({
+          origin: start,
+          destination: destination,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
 
+      console.log(this.start);
+      console.log(this.destination);
+      console.log('hmmm yha');
+      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
         }
     }
 

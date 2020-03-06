@@ -22,7 +22,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
                                                     </div>
-                                                    <input class="products form-control" placeholder="Search Driver Name " v-model="name" type="text">
+                                                    <input class="products form-control" placeholder="Search Customer Name " v-model="name" type="text">
                                                 </div>
                                             </div>
                                         </form>
