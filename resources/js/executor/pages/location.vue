@@ -40,10 +40,7 @@
                                                         @click="center=executor.center"
                                                             
                                                     >
-                                                    <gmap-marker :position="this.start">
-                                                    </gmap-marker>
-                                                    <gmap-marker :position="this.destination">
-                                                    </gmap-marker>
+                                                    
                                                      
 
                                                     </gmap-marker>

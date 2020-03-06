@@ -46,7 +46,7 @@ export default {
     created() {
         this.getOrders();
         this.initExecutor();
-       // this.getNotification();
+        this.getNotification();
       //  this.updatelocation()
          
     },

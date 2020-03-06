@@ -35976,9 +35976,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -36618,27 +36615,14 @@ var render = function() {
                           attrs: { center: _vm.executor.center, zoom: 17 }
                         },
                         [
-                          _c(
-                            "gmap-marker",
-                            {
-                              attrs: { position: _vm.executor.center },
-                              on: {
-                                click: function($event) {
-                                  _vm.center = _vm.executor.center
-                                }
+                          _c("gmap-marker", {
+                            attrs: { position: _vm.executor.center },
+                            on: {
+                              click: function($event) {
+                                _vm.center = _vm.executor.center
                               }
-                            },
-                            [
-                              _c("gmap-marker", {
-                                attrs: { position: this.start }
-                              }),
-                              _vm._v(" "),
-                              _c("gmap-marker", {
-                                attrs: { position: this.destination }
-                              })
-                            ],
-                            1
-                          )
+                            }
+                          })
                         ],
                         1
                       )
@@ -38393,7 +38377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.getOrders();
         this.initExecutor();
-        // this.getNotification();
+        this.getNotification();
         //  this.updatelocation()
     },
 
