@@ -50,9 +50,8 @@ export default {
         this.getOrders();
         this.initExecutor();
         this.getNotification();
-        setInterval(() => {
-          this.updatelocation(this.auth.executor_id)
-         }, 1000);
+        this.updatelocation(this.auth.executor_id)
+         
     },
     methods: {
         initExecutor() {
@@ -98,7 +97,7 @@ export default {
              form.append('lat',this.center.lat)
              form.append('lng',this.center.lng)
              post(BASE_URL + `/api/driver/location/${id}`,form).then((response) => {});
-            console.log("Position : " + this.center )
+            
         }
 
 

@@ -38271,7 +38271,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38332,23 +38332,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function created() {
-        var _this = this;
-
         this.getOrders();
         this.initExecutor();
         this.getNotification();
-        setInterval(function () {
-            _this.updatelocation(_this.auth.executor_id);
-        }, 1000);
+        this.updatelocation(this.auth.executor_id);
     },
 
     methods: {
         initExecutor: function initExecutor() {
-            var _this2 = this;
+            var _this = this;
 
             Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + '/api/auth/executor/init').then(function (response) {
                 if (response.data.user.id) {
-                    _this2.executor = response.data;
+                    _this.executor = response.data;
                 } else {
                     console.log('');
                 }
@@ -38374,10 +38370,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         updatelocation: function updatelocation(id) {
-            var _this3 = this;
+            var _this2 = this;
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                var $this = _this3;
+                var $this = _this2;
                 $this.center.lat = position.coords.latitude;
                 $this.center.lng = position.coords.longitude;
             });
@@ -38385,7 +38381,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form.append('lat', this.center.lat);
             form.append('lng', this.center.lng);
             Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["b" /* post */])(BASE_URL + ("/api/driver/location/" + id), form).then(function (response) {});
-            console.log("Position : " + this.center);
         }
     }
 });
