@@ -54762,15 +54762,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_toastification__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_toastification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_toastification__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_carousel__ = __webpack_require__(623);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_carousel__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_dayjs__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes_routes__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_App_vue__ = __webpack_require__(412);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__home_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__home_App_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__store__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_toastification_dist_index_css__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_vue_toastification_dist_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_vue_toastification_dist_index_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_dayjs__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes_routes__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_App_vue__ = __webpack_require__(412);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__home_App_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__store__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_toastification_dist_index_css__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_vue_toastification_dist_index_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_vue_toastification_dist_index_css__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -54797,9 +54795,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTips = false;
 
 window.Event = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_carousel___default.a);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_toastification___default.a, { transition: "Vue-Toastification__bounce", maxToast: 20, position: "bottom-right", timeout: 10000, pauseOnHover: false });
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue_dayjs__["a" /* default */], {
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vue_dayjs__["a" /* default */], {
   lang: 'en',
   filters: {
     ago: 'ago'
@@ -54808,10 +54805,10 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue_
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app',
-  router: __WEBPACK_IMPORTED_MODULE_4__routes_routes__["a" /* default */],
-  store: __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */],
+  router: __WEBPACK_IMPORTED_MODULE_3__routes_routes__["a" /* default */],
+  store: __WEBPACK_IMPORTED_MODULE_5__store__["a" /* default */],
   render: function render(h) {
-    return h(__WEBPACK_IMPORTED_MODULE_5__home_App_vue___default.a);
+    return h(__WEBPACK_IMPORTED_MODULE_4__home_App_vue___default.a);
   }
 });
 
@@ -55450,7 +55447,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55461,6 +55458,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel__ = __webpack_require__(623);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_carousel___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_carousel__);
 //
 //
 //
@@ -55598,8 +55597,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "carousel"
+  name: "carousel",
+  components: {
+    'carousel': __WEBPACK_IMPORTED_MODULE_0_vue_carousel___default.a.Carousel,
+    'slide': __WEBPACK_IMPORTED_MODULE_0_vue_carousel___default.a.Slide
+  }
 });
 
 /***/ }),

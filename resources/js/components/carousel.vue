@@ -68,7 +68,7 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-            <carousel class="pt-sm-30 pt-xs-30">
+            <carousel :autoplay="true" class="pt-sm-30 pt-xs-30">
             <slide>
               <div class="">
                   <h5>
@@ -135,8 +135,14 @@
 </template>
 
 <script>
+import VueCarousel from 'vue-carousel';
+
 export default {
-  name: "carousel"
+  name: "carousel",
+  components: {
+  	'carousel': VueCarousel.Carousel,
+    'slide': VueCarousel.Slide
+  },
 };
 </script>
 

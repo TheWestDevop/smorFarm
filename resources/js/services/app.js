@@ -6,7 +6,7 @@
 
 import Vue from 'vue';
 import Toast from 'vue-toastification';
-import VueCarousel from 'vue-carousel';
+
 import Dayjs from 'vue-dayjs';
 import router from '../routes/routes';
 import App from '../home/App.vue';
@@ -26,7 +26,7 @@ Vue.config.productionTips=false
 
 window.Event = new Vue();
 
-Vue.use(VueCarousel);
+
 Vue.use(Toast,{transition: "Vue-Toastification__bounce",maxToast:20,position: "bottom-right",timeout: 10000,pauseOnHover: false,});
 Vue.use(Dayjs, {
   lang:'en',
