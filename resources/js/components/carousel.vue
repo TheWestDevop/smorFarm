@@ -70,9 +70,7 @@
         <div class="col-lg-9">
             <carousel class="pt-sm-30 pt-xs-30">
             <slide>
-              <div class="single-slide align-center-left animation-style-02 bg-4">
-                <div class="slider-progress"></div>
-                <div class="slider-content">
+              <div class="slider-content">
                   <h5>
                     Sale Offer
                     <span>-20% Off</span> This Week
@@ -86,11 +84,10 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-              </div>
             </slide>
             <slide>
-             <div class="single-slide align-center-left animation-style-01 bg-5">
-                <div class="slider-progress"></div>
+             <div class="align-center-left animation-style-01 bg-5">
+              
                 <div class="slider-content">
                   <h5>
                     Sale Offer
@@ -109,7 +106,7 @@
             </slide>
             <slide>
               <div class="single-slide align-center-left animation-style-02 bg-6">
-                <div class="slider-progress"></div>
+                
                 <div class="slider-content">
                   <h5>
                     Sale Offer
@@ -124,7 +121,7 @@
                     <a class="links" href="#">Shopping Now</a>
                   </div>
                 </div>
-              </div>
+              
             </slide>
           </carousel>
           
