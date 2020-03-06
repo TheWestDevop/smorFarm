@@ -52,8 +52,8 @@ export default {
         HereMap
     },
     mounted() {
-         this.lat = executor.center.lat
-         this.lng = executor.center.lng
+         this.lat = this.executor.center.lat
+         this.lng = this.executor.center.lng
     },
     computed: {
        

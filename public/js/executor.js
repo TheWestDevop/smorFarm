@@ -35508,8 +35508,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
     mounted: function mounted() {
-        this.lat = executor.center.lat;
-        this.lng = executor.center.lng;
+        this.lat = this.executor.center.lat;
+        this.lng = this.executor.center.lng;
     },
 
     computed: {},
