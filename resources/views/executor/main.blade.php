@@ -21,7 +21,19 @@
   <link href="{{asset('js/plugins/fontawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link href="{{asset('css/argon-dashboard.css?v=1.1.0')}}" rel="stylesheet" />
-
+  <style>
+    .form-group input {
+      width: 100%;
+    background-color: transparent;
+    border: 1px solid #999999;
+    border-radius: 0;
+    line-height: 23px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #7a7a7a;
+    margin-bottom: 15px;
+    }
+  </style>
 </head>
 
 <body class="bg-default">

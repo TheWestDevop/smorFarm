@@ -35790,8 +35790,7 @@ window.Event = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_toastification___default.a, { transition: "Vue-Toastification__bounce", maxToast: 20, newestOnTop: true });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__, {
     load: {
-        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8",
-        libraries: 'places'
+        key: "AIzaSyByJpcW-yoL4o5kZ921xORiVZb0q2SLkn8"
     }
 });
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('gmap-autocomplete', __WEBPACK_IMPORTED_MODULE_3_vue2_google_maps__["Autocomplete"]);
@@ -36576,7 +36575,7 @@ var render = function() {
                     [
                       _c(
                         "div",
-                        { staticClass: "form-group mb-0" },
+                        { staticClass: "form-group m-5" },
                         [
                           _c("gmap-autocomplete", {
                             on: { place_changed: _vm.setPlace }

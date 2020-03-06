@@ -14,9 +14,9 @@
                     <div class="col-md-12 ">
                         <div class="card shadow">
                             <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-                                            <div class="form-group mb-0">
+                                            <div class="form-group m-5">
                                             
-                                                    <gmap-autocomplete
+                                                    <gmap-autocomplete 
                                                     @place_changed="setPlace">
                                                     </gmap-autocomplete>
                                             </div>
