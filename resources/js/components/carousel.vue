@@ -68,9 +68,8 @@
         <!-- Category Menu Area End Here -->
         <!-- Begin Slider Area -->
         <div class="col-lg-9">
-          <div class="slider-area pt-sm-30 pt-xs-30">
-            <div class="slider-active owl-carousel">
-              <!-- Begin Single Slide Area -->
+            <carousel class="pt-sm-30 pt-xs-30">
+            <slide>
               <div class="single-slide align-center-left animation-style-02 bg-4">
                 <div class="slider-progress"></div>
                 <div class="slider-content">
@@ -88,9 +87,9 @@
                   </div>
                 </div>
               </div>
-              <!-- Single Slide Area End Here -->
-              <!-- Begin Single Slide Area -->
-              <div class="single-slide align-center-left animation-style-01 bg-5">
+            </slide>
+            <slide>
+             <div class="single-slide align-center-left animation-style-01 bg-5">
                 <div class="slider-progress"></div>
                 <div class="slider-content">
                   <h5>
@@ -107,8 +106,8 @@
                   </div>
                 </div>
               </div>
-              <!-- Single Slide Area End Here -->
-              <!-- Begin Single Slide Area -->
+            </slide>
+            <slide>
               <div class="single-slide align-center-left animation-style-02 bg-6">
                 <div class="slider-progress"></div>
                 <div class="slider-content">
@@ -126,9 +125,10 @@
                   </div>
                 </div>
               </div>
-              <!-- Single Slide Area End Here -->
-            </div>
-          </div>
+            </slide>
+          </carousel>
+          
+         
         </div>
         <!-- Slider Area End Here -->
       </div>
