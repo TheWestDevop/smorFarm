@@ -38332,7 +38332,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38411,6 +38411,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var $this = this;
             var api_token = localStorage.getItem('executor_api_token');
             Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + api_token + "/orders")).then(function (response) {
+                console.log(response.data);
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;

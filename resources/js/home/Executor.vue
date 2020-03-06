@@ -65,6 +65,7 @@ export default {
             let $this = this
             let api_token = localStorage.getItem('executor_api_token');
             get(BASE_URL + `/api/executor/${api_token}/orders`).then((response) => {
+                console.log(response.data)
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;
