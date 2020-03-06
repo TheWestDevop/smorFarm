@@ -35978,8 +35978,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -36576,16 +36574,7 @@ var render = function() {
                         "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
                     },
                     [
-                      _c(
-                        "div",
-                        { staticClass: "form-group m-5" },
-                        [
-                          _c("gmap-autocomplete", {
-                            on: { place_changed: _vm.setPlace }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("div", { staticClass: "form-group m-5" }),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-0" }, [
                         _c(
@@ -38404,7 +38393,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getOrders: function getOrders() {
             var $this = this;
             Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + this.api_token + "/orders")).then(function (response) {
-                console.log(response.data);
+
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;

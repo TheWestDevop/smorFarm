@@ -65,7 +65,7 @@ export default {
         getOrders() {
             let $this = this
             get(BASE_URL + `/api/executor/${this.api_token}/orders`).then((response) => {
-                console.log(response.data)
+             
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;

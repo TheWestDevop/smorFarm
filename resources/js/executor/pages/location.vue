@@ -16,9 +16,7 @@
                             <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                             <div class="form-group m-5">
                                             
-                                                    <gmap-autocomplete 
-                                                    @place_changed="setPlace">
-                                                    </gmap-autocomplete>
+                                                  
                                             </div>
                                             <div class="form-group mb-0">
                                                <button type="submit" class="btn btn-primary" @click="getDirection()">Direction</button> 
