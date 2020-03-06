@@ -35980,58 +35980,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'location',
-    props: ['executor'],
-    components: {
-        Navbar: __WEBPACK_IMPORTED_MODULE_0__components_navbar___default.a,
-        Pagination: __WEBPACK_IMPORTED_MODULE_2__components_pagination___default.a
+  name: 'location',
+  props: ['executor'],
+  components: {
+    Navbar: __WEBPACK_IMPORTED_MODULE_0__components_navbar___default.a,
+    Pagination: __WEBPACK_IMPORTED_MODULE_2__components_pagination___default.a
+  },
+  mounted: function mounted() {},
+
+  computed: {},
+  data: function data() {
+    return {
+      flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
+      destination: '',
+      start: executor.center
+    };
+  },
+
+  methods: {
+    setPlace: function setPlace(place) {
+      this.destination = place;
     },
-    mounted: function mounted() {},
+    getDirection: function getDirection() {
+      var directionsService = new google.maps.DirectionsService();
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      directionsDisplay.setMap(this.$refs.map.$mapObject);
+      var stop = {
+        lat: this.destination.geometry.location.lat(),
+        lng: this.destination.geometry.location.lng()
+        //google maps API's direction service
+      };function calculateAndDisplayRoute(directionsService, directionsDisplay, start, stop) {
+        directionsService.route({
+          origin: start,
+          destination: stop,
+          travelMode: 'DRIVING'
+        }, function (response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
 
-    computed: {},
-    data: function data() {
-        return {
-            flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
-            destination: '',
-            start: executor.center
-        };
-    },
+      console.log(this.start);
+      console.log(this.destination);
 
-    methods: {
-        getDirection: function getDirection() {
-            var directionsService = new google.maps.DirectionsService();
-            var directionsDisplay = new google.maps.DirectionsRenderer();
-            directionsDisplay.setMap(this.$refs.map.$mapObject);
-
-            //google maps API's direction service
-            function calculateAndDisplayRoute(directionsService, directionsDisplay, start, destination) {
-                directionsService.route({
-                    origin: start,
-                    destination: destination,
-                    travelMode: 'DRIVING'
-                }, function (response, status) {
-                    if (status === 'OK') {
-                        directionsDisplay.setDirections(response);
-                    } else {
-                        window.alert('Directions request failed due to ' + status);
-                    }
-                });
-            }
-
-            console.log(this.start);
-            console.log(this.destination);
-            console.log('hmmm yha');
-            calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
-        }
+      calculateAndDisplayRoute(directionsService, directionsDisplay, this.start, this.destination);
     }
+  }
 
 });
 
@@ -36572,42 +36575,16 @@ var render = function() {
                         "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
                     },
                     [
-                      _c("div", { staticClass: "form-group mb-0" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "input-group input-group-alternative"
-                          },
-                          [
-                            _vm._m(0),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.destination,
-                                  expression: "destination"
-                                }
-                              ],
-                              staticClass: "products form-control",
-                              attrs: {
-                                placeholder: "Destination Address ",
-                                type: "text"
-                              },
-                              domProps: { value: _vm.destination },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.destination = $event.target.value
-                                }
-                              }
-                            })
-                          ]
-                        )
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "form-group mb-0" },
+                        [
+                          _c("gmap-autocomplete", {
+                            on: { place_changed: _vm.setPlace }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-0" }, [
                         _c(
@@ -36678,18 +36655,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [
-        _c("i", { staticClass: "fas fa-search text-black-50" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
