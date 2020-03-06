@@ -19,10 +19,6 @@ export default {
     data() {
         return {
             executor:[],
-            auth:{
-                api_token:localStorage.getItem('executor_api_token'),
-                executor_id:localStorage.getItem('executor_user_id')
-            },
             orders: {
                 data: [],
                 pagination: {
@@ -50,7 +46,7 @@ export default {
         this.getOrders();
         this.initExecutor();
         this.getNotification();
-        this.updatelocation(this.auth.executor_id)
+        this.updatelocation()
          
     },
     methods: {
@@ -67,7 +63,8 @@ export default {
         },
         getOrders() {
             let $this = this
-            get(BASE_URL + `/api/executor/${this.auth.api_token}/orders`).then((response) => {
+            let api_token = localStorage.getItem('executor_api_token');
+            get(BASE_URL + `/api/executor/${api_token}/orders`).then((response) => {
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;
@@ -81,12 +78,14 @@ export default {
 
         getNotification() {
             let $this = this
-            get(BASE_URL + `/api/executor/${this.auth.api_token}/new/order/notification/`).then((response) => {
+            let api_token = localStorage.getItem('executor_api_token');
+            get(BASE_URL + `/api/executor/${api_token}/new/order/notification/`).then((response) => {
                 $this.notify.count = response.data.count;
                 $this.notify.notification = response.data.notification;
             });
         },
-        updatelocation(id){
+        updatelocation(){
+            let id = localStorage.getItem('executor_user_id');
             navigator.geolocation.getCurrentPosition(position =>{
              let $this = this
              $this.center.lat = position.coords.latitude

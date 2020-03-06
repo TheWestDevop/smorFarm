@@ -38271,7 +38271,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38305,10 +38305,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             executor: [],
-            auth: {
-                api_token: localStorage.getItem('executor_api_token'),
-                executor_id: localStorage.getItem('executor_user_id')
-            },
             orders: {
                 data: [],
                 pagination: {
@@ -38335,7 +38331,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.getOrders();
         this.initExecutor();
         this.getNotification();
-        this.updatelocation(this.auth.executor_id);
+        this.updatelocation();
     },
 
     methods: {
@@ -38352,7 +38348,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getOrders: function getOrders() {
             var $this = this;
-            Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + this.auth.api_token + "/orders")).then(function (response) {
+            var api_token = localStorage.getItem('executor_api_token');
+            Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + api_token + "/orders")).then(function (response) {
                 $this.orders.data = response.data.data;
                 $this.orders.pagination.current_page = response.data.current_page;
                 $this.orders.pagination.total = response.data.total;
@@ -38364,14 +38361,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         getNotification: function getNotification() {
             var $this = this;
-            Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + this.auth.api_token + "/new/order/notification/")).then(function (response) {
+            var api_token = localStorage.getItem('executor_api_token');
+            Object(__WEBPACK_IMPORTED_MODULE_1__executor_util_api__["a" /* get */])(BASE_URL + ("/api/executor/" + api_token + "/new/order/notification/")).then(function (response) {
                 $this.notify.count = response.data.count;
                 $this.notify.notification = response.data.notification;
             });
         },
-        updatelocation: function updatelocation(id) {
+        updatelocation: function updatelocation() {
             var _this2 = this;
 
+            var id = localStorage.getItem('executor_user_id');
             navigator.geolocation.getCurrentPosition(function (position) {
                 var $this = _this2;
                 $this.center.lat = position.coords.latitude;
