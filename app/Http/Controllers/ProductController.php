@@ -16,13 +16,13 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products =  Product::orderBy('created_at','ASC')->paginate(12);
+        $products =  Product::orderBy('created_at','DESC')->paginate(12);
         return response()->json($products, 200);
     }
 
     public function latestProduct()
     {
-        $products =  Product::latest()->paginate(12);
+        $products =  Product::latest()->get();
         return response()->json($products, 200);
     }
 
@@ -68,16 +68,11 @@ class ProductController extends Controller
 
      public function trending()
     {
-        $product_nigeria = Product::where('ordered_quantities','>',10)
-                                     ->where('made_in_nigeria',1)
-                                     ->latest()->take(12)->get();
-        $product_imported = Product::where('ordered_quantities','>',10)
-                                     ->where('made_in_nigeria',0)
-                                     ->latest()->take(12)->get();
-        return response()->json([
-            'nigeria'=>$product_nigeria,
-            'imported' => $product_imported
-         ], 200);
+        $product = Product::where('like_count','>',2) 
+                            ->orderBy('like_count','DESC')
+                            ->latest()->get();
+
+        return response()->json($product, 200);
 
     }
 

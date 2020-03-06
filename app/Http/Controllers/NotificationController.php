@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\notification;
 use App\Order;
 use App\Profile;
-
+use App\User;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -56,8 +56,21 @@ class NotificationController extends Controller
     public function notifyOrder()
     {
         $notification = Order::where('status',0)->latest()->get(['total','user_type','created_at','ticket_id']);
-        
+
         $count = Order::where('status',0)->count();
+        $notify = ['notification' => $notification, 'count' => $count ];
+        return response()->json($notify, 200);
+    }
+    public function notifyExecutorOrder($token)
+    {
+        $staff = User::where('api_token',$token)->first();
+        $notification = Order::where('status',0)
+                               ->where('driver_name',$staff->name)
+                               ->latest()
+                               ->get(['user','created_at']);
+        $count = Order::where('status',0)
+                        ->where('driver_name',$staff->name)
+                        ->count();
         $notify = ['notification' => $notification, 'count' => $count ];
         return response()->json($notify, 200);
     }
@@ -70,10 +83,8 @@ class NotificationController extends Controller
      */
     public function show($id)
     {
-        $notification = notification::where('user_id',$id)->latest()->take(10)->get();
-        $count = notification::where('user_id',$id)->where('read',0)->count();
-        $notify = ['notification' => $notification, 'count' => $count ];
-        return response()->json($notify, 200);
+        $notification = notification::where('user_id',$id)->where('read',0)->get();
+        return response()->json($notification, 200);
     }
 
 

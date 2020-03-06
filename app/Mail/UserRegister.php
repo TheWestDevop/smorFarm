@@ -12,16 +12,21 @@ class UserRegister extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    protected $profile;
+    protected $password;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user,$password)
+    public function __construct(User $profile,$password)
     {
-        $this->user = $user;
+        $this->profile = $profile;
         $this->password = $password;
     }
+
+
 
     /**
      * Build the message.
@@ -30,11 +35,11 @@ class UserRegister extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('smorfarm@smor.com')
+        return $this->from('techbitme@gmail.com')
         ->markdown('emails.user.register')
         ->with([
-            "username" => $this->user->email,
-            "full_name" =>  $this->user->name,
+            "username" => $this->profile->email,
+            "full_name" =>  $this->profile->name,
             "password" => $this->password
         ]);
     }

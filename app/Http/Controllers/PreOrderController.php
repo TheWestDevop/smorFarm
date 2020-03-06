@@ -9,6 +9,7 @@ use App\FastTrackUser;
 use App\Profile;
 use App\User;
 use App\PreOrder;
+use App\Order_Owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Mail\PreOrderPlaced;
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Mail;
 
 class PreOrderController extends Controller
 {
-    public function customerstore($id,Request $request)
+    public function customerstore(Request $request)
     {
 
-        $user = User::where('id',$id)->first();
+        $user = User::where('api_token',$request->token)->first();
 
 
         $order = new PreOrder();
@@ -30,14 +31,25 @@ class PreOrderController extends Controller
         $order->user = $user->name;
         $order->total = $request->total;
         $order->driver_name = 'No Driver Avaliable';
-        $order->date_to_deliver = $request->deliver_date;
-        $order->time_to_deliver = $request->deliver_time;
+        $order->date_to_deliver = $request->delivery_date;
+        $order->time_to_deliver = $request->delivery_time;
         $order->status = 0;
         $order->ticket_id = Str::random(12);
         $order->user_type = "Registered Customer";
         $order->save();
-        
-        Mail::to($user->email)->send(new PreOrderPlaced($order));
+
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'pre-order';
+        $order_owner->name = $request->name;
+        $order_owner->address = $request->address;
+        $order_owner->apartment = $request->apartment;
+        $order_owner->email = $request->email;
+        $order_owner->phone = $request->phone;
+        $order_owner->note = $request->note;
+        $order_owner->save();
+
+        //Mail::to($user->email)->send(new PreOrderPlaced($order));
         return response()->json($order->ticket_id, 200);
 
 
@@ -70,7 +82,18 @@ class PreOrderController extends Controller
         $order->user_type = "Fast Track";
         $order->save();
 
-        Mail::to($user->email)->send(new PreOrderPlaced($order));
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'pre-order';
+        $order_owner->name = $request->name;
+        $order_owner->address = $request->address;
+        $order_owner->apartment = $request->apartment;
+        $order_owner->email = $request->email;
+        $order_owner->phone = $request->phone;
+        $order_owner->note = $request->note;
+        $order_owner->save();
+
+        //Mail::to($user->email)->send(new PreOrderPlaced($order));
 
         return response()->json($order->ticket_id, 200);
 
@@ -155,13 +178,13 @@ class PreOrderController extends Controller
             $u_driver->avaliability_status = 1;
             $u_driver->save();
 
-            $user = User::where('user',$Order->user)->first();
+            $user = User::where('name',$Order->user)->first();
 
             if ($user == "" || $user == null) {
-                $user = FastTrackUser::where('user',$Order->user)->first();
+                $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            Mail::to($user->email)->send(new PreOrderDelivered($Order));
+           // Mail::to($user->email)->send(new PreOrderDelivered($Order));
 
         return response()->json(['message' => "Pre Order Delivered"], 200);
     }
@@ -180,13 +203,13 @@ class PreOrderController extends Controller
         $u_driver->avaliability_status = 0;
         $u_driver->save();
 
-        $user = User::where('user',$Order->user)->first();
+        $user = User::where('name',$Order->user)->first();
 
             if ($user == "" || $user == null) {
-                $user = FastTrackUser::where('user',$Order->user)->first();
+                $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            Mail::to($user->email)->send(new PreOrderRevised($Order));
+           // Mail::to($user->email)->send(new PreOrderRevised($Order));
 
 
         return response()->json(['message' => "Pre Order Revised"], 200);

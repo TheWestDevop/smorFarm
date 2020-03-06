@@ -43,13 +43,18 @@
          <!-- Responsive CSS -->
          <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
          <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
+         <link rel="icon" href="icon.png">
+         <script src="{{asset('js/modernizr-2.8.3.min.js')}}"></script>
+     <script>
+      window.myToken = @json(csrf_token())
+     </script>
 
 
     </head>
     <body>
         <div id="app"></div>
         <script>
+
           const BASE_URL = '{{URL::to('/')}}';
         </script>
         <script src="{{asset('js/app.js')}}"></script>
@@ -92,13 +97,7 @@
         <script src="{{asset('js/scrollUp.min.js')}}"></script>
         <!-- Main/Activator js -->
         <script src="{{asset('js/main.js')}}"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
-            });
-        </script>
+
 
     </body>
 </html>

@@ -8,7 +8,7 @@ use Auth;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -21,10 +21,13 @@ class UserController extends Controller
             'email'=>'required|email',
             'password'=>'required'
             ]);
-        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'] ])) {
-            return response()->json(Auth::user(), 200);
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'usertype' => 'customer'  ])) {
+            $user = Auth::user();
+            $profile = Profile::where('user_id',$user->id)->first();
+            $user_info = ['user' => $user,'profile' => $profile];
+            return response()->json($user_info, 200);
         } else {
-            return response()->json(['error' => 401], 200);
+            return response()->json(['error' => 'invalid Username or Password'], 200);
         }
     }
     public function logout(Request $request)
@@ -34,44 +37,40 @@ class UserController extends Controller
     }
     public function register(Request $request)
     {
-        $data = request()->validate([
-            'name' => 'required|max:255',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|between:7,25',
-            'gender' => 'required|max:255',
-            ]);
-        $user = User::where('email',$data['email'] )->first();
+
+        $user = User::where('email',$request->email )->first();
 
         if (isset($user->id)) {
-            return response()->json(['error' => 'email_taken'], 200);
+            return response()->json(['error' => 'You have an account with already with this email '.$request->email ], 200);
         }
 
         $user = new User();
-        $user->name = $data['name'];
-        $user->email = $data['email'];
+        $user->name = $request->name;
+        $user->email = $request->email;
         $user->usertype = 'customer';
-        $user->api_token = Str::random(60);
-        $user->password = bcrypt($data['password']);
+        $user->api_token = Str::random(150);
+        $user->password = bcrypt($request->password);
         $user->save();
 
         $profile =  new Profile();
-        $profile->name = $data['name'];
+        $profile->name = $request->name;
         $profile->user_id = $user->id;
         $profile->user_image = 'avatar.png';
-        $profile->gender = $data['gender'];
-        $profile->email = $data['email'];
+        $profile->gender = $request->gender;
+        $profile->email = $request->email;
 
         $profile->save();
 
-        Mail::to($user->email)->send(new UserRegister($user,$data['password']));
+        //Mail::to($user->email)->send(new UserRegister($user,$request->password));
 
          Auth::login($user);
-        return response()->json($user, 200);
+         $user_info = ['user' => $user,'profile' => $profile];
+         return response()->json($user_info, 200);
     }
     public function init()
     {
         $user = Auth::User();
-        $profile = Profile::findorfail($user->id);
+        $profile = Profile::where('user_id',$user->id)->first();;
         $user_info = ['user' => $user,'profile' => $profile];
         return response()->json($user_info, 200);
     }

@@ -4,15 +4,15 @@
                 <div class="footer-static-top">
                     <div class="container">
                         <!-- Begin Footer Shipping Area -->
-                        <div class="footer-shipping pt-60 pb-55 pb-xs-25">
+                        <div class="footer-shipping pt-10 pb-15 pb-xs-15">
                             <div class="row">
                                 <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-20 pb-xs-20">
                                     <div class="li-shipping-inner-box">
                                         <div class="shipping-icon">
                                             <img src="images/shipping-icon/1.png" alt="Shipping Icon">
                                         </div>
-                                        <div class="shipping-text">
+                                        <div class="shipping-text text-white">
                                             <h2>Free Delivery</h2>
                                             <p>And free returns. See checkout for delivery dates.</p>
                                         </div>
@@ -20,12 +20,12 @@
                                 </div>
                                 <!-- Li's Shipping Inner Box Area End Here -->
                                 <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-55 pb-xs-55">
+                                <div class="col-lg-3 col-md-6 col-sm-6 pb-sm-20 pb-xs-20">
                                     <div class="li-shipping-inner-box">
                                         <div class="shipping-icon">
                                             <img src="images/shipping-icon/2.png" alt="Shipping Icon">
                                         </div>
-                                        <div class="shipping-text">
+                                        <div class="shipping-text text-white">
                                             <h2>Safe Payment</h2>
                                             <p>Pay with the world's most popular and secure payment methods.</p>
                                         </div>
@@ -33,12 +33,12 @@
                                 </div>
                                 <!-- Li's Shipping Inner Box Area End Here -->
                                 <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-20">
                                     <div class="li-shipping-inner-box">
                                         <div class="shipping-icon">
                                             <img src="images/shipping-icon/3.png" alt="Shipping Icon">
                                         </div>
-                                        <div class="shipping-text">
+                                        <div class="shipping-text text-white">
                                             <h2>Shop with Confidence</h2>
                                             <p>Our Buyer Protection covers your purchase from click to delivery.</p>
                                         </div>
@@ -46,12 +46,12 @@
                                 </div>
                                 <!-- Li's Shipping Inner Box Area End Here -->
                                 <!-- Begin Li's Shipping Inner Box Area -->
-                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-30">
+                                <div class="col-lg-3 col-md-6 col-sm-6 pb-xs-20">
                                     <div class="li-shipping-inner-box">
                                         <div class="shipping-icon">
                                             <img src="images/shipping-icon/4.png" alt="Shipping Icon">
                                         </div>
-                                        <div class="shipping-text">
+                                        <div class="shipping-text text-white">
                                             <h2>24/7 Help Center</h2>
                                             <p>Have a question? Call a Specialist or chat online.</p>
                                         </div>
@@ -67,43 +67,43 @@
                 <!-- Begin Footer Static Middle Area -->
                 <div class="footer-static-middle">
                     <div class="container">
-                        <div class="footer-logo-wrap pt-50 pb-35">
+                        <div class="footer-logo-wrap pt-10 pb-10">
                             <div class="row">
                                 <!-- Begin Footer Logo Area -->
                                 <div class="col-lg-4 col-md-6">
                                     <div class="footer-logo">
-                                         <div class="h1 text-dark"><strong class="mor">SMOR</strong>Farm </div>
+                                         <div class="h1 text-dark"><strong class="mor">SMOR</strong> <br> <p class="info ml-5">
+                                        Be Smart And Oriented
+                                        </p></div>
 
-                                        <p class="info">
-                                         Content coming soon... 
-                                        </p>
+
                                     </div>
                                     <ul class="des">
                                         <li>
-                                            <span>Address: </span>
-                                            6688 Princess Road, London, Greater London BAS 23JK, UK
+                                            <span>Office Address: </span>
+                                            No 18 anifaloyin off alhaji sule makoko yaba, Lagos,, Nigeria
                                         </li>
                                         <li>
                                             <span>Phone: </span>
-                                            <a href="#">(+123) 123 321 345</a>
-                                        </li>
+                                            <span   >(+234) 09021235354 </span>
+                                 </li>
                                         <li>
                                             <span>Email: </span>
-                                            <a href="#">info@smorfarm.com</a>
-                                        </li>
+                                            <span  >info@smorfarm.com</span>
+                                 </li>
                                     </ul>
                                 </div>
                                 <!-- Footer Logo Area End Here -->
                                 <!-- Begin Footer Block Area -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="footer-block">
-                                        <h3 class="footer-block-title">Product</h3>
+                                       <!-- <h3 class="footer-block-title">Product</h3>
                                         <ul>
                                             <li><a href="#">Prices drop</a></li>
                                             <li><a href="#">New products</a></li>
                                             <li><a href="#">Best sales</a></li>
                                             <li><a href="#">Contact us</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                                 <!-- Footer Block Area End Here -->
@@ -130,24 +130,9 @@
                                                     <i class="fa fa-twitter"></i>
                                                 </a>
                                             </li>
-                                            <li class="rss">
-                                                <a href="#" data-toggle="tooltip" target="_blank" title="RSS">
-                                                    <i class="fa fa-rss"></i>
-                                                </a>
-                                            </li>
-                                            <li class="google-plus">
-                                                <a href="#" data-toggle="tooltip" target="_blank" title="Google Plus">
-                                                    <i class="fa fa-google-plus"></i>
-                                                </a>
-                                            </li>
                                             <li class="facebook">
                                                 <a href="#" data-toggle="tooltip" target="_blank" title="Facebook">
                                                     <i class="fa fa-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li class="youtube">
-                                                <a href="#" data-toggle="tooltip" target="_blank" title="Youtube">
-                                                    <i class="fa fa-youtube"></i>
                                                 </a>
                                             </li>
                                             <li class="instagram">
@@ -164,7 +149,7 @@
                                            <div id="mc_embed_signup_scroll">
                                               <div id="mc-form" class="mc-form subscribe-form form-group" >
                                                 <input id="mc-email" type="email" autocomplete="off" placeholder="Enter your email" />
-                                                <button  class="btn" id="mc-submit">Subscribe</button>
+                                                <button  class="btn btn-primary" id="mc-submit">Subscribe</button>
                                               </div>
                                            </div>
                                         </form>
@@ -189,7 +174,7 @@
                                     </a>
                                 </div>
                                 <!-- Footer Payment Area End Here -->
-                            
+
                                 <!-- Copyright Area End Here -->
                             </div>
                         </div>

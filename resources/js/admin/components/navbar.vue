@@ -43,9 +43,9 @@
                                     <i class="ni ni-single-02"></i>
                                     <span>My profile</span>
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
-                                <a href="/admin/login" class="dropdown-item">
+                                <a href="/admin/logout" class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -62,11 +62,11 @@ export default {
     props:['nav'],
      data(){
   return {
-     
+
   }
  },
  created(){
-   
+
  },
 
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StaffCreated;
 use App\Staff;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use App\User;
+use Illuminate\Support\Facades\Mail;
 class StaffController extends Controller
 {
     /**
@@ -52,15 +55,39 @@ class StaffController extends Controller
             $staff->next_of_kin_address =  $request->next_of_kin_address;
             $staff->next_of_kin_phone =  $request->next_of_kin_phone;
             $staff->save();
-                
+
+
+            if ($staff->job_title == "Driver") {
+                $user = new User();
+                $user->name = $staff->name;
+                $user->usertype = 'delivery_executor';
+                $user->api_token = Str::random(150);
+                $user->email = $staff->email;
+                $user->password = PASSWORD_BCRYPT($staff->phone);
+                $user->save();
+
+                Mail::to($user->email)->send(new StaffCreated($user,$staff->phone));
+
                 return response()->json(['message' => "Staff Created..."], 200);
-    
-      
             }
-    
+                $user = new User();
+                $user->name = $staff->name;
+                $user->usertype = 'staff';
+                $user->api_token = Str::random(60);
+                $user->email = $staff->email;
+                $user->password = bcrypt($staff->phone);
+                $user->save();
+
+               // Mail::to($user->email)->send(new StaffCreated($user,$staff->phone));
+
+                return response()->json(['message' => "Staff Created..."], 200);
+
+
+            }
+
             $filename = $request->file('image')->getClientOriginalName();
                 $request->file("image")->storeAs('public/images/staff/', $filename);
-    
+
             $staff = new  Staff();
             $staff->name =  $request->name;
             $staff->img =  $filename;
@@ -77,7 +104,7 @@ class StaffController extends Controller
             $staff->next_of_kin_address =  $request->next_of_kin_address;
             $staff->next_of_kin_phone =  $request->next_of_kin_phone;
             $staff->save();
-    
+
             return response()->json(['message' => "Staff Created..."], 200);
     }
 
@@ -130,10 +157,10 @@ class StaffController extends Controller
             $staff->next_of_kin_address =  $request->next_of_kin_address;
             $staff->next_of_kin_phone =  $request->next_of_kin_phone;
         $staff->save();
-            
+
             return response()->json(['message' => "Staff Updated..."], 200);
 
-  
+
         }
 
         $filename = $request->file('image')->getClientOriginalName();

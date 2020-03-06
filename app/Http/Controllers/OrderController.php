@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 use App\Mail\OrderPlaced;
 use App\Mail\OrderDelivered;
 use App\Mail\OrderRevised;
+use App\Order_Owner;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -23,24 +24,16 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function executor_order($token)
     {
-        //
+        $user = User::where('api_token',$token)->first();
+        $order= Order::where('driver_name',$user->name)->latest()->paginate();
+        return response()->json($order, 200);
     }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function customerstore($id,Request $request)
+    public function customerstore(Request $request)
     {
         $driver = Driver::where('avaliability_status','1')->first();
-        $user = User::where('id',$id)->first();
+        $user = User::where('api_token',$request->token)->first();
 
         if ($driver === null) {
         $order = new Order();
@@ -53,8 +46,19 @@ class OrderController extends Controller
         $order->ticket_id = Str::random(12);
         $order->user_type = "Registered Customer";
         $order->save();
-         
-         Mail::to($user->email)->send(new OrderPlaced($order));
+
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'normal-order';
+        $order_owner->name = $request->name;
+        $order_owner->address = $request->address;
+        $order_owner->apartment = $request->apartment;
+        $order_owner->email = $request->email;
+        $order_owner->phone = $request->phone;
+        $order_owner->note = $request->note;
+        $order_owner->save();
+
+        //Mail::to($user->email)->send(new OrderPlaced($order));
 
         return response()->json($order->ticket_id, 200);
 
@@ -74,8 +78,19 @@ class OrderController extends Controller
         $order->ticket_id = Str::random(12);
         $order->user_type = "Registered Customer";
         $order->save();
-        
-        Mail::to($user->email)->send(new OrderPlaced($order));
+
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'normal-order';
+        $order_owner->name = $request->name;
+        $order_owner->address = $request->address;
+        $order_owner->apartment = $request->apartment;
+        $order_owner->email = $request->email;
+        $order_owner->phone = $request->phone;
+        $order_owner->note = $request->note;
+        $order_owner->save();
+
+        //Mail::to($user->email)->send(new OrderPlaced($order));
 
         $u_driver = Driver::where('staff_name',$order->driver_name)->first();
         $u_driver->avaliability_status = 0;
@@ -94,7 +109,7 @@ class OrderController extends Controller
         $user->gender = $request->gender;
         $user->email = $request->email;
         $user->address = $request->address;
-        $user->alt_address = $request->alt_address;
+        $user->apartment = $request->apartment;
         $user->save();
 
         if ($driver === null) {
@@ -109,7 +124,18 @@ class OrderController extends Controller
         $order->user_type = "Fast Track";
         $order->save();
 
-        Mail::to($user->email)->send(new OrderPlaced($order));
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'normal-order';
+        $order_owner->name = $request->name_2;
+        $order_owner->address = $request->address_2;
+        $order_owner->apartment = $request->apartment_2;
+        $order_owner->email = $request->email_2;
+        $order_owner->phone = $request->phone_2;
+        $order_owner->note = $request->note_2;
+        $order_owner->save();
+
+       // //Mail::to($user->email)->send(new OrderPlaced($order));
         return response()->json($order->ticket_id, 200);
          }
 
@@ -125,10 +151,22 @@ class OrderController extends Controller
         $order->status = 0;
         $order->ticket_id = Str::random(12);
         $order->user_type = "Fast Track";
-
-        Mail::to($user->email)->send(new OrderPlaced($order));
-
         $order->save();
+
+        $order_owner = new Order_Owner();
+        $order_owner->order_id = $order->id;
+        $order_owner->order_type = 'normal-order';
+        $order_owner->name = $request->name_2;
+        $order_owner->address = $request->address_2;
+        $order_owner->apartment = $request->apartment_2;
+        $order_owner->email = $request->email_2;
+        $order_owner->phone = $request->phone_2;
+        $order_owner->note = $request->note_2;
+        $order_owner->save();
+
+        //Mail::to($user->email)->send(new OrderPlaced($order));
+
+        
 
         $u_driver = Driver::where('staff_name',$order->driver_name)->first();
         $u_driver->avaliability_status = 0;
@@ -140,7 +178,6 @@ class OrderController extends Controller
         return response()->json($order->ticket_id, 200);
 
     }
-
     public function show($id)
     {
         $order= Order::where('ticket_id', $id)->first();
@@ -149,8 +186,6 @@ class OrderController extends Controller
          }
         return response()->json($order, 200);
     }
-
-
     public function findOnlyOrder($id){
         $order= Order::findorfail($id);
         $user_info = FastTrackUser::where('name',$order->user)->first();
@@ -221,13 +256,13 @@ class OrderController extends Controller
             $u_driver->avaliability_status = 1;
             $u_driver->save();
 
-            $user = User::where('user',$Order->user)->first();
+            $user = User::where('name',$Order->user)->first();
 
             if ($user == "" || $user == null) {
-                $user = FastTrackUser::where('user',$Order->user)->first();
+                $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            Mail::to($user->email)->send(new OrderDelivered($Order));
+            //Mail::to($user->email)->send(new OrderDelivered($Order));
 
         return response()->json(['message' => "Order Updated..."], 200);
     }
@@ -246,19 +281,17 @@ class OrderController extends Controller
         $u_driver->avaliability_status = 0;
         $u_driver->save();
 
-        $user = User::where('user',$Order->user)->first();
+        $user = User::where('name',$Order->user)->first();
 
             if ($user == "" || $user == null) {
-                $user = FastTrackUser::where('user',$Order->user)->first();
+                $user = FastTrackUser::where('name',$Order->user)->first();
             }
 
-            Mail::to($user->email)->send(new OrderRevised($Order));
+            //Mail::to($user->email)->send(new OrderRevised($Order));
 
 
         return response()->json(['message' => "Order Updated..."], 200);
     }
-
-
     public function destroy($id)
     {
         $Order = Order::findorfail($id);

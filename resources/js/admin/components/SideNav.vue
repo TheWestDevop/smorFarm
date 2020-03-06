@@ -48,7 +48,7 @@
               <span>My profile</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a  href="/admin/login"  class="dropdown-item">
+            <a  href="/admin/logout"  class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>
@@ -141,8 +141,8 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{name:'admin.store'}" class="nav-link ">
-              <i class="fa fa-store text-brown"></i> Store
+            <router-link :to="{name:'admin.track'}" class="nav-link ">
+              <i class="fa fa-map-marked text-brown"></i> Track Drivers
             </router-link>
           </li>
         </ul>

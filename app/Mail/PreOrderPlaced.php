@@ -17,6 +17,8 @@ class PreOrderPlaced extends Mailable implements ShouldQueue
      *
      * @return void
      */
+    protected $order;
+
     public function __construct(PreOrder $order)
     {
        $this->order = $order;
@@ -29,7 +31,7 @@ class PreOrderPlaced extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('smorfarm@smor.com')
+        return $this->from('techbitme@gmail.com')
                         ->markdown('emails.pre_orders.placed')
                         ->with([
                             "Ticket_ID" => $this->order->ticket_id,

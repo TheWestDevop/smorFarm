@@ -1,5 +1,6 @@
 <template>
   <!-- Begin Header Area -->
+
   <header>
     <!-- Begin Header Middle Area -->
     <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
@@ -7,245 +8,175 @@
         <div class="row">
           <!-- Begin Header Logo Area -->
           <div class="col-lg-3">
-            <div class="logo pb-sm-30 pb-xs-30">
-              <router-link :to="{name:'home'}">
-                <div class="h1 text-black">
-                  <strong class="mor">SMOR</strong>
-                  Farm
-                </div>
-              </router-link>
+            <div class="logo pb-sm-50 pb-xs-50">
+              <a href="#">
+                <Strong class="mor">Smor</Strong>
+              </a>
             </div>
           </div>
           <!-- Header Logo Area End Here -->
           <!-- Begin Header Middle Right Area -->
           <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
             <!-- Begin Header Middle Searchbox Area -->
-            <form v-on:submit.prevent="search" class="hm-searchbox mr-4">
-              <input type="text" v-model="word" placeholder="Search Product ..." />
+            <form action="#" class="hm-searchbox">
+              <select class="nice-select select-search-category">
+                <option value="0">All</option>
+                <option value="10">- - - - Grains-Beans</option>
+                <option value="17">- - - - Nuts</option>
+                <option value="16">- - - - Tubers</option>
+                <option value="20">- - - - Vegetables</option>
+                <option value="21">- - - - Poultry</option>
+                <option value="22">- - - - Meat</option>
+                <option value="23">- - - - Fish</option>
+                <option value="24">- - - - Seafood</option>
+                <option value="25">- - - - Dairy</option>
+                <option value="26">- - - - Eggs</option>
+                <option value="27">- - - - Oils</option>
+                <option value="28">- - - - Fruits</option>
+                <option value="18">- - - - Spices</option>
+                <option value="29">- - - - Others</option>
+              </select>
+              <input type="text" placeholder="Enter your search key ..." />
               <button class="li-btn" type="submit">
                 <i class="fa fa-search"></i>
               </button>
             </form>
             <!-- Header Middle Searchbox Area End Here -->
+            <!-- Begin Header Middle Right Area -->
             <div class="header-middle-right">
-              <div class="hm-menu">
-                <div class="hm-minicart-trigger" data-toggle="modal" data-target="#myModal">
-                  <span class="item-icon"></span>
-                  <span class="item-text">
-                    &#8358; {{app.totalprice}}
-                    <span class="cart-item-count">{{app.badge}}</span>
-                  </span>
-                </div>
-                <div class="modal fade" id="myModal" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content mt-100">
-                      <div class="modal-header">
-                        <h4 class="modal-title">Your Cart</h4>
-                      </div>
-                      <div class="minicart">
-                        <ul class="minicart-product-list">
-                          <li v-for="(cart,n) in app.cart" :key="cart.id">
-                            <a href="#" class="minicart-product-image">
-                              <img
-                                :src="`/storage/images/product/${cart.image}`"
-                                alt="cart products"
-                              />
-                            </a>
-                            <div class="minicart-product-details">
-                              <h6>
-                                <strong>
-                                  <a href="#">{{cart.name}}</a>
-                                </strong>
-                              </h6>
-                              <span class="text-black">&#8358; {{cart.price}} x {{cart.quantity}}</span>
-                            </div>
+              <ul class="hm-menu">
+                <!-- Begin Header Middle Wishlist Area -->
+                <li class="hm-wishlist">
+                  <router-link
+                        :to="{name:'wishlist'}"
 
-                            <div class="d-inline-flex mr-5">
-                              <i class="fa fa-minus fa-1x decrease m-2" @click="decrease(n)"></i>
-                              <div class="m-2">{{cart.quantity }}</div>
-                              <i class="fa fa-plus fa-1x increase m-2" @click="increase(n)"></i>
-                            </div>
-
-                              <i class="fa fa-close text-danger"  @click="removeCart(n)"></i>
-
-
-
-                          </li>
-                        </ul>
-                        <p class="minicart-total">
-                          SUBTOTAL:
-                          <span>&#8358; {{app.totalprice}}</span>
-                        </p>
-                        <div class="minicart-button">
-                          <div v-if="cartEmpty"></div>
-                          <router-link
-                            :to="{name:'checkout'}"
-                            v-else
-                            class="li-button li-button-fullwidth"
-                            data-dismiss="modal"
-                          >
-                            <span>Checkout</span>
-                          </router-link>
-
-                          <button
-                            type="button"
-                            class="mt-2 btn btn-danger btn-block li-button-fullwidth"
-                            data-dismiss="modal"
-                          >Close</button>
+                      >
+                    <span class="cart-item-count wishlist-item-count ">{{$store.getters.WISHLIST.length}}</span>
+                    <i class="fa fa-heart-o"></i>
+                  </router-link>
+                </li>
+                <!-- Header Middle Wishlist Area End Here -->
+                <!-- Begin Header Mini Cart Area -->
+                <li class="hm-minicart">
+                  <div class="hm-minicart-trigger">
+                    <span class="item-icon"></span>
+                    <span class="item-text">
+                      &#8358;{{$store.getters.CART_TOTAL}}
+                      <span
+                        class="cart-item-count"
+                      >{{$store.getters.CART_BADGE}}</span>
+                    </span>
+                  </div>
+                  <span></span>
+                  <div class="minicart" v-if="$store.getters.CART_BADGE != 0">
+                    <ul class="minicart-product-list">
+                      <li v-for="(product,index) in $store.getters.CART" :key="product.id">
+                        <a href="#" class="minicart-product-image">
+                          <img
+                            :src="`/storage/images/product/${product.image}`"
+                            alt="cart products"
+                          />
+                        </a>
+                        <div class="minicart-product-details">
+                          <h6>
+                            <a href="#" class="font-weight-bold">{{product.name}}</a>
+                          </h6>
+                          <span>&#8358;{{product.price}} x {{product.quantity}}</span>
                         </div>
-                      </div>
+                        <button class="close" @click="remove(index)">
+                          <i class="fa fa-close"></i>
+                        </button>
+                      </li>
+                    </ul>
+                    <p class="minicart-total">
+                      SUBTOTAL:
+                      <span>&#8358;{{$store.getters.CART_TOTAL}}</span>
+                    </p>
+                    <div class="minicart-button">
+                      <router-link
+                        :to="{name:'cart'}"
+                        class="li-button li-button-dark li-button-fullwidth li-button-sm"
+                      >
+                        <span>View Full Cart</span>
+                      </router-link>
+                      <router-link
+                        :to="{name:'checkout'}"
+                        class="li-button li-button-fullwidth li-button-sm"
+                      >
+                        <span>Checkout</span>
+                      </router-link>
                     </div>
                   </div>
-                </div>
-              </div>
+                </li>
+                <!-- Header Mini Cart Area End Here -->
+              </ul>
             </div>
+            <!-- Header Middle Right Area End Here -->
           </div>
-
           <!-- Header Middle Right Area End Here -->
         </div>
       </div>
     </div>
     <!-- Header Middle Area End Here -->
     <!-- Begin Header Bottom Area -->
-    <div class="header-bottom header-sticky d-none d-lg-block d-xl-block justify-content-center">
+    <div class="header-bottom header-sticky d-none d-lg-block">
       <div class="container">
         <div class="row">
-          <div class="col-xl-2 col-lg-2"></div>
-          <div class="col-lg">
+          <div class="col-lg-12">
             <!-- Begin Header Bottom Menu Area -->
-            <div class="hb-menu">
+            <div class="hb-menu hb-menu-2 d-xl-block">
               <nav>
                 <ul>
                   <li>
-                    <router-link :to="{name:'home'}">Home</router-link>
+                    <router-link :to="{name:'home'}">home</router-link>
                   </li>
-                  <li class="megamenu-static-holder">
-                    <a href="#">Categories</a>
-                    <div class="megamenu hb-megamenu">
-                      <br />
-
-                      <div class=" d-inline w-100">
-                        <router-link
-                          class="category"
-                          :to="{name:'mall'}"
-                        >All</router-link>
-                        <a
-                          class="category"
-                          @click="Category('Vegetables')"
-                        >Vegetable</a>
-                        <a
-                          class="category"
-                          @click="Category('Rice')"
-                        >Rice</a>
-                        <a
-                          class="category"
-                          @click="Category('Cereals')"
-                        >Cereals</a>
-                        <a
-                          class="category"
-                          @click="Category('Fruit')"
-                        >Fruit</a>
-                        <a
-                          class="category"
-                          @click="Category('Cooking oil')"
-                        >Oil</a>
-                        <a
-                          class="category"
-                          @click="Category('Pepper')"
-                        >Pepper</a>
-                         <a
-                          class="category"
-                          @click="Category('Chicken')"
-                        >Birds</a>
-                        <a
-                          class=" category"
-                          @click="Category('Meat')"
-                        >Meat</a>
-                        <a
-                          class=" category"
-                          @click="Category('Fish')"
-                        >Fish</a>
-                        <a
-                          class=" category"
-                          @click="Category('spices')"
-                        >Spices</a>
-                        <a
-                          class=" category"
-                          @click="Category('Kitchen Tools')"
-                        >Utensils</a>
-                        <a
-                          class=" category"
-                          @click="Category('Others')"
-                        >Others</a>
-                      </div>
-
-                    </div>
+                  <li>
+                    <router-link :to="{name:'mall'}">Market</router-link>
                   </li>
 
                   <li>
-                    <router-link :to="{name:'order_status'}">Check Order Status</router-link>
+                    <router-link :to="{name:'kitchen'}">Kitchens</router-link>
+                  </li>
+                  <li >
+                    <a href="#">Book a chef</a>
                   </li>
                   <li>
-                    <a href="#">About Us</a>
+                    <a href="#">how to</a>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
-                  </li>
-                  <li v-if="valid" class="dropdown">
-                    <a
-                      href="#"
-                      class="nav-link dropdown-toggle"
-                      id="navbarDropdown"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <strong class="d-inline">
-                        <i class="fa fa-user"></i>
-                        {{ app.user.user.name }}
-                      </strong>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <router-link class="dropdown-item" :to="{name:'profile'}">
-                        <i class="fa fa-user-circle"></i>&nbsp;Profile
-                      </router-link>
-
-                      <router-link class="dropdown-item" :to="{name:'order'}">
-                        <i class="fa fa-stack-exchange"></i>&nbsp;Orders
-                      </router-link>
-                      <a class="dropdown-item" href="#">
-                        <i class="fa fa-money"></i>&nbsp;Wallet
-                      </a>
-                      <a @click.stop="logout" class="dropdown-item" href="javascript:;">
-                        <i class="fa fa-sign-out"></i>&nbsp;Log out
-                      </a>
-                    </div>
-                  </li>
-                  <li v-if="valid">
-                    <a href="#" data-toggle="modal" data-target="#myModalNotification" @click="notificationView">
-                      <i class="fa fa-bell"></i>
-                      <div class="notification-count" v-if="count">{{app.notify.count}}</div>
-                    </a>
+                    <router-link :to="{name:'order_status'}">Order Status</router-link>
                   </li>
 
-                  <li v-if="valid == false" class="font-italic mt-3 ml-auto">
-                    <strong class="d-inline">
-                      <router-link :to="{name:'auth.login'}">
-                        Login&nbsp;
-                        <i class="fa fa-sign-in"></i>
-                      </router-link>
-                    </strong>
+                  <li>
+                    <a href="#">Customer Care</a>
                   </li>
-                  <li v-if="valid == false" class="font-italic mt-3 ml-auto">
-                    <strong class="d-inline">
-                      <router-link :to="{name:'auth.register'}">
-                        Register&nbsp;
-                        <i class="fa fa-user"></i>
-                      </router-link>
-                    </strong>
+                    <li class="hb-info f-right" v-if="$store.getters.AUTH_STATUS === true"><a href="#" @click="logout()"><i class="fa fa-sign-out fa-2x mt-1 ml-2"></i></a></li>
+                    <li class="hb-info f-right  dropdown" v-if="$store.getters.AUTH_STATUS === true" @click="notification_seen">
+                        <a href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="notify-item-count" v-if="this.$store.getters.NOTIFICATION_BADGE != 0">{{this.$store.getters.NOTIFICATION_BADGE}}</span><i class="fa fa-bell fa-2x mt-1 ml-2"></i></a>
+                         <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right mt-2" aria-labelledby="navbar-default_dropdown_1" v-if="this.$store.getters.NOTIFICATION_BADGE != 0">
+                                <p class="dropdown-item"  v-for="(notification,n) in notifications" :key="n.index"> {{notification.message}} <br> <i class="float-right  text-gray" style="font-size:10px!important;">{{notification.created_at | ago }} </i></p>
+                            </div>
+                        </li>
+                    <li class="hb-info f-right dropdown" v-if="$store.getters.AUTH_STATUS === true" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle"><i class="mt-1">{{$store.getters.USER.user.name}}</i>&nbsp;&nbsp;<i class="fa fa-user fa-1x mt-3 ml-1"></i></a>
+                        <ul class="ht-setting-list dropdown-menu">
+                        <li><router-link :to="{name:'profile'}">My Profile</router-link></li>
+                        <li><router-link :to="{name:'order'}">My Orders</router-link></li>
+                        <li><router-link :to="{name:'pre_order'}">My Pre-Orders</router-link></li>
+                        <li><router-link :to="{name:'user_kitchen'}">My Kitchens</router-link></li>
+                        <!--  <li><router-link :to="{name:'chef'}">My Chefs</router-link></li> -->
+                        </ul>
+
+                    </li>
+                  <li class="hb-info f-right" v-if="$store.getters.AUTH_STATUS === false">
+                    <router-link :to="{name:'auth.register'}">Register</router-link>
                   </li>
+                  <!-- Begin Header Bottom Menu Information Area -->
+                  <li class="hb-info f-right" v-if="$store.getters.AUTH_STATUS === false">
+                    <router-link :to="{name:'auth.login'}">Login</router-link>
+                  </li>
+
+                  <!-- Header Bottom Menu Information Area End Here -->
                 </ul>
               </nav>
             </div>
@@ -256,7 +187,7 @@
     </div>
     <!-- Header Bottom Area End Here -->
     <!-- Begin Mobile Menu Area -->
-    <div class="mobile-menu-area d-lg-none d-xl-none col-12 ml-1">
+    <div class="mobile-menu-area d-lg-none d-xl-none col-12">
       <div class="container">
         <div class="row">
           <div class="mobile-menu"></div>
@@ -264,174 +195,46 @@
       </div>
     </div>
     <!-- Mobile Menu Area End Here -->
-    </header>
+  </header>
   <!-- Header Area End Here -->
 </template>
 
 <script>
-import Flash from "../util/flash";
-import Auth from "../util/store";
-import { get } from "../util/api";
-
+import { mapGetters } from "vuex";
 export default {
   name: "Navbar",
-  props: ["app"],
-
-  created() {
-    Event.$on("CartRemove", () => {
-      this.refCart();
-    });
-    this.refCart(),
-      Event.$on("Loggedin...", () => {
-        this.app.initUser();
-        Auth.init();
-      });
-    Event.$on("Ordered", () => {
-      this.notify();
-    });
-    this.notify();
-  },
-  watch: {},
-  data() {
-    return {
-      word: "",
-      total:this.app.totalprice,
-    };
-  },
-  computed: {
-
-    cartEmpty() {
-      if (this.app.cart.length === 0) {
-        return true;
-      }
-      return false;
-    },
-    count() {
-      if (this.app.notify.count == 0) {
-        return false;
-      }
-      return true;
-    },
-    valid() {
-      if (this.app.auth.api_token != null && this.app.auth.user_id != NaN) {
-        return true;
-      }
-      return false;
-    }
-  },
-  watch:{
-
-  },
+  computed: mapGetters({ notifications: "NOTIFICATION" }),
   methods: {
-    notify() {
-      let $this = this;
-      get(BASE_URL + `/api/user/${$this.app.auth.user_id}/notification`).then(
-        response => {
-          $this.app.notify = response.data;
+    remove(product) {
+      this.$store.dispatch("RemoveCartItem", product);
+    },
+    notification_seen(){
+        this.$store.dispatch("notificationSeen")
+        setTimeout(()=>{
+                   this.$store.dispatch("get_notification");
+           },10000);
+    },
+    logout(){
+        this.$store.dispatch("logOut")
+            .then(()=>{
 
-        }
-      );
-    },
-    logout() {
-      let $this = this;
-      $this.app.spin = true;
-      get(BASE_URL + "/api/auth/logout").then(() => {
-        Auth.remove(),
-          (this.app.user = ""),
-          Flash.setSuccess("You have successfully logged out!");
-        $this.app.spin = false;
-        this.$router.push({
-          name: "auth.login"
-        });
-      });
-    },
+                        this.$router.push({
+                            name: "auth.login"
+                        });
+                        this.$toast.success('You are logged Out!',{
+                                position:'bottom-center',
+                                timeout:5000,
+                                closeOnClick:true,
+                                pauseOnFocusLoss:true,
+                                pauseOnHover:false,
+                                draggable:true,
+                                draggablePercent:0.6,
+                                hideCloseButton:false,
+                                hideProgressBar:true,
+                                icon:true,})
+                 })
 
-    removeCart(product) {
-      let $this = this;
-      $this.app.cart.splice(product, 1);
-      $this.$toast.info("Product removed", {
-        position: "bottom-center",
-        timeout: 1000,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: false,
-        draggable: true,
-        draggablePercent: 0.6,
-        hideCloseButton: false,
-        hideProgressBar: true,
-        icon: true
-      });
-      this.$emit("CartRemoved");
-      this.storeCart();
-    },
-    storeCart() {
-      let $this = this;
-      let parsed = JSON.stringify($this.app.cart);
-      localStorage.setItem("cart", parsed);
-      this.refCart();
-    },
-    refCart() {
-      let $this = this;
-      if (localStorage.getItem("cart")) {
-        $this.app.cart = JSON.parse(localStorage.getItem("cart"));
-        $this.app.badge = $this.app.cart.length;
-        $this.app.totalprice = $this.app.cart.reduce((total, item) => {
-          return total + item.quantity * item.price;
-        }, 0);
-      }
-    },
-    search() {
-      let $this = this;
-      Event.$emit("Search");
-
-      $this.$router.push({
-        name: "Search",
-        params: {
-          statement: this.word
-        }
-      });
-      this.word = "";
-    },
-    Category(category) {
-      console.log(category);
-      this.$router.push({
-        name: "ProductByCategory",
-        params: {
-          category: category
-        }
-      });
-      Event.$emit("productCategory");
-    },
-    decrease(product) {
-      let $this = this;
-      if ($this.app.cart[product].quantity === 1) {
-        return;
-      }
-      $this.app.cart[product].quantity -= 1;
-      $this.app.totalprice = $this.app.cart.reduce((total, item) => {
-        return total + item.quantity * item.price;
-      }, 0);
-      let parsed = JSON.stringify($this.app.cart);
-      localStorage.setItem("cart", parsed);
-    },
-    increase(product) {
-      let $this = this;
-      $this.app.cart[product].quantity += 1;
-      $this.app.totalprice = $this.app.cart.reduce((total, item) => {
-        return total + item.quantity * item.price;
-      }, 0);
-      let parsed = JSON.stringify($this.app.cart);
-      localStorage.setItem("cart", parsed);
-    },
-   notificationView(){
-         let $this = this;
-      get(BASE_URL + `/api/update/notification/${$this.app.auth.user_id}`).then(
-        response => {
-            this.notify()
-        }
-      );
-    },
-
+    }
   }
 };
 </script>

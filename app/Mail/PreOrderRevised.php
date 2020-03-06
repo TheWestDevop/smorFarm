@@ -11,7 +11,7 @@ use Illuminate\Queue\SerializesModels;
 class PreOrderRevised extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-
+    protected $order;
     /**
      * Create a new message instance.
      *
@@ -29,7 +29,7 @@ class PreOrderRevised extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('smorfarm@smor.com')
+        return $this->from('techbitme@gmail.com')
                         ->markdown('emails.pre_orders.revised')
                         ->with([
                             "Ticket_ID" => $this->order->ticket_id,

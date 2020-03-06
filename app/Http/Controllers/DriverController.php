@@ -39,6 +39,13 @@ class DriverController extends Controller
         $driver->avaliability_status = 1;
         $driver->save();
 
+
+        $location =  new DriverLocation();
+        $location->driver_name = $driver->staff_name;
+        $location->lat = '6.538810011243441';
+        $location->lng = '3.4081426833243245';
+        $location->save();
+
         return response()->json($driver, 200);
 
     }

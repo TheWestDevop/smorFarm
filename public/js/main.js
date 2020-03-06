@@ -51,11 +51,12 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  /*----------------------------------------*/
  	// Li's Dropdown Menu
  	$('.ht-setting-trigger, .ht-currency-trigger, .ht-language-trigger, .hm-minicart-trigger, .cw-sub-menu').on('click', function (e) {
- 		e.preventDefault();
- 		$(this).toggleClass('is-active');
- 		$(this).siblings('.ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li').slideToggle();
- 	});
- 	$('.ht-setting-trigger.is-active').siblings('.catmenu-body').slideDown();
+        e.preventDefault();
+        $(this).toggleClass('is-active');
+        $(this).siblings('.ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li').slideToggle();
+    });
+    $('.ht-setting-trigger.is-active').siblings('.catmenu-body').slideDown();
+
 /*----------------------------------------*/
 /* 03. Li's Sticky Menu Activation
 /*----------------------------------------*/
@@ -466,22 +467,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 22. Cart Plus Minus Button
 /*----------------------------------------*/
- $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
- $(".qtybutton").on("click", function() {
-    var $button = $(this);
-    var oldValue = $button.parent().find("input").val();
-    if ($button.hasClass('inc')) {
-       var newVal = parseFloat(oldValue) + 1;
-    } else {
-        // Don't allow decrementing below zero
-       if (oldValue > 0) {
-         var newVal = parseFloat(oldValue) - 1;
-         } else {
-         newVal = 0;
-       }
-       }
-    $button.parent().find("input").val(newVal);
-   });
+ 
 /*----------------------------------------*/
 /* 23. Single Prduct Carousel Activision
 /*----------------------------------------*/

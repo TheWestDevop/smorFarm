@@ -1,5 +1,6 @@
 import axios from 'axios';
-import Auth from './store';
+import store from '../store';
+
 
 export function post(url, data) {
 
@@ -8,7 +9,8 @@ export function post(url, data) {
         url: url,
         data: data,
         headers: {
-            'Authorization': `Bearer ${Auth.state.api_token}`
+            'Authorization': `Bearer ` + localStorage.getItem('token') || '' ,
+            'X-CSRF-TOKEN' : myToken
         }
     });
 }
@@ -19,7 +21,7 @@ export function get(url, data) {
         url: url,
         data: data,
         headers: {
-            'Authorization': `Bearer ${Auth.state.api_token}`,
+            'Authorization': `Bearer ` + localStorage.getItem('token') || '',
         }
     });
 }
