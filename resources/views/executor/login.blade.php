@@ -9,7 +9,7 @@
             <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
             <title>SmorFarm Delivery Executor</title>
             <!-- Favicon -->
-            <link href="icon.png" rel="icon" type="image/png">
+            <link href="../icon.png" rel="icon" type="image/png">
             <!-- Fonts -->
             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
             <!-- Font Awesome -->
