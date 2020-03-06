@@ -38,7 +38,7 @@ class AuthController extends Controller
         } else {
             $error='Invalid username or password.';
             $request->session()->flash('error',$error);
-            return redirect('/executor/login');
+            return redirect('/executor');
         }
     }
     public function logout(Request $request)
