@@ -5457,8 +5457,6 @@ module.exports = {
 /* harmony export (immutable) */ __webpack_exports__["a"] = get;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store__ = __webpack_require__(51);
-
 
 
 function post(url, data) {
@@ -41295,10 +41293,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         updateBooking: function updateBooking(context) {
             var now = new Date();
             var time_out = __WEBPACK_IMPORTED_MODULE_2_date_and_time___default.a.format(now, 'YYYY/MM/DD h:mm A');
-            console.log(time_out);
+            //  console.log(time_out)
             var form = new FormData();
             form.append('time_out', time_out);
-            Object(__WEBPACK_IMPORTED_MODULE_0__util_api__["b" /* post */])(BASE_URL + '/api/kitchen/timeout', form).then(function (response) {
+            axios({
+                method: 'POST',
+                url: BASE_URL + '/api/kitchen/timeout',
+                data: form,
+                headers: {
+                    'Authorization': 'Bearer ' + myToken,
+                    'X-CSRF-TOKEN': myToken
+                }
+            }).then(function (response) {
                 context.commit('SET_AVAILABLE_KITCHEN_DATA', response.data);
             }).catch(function (err) {
                 console.error(err);

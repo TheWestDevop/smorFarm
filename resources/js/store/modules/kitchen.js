@@ -256,11 +256,18 @@ export default {
         updateBooking : (context) => {
             let now = new Date();
             let time_out =  date.format(now ,'YYYY/MM/DD h:mm A');
-            console.log(time_out)
+          //  console.log(time_out)
             let form = new FormData();
             form.append('time_out', time_out);
-            post(BASE_URL + '/api/kitchen/timeout', form)
-                .then(response => {
+            axios({
+                method: 'POST',
+                url: BASE_URL + '/api/kitchen/timeout',
+                data: form,
+                headers: {
+                    'Authorization': `Bearer ` +  myToken,
+                    'X-CSRF-TOKEN' : myToken
+                }
+            }).then(response => {
                     context.commit('SET_AVAILABLE_KITCHEN_DATA', response.data);
                 })
                 .catch(err => {
