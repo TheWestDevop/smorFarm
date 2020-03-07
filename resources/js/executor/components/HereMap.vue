@@ -28,11 +28,12 @@
          });
          },
         mounted() { 
-            this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
+            var defaultLayers = platform.createDefaultLayers();
+            this.map = new H.Map(this.$refs.map,defaultLayers.vector.normal.map);
             this.map.setCenter({lat:this.lat, lng:this.lng});
             this.map.setZoom(17);
             this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-            var ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
+            var ui = H.ui.UI.createDefault(map, defaultLayers);
             
             console.log('position : lat' + this.lat + ' lng ' + this.lng )
             dropMaker(this.lat,this.lng)
