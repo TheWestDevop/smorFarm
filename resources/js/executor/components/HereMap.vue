@@ -60,45 +60,8 @@ import {
 
                 this.geocoder.geocode(
                     geocodingParameters,
-                    (result) => {
-                        console.log(result);
-                        var locations = result.response.view[0].result;
-                        console.log(locations);
-                        
-                        //this.addLocationsToMap(locations)
-                        let group = new  H.map.Group()
-                        let position
-                        let i
-
-                        // Add a marker for each location found
-                        for (i = 0;  i < locations.length; i += 1) {
-                            position = {
-                            lat: locations[i].location.displayPosition.latitude,
-                            lng: locations[i].location.displayPosition.longitude
-                            };
-                           let marker = new H.map.Marker(position);
-                            marker.label = locations[i].location.address.label;
-                            group.addObject(marker);
-                        }
-
-                        this.getDirection(this.center,position);
-
-                        group.addEventListener('tap', function (evt) {
-                            this.map.setCenter(evt.target.getGeometry());
-                            var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
-                            // read custom data
-                            content: evt.target.getData()
-                            });
-                        }, false);
-
-                        // Add the locations group to the map
-                        this.map.addObject(group);
-                        this.map.setCenter(group.getBoundingBox().getCenter());
-                            
-                        },
-                    (error) => {
-                        alert('Can\'t reach the remote server');
-                        }
+                    this.onSuccess(),
+                    this.onError()
                 );
             },
             init(){
@@ -134,8 +97,7 @@ import {
             },
             onResult(result){
 
-                
-
+                console.log(result)
                 let route,routeShape,startPoint,endPoint,linestring;
                 if(result.response.route) {
                 // Pick the first route from the response:
@@ -250,10 +212,44 @@ import {
                   }
                 }
             },
-            addLocationsToMap(locations){
-                
-                }
-            
+            onError(error){
+              this.$toast.error("Address Not Found...");
+            },
+            onSuccess(result){
+                       // console.log(result);
+                        var locations = result.response.view[0].result;
+                        console.log(locations);
+                        
+                        //this.addLocationsToMap(locations)
+                        let group = new  H.map.Group()
+                        let position
+                        let i
+
+                        // Add a marker for each location found
+                        for (i = 0;  i < locations.length; i += 1) {
+                            position = {
+                            lat: locations[i].location.displayPosition.latitude,
+                            lng: locations[i].location.displayPosition.longitude
+                            };
+                           let marker = new H.map.Marker(position);
+                            marker.label = locations[i].location.address.label;
+                            group.addObject(marker);
+                        }
+
+                        group.addEventListener('tap', function (evt) {
+                            this.map.setCenter(evt.target.getGeometry());
+                            var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
+                            // read custom data
+                            content: evt.target.getData()
+                            });
+                        }, false);
+
+                        // Add the locations group to the map
+                        this.map.addObject(group);
+                        this.map.setCenter(group.getBoundingBox().getCenter());
+                            
+                        this.getDirection(this.center,position);
+                        }
             
        }
 </script>
