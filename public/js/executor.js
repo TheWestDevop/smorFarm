@@ -35445,8 +35445,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
     mounted: function mounted() {
-        this.lat = '';
-        this.lng = '';
+        this.lat = executor.center.lat.toString();
+        this.lng = executor.center.lng.toString();
     },
 
     computed: {},
@@ -35852,9 +35852,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var defaultLayers = this.platform.createDefaultLayers();
         this.map = new H.Map(this.$refs.map, defaultLayers.vector.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
-        this.map.setZoom(17);
+        this.map.setZoom(10);
+        var marker = new H.map.Maker({ lat: lat, lng: lng });
+        this.map.addObject(marker);
         this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-        var ui = H.ui.UI.createDefault(map, defaultLayers);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
         dropMaker(this.lat, this.lng);
@@ -36121,8 +36122,8 @@ var render = function() {
                           appId: "vFeicXHJJygakyap4B5z",
                           appCode:
                             "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                          lat: "9.09741",
-                          lng: "7.4932838",
+                          lat: "this.lat",
+                          lng: "this.lng",
                           width: "100%",
                           height: "400px"
                         }
