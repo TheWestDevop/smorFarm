@@ -16,7 +16,7 @@
         },
         props: {
             appId: String,
-            //appCode: String,
+            appCode: String,
             lat: String,
             lng: String,
             width: String,
@@ -24,7 +24,8 @@
         },
         created() {
             this.platform = new H.service.Platform({
-        "app_id": this.appId
+        "app_id": this.appId,
+        "apikey":this.appCode
          });
          },
         mounted() { 

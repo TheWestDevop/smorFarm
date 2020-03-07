@@ -14,9 +14,16 @@
                     <div class="col-md-12 ">
                         <div class="card shadow">
                             <div class="container">
-                                <div id="map">
-                                    
-                                </div>
+                                <HereMap 
+                                    appId="vFeicXHJJygakyap4B5z"
+                                    appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
+                                    lat= "9.09741"
+                                    lng= "7.4932838" 
+                                    width="100%"
+                                    height="400px"
+                                >
+
+                                </HereMap>
 
                             </div>
                             
@@ -61,7 +68,7 @@ export default {
 
     },
     methods: {
-         //appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
+         //
     }
 
 }
