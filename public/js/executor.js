@@ -35862,7 +35862,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.platform = new H.service.Platform({ "apikey": this.appCode });
         this.router = this.platform.getRoutingService();
         this.geocoder = this.platform.getGeocodingService();
-        this.destination();
     },
 
 

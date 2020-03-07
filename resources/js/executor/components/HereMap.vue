@@ -48,7 +48,7 @@ import {
             this.platform = new H.service.Platform({"apikey":this.appCode}); 
             this.router = this.platform.getRoutingService();
             this.geocoder = this.platform.getGeocodingService();
-            this.destination()
+           
            },
            
         methods:{
