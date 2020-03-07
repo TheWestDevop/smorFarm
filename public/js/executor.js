@@ -35879,7 +35879,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
-            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.trafficincidents);
+            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.traffic);
+            _this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
             var marker = new H.map.Marker(_this.center, { icon: icon });
@@ -35895,13 +35896,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         //this.map.setCenter(this.center);
         //this.map.setZoom(10);
 
-        //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
+        //
 
     },
 
     methods: {
         updatelocation: function updatelocation(center) {
-            console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng);
             var id = localStorage.getItem('executor_user_id');
             var form = new FormData();
             form.append('lat', center.lat);
@@ -36031,22 +36031,26 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "input-group input-group-alternative" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary btn-sm",
-                attrs: { type: "submit" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.getDirection(this.address)
+          _c(
+            "div",
+            { staticClass: "input-group input-group-alternative ml-2" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  attrs: { type: "submit" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.getDirection(this.address)
+                    }
                   }
-                }
-              },
-              [_vm._v("Get Direction")]
-            )
-          ])
+                },
+                [_vm._v("Get Direction")]
+              )
+            ]
+          )
         ])
       ]
     ),

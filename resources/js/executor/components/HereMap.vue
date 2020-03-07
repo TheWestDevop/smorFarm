@@ -9,7 +9,7 @@
                                                     </div>
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
-                                                <div class="input-group input-group-alternative">
+                                                <div class="input-group input-group-alternative ml-2">
                                                     <button type="submit" class="btn btn-primary btn-sm" @click.prevent="getDirection(this.address)">Get Direction</button>
                                                 </div>
                                             </div>
@@ -66,7 +66,8 @@ import {
             navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
-                this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.trafficincidents);
+                this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.traffic);
+                this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
                 let marker = new H.map.Marker(this.center,{icon: icon})
@@ -84,14 +85,13 @@ import {
             //this.map.setCenter(this.center);
             //this.map.setZoom(10);
             
-            //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
+            //
     
             
          },
         methods:{
             
             updatelocation(center){
-                console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
                 let id = localStorage.getItem('executor_user_id');
                 let form = new FormData();
                 form.append('lat',center.lat)
