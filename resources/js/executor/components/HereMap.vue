@@ -1,6 +1,6 @@
 <template>
     <div class="here-map">
-        <div ref="map" v-bind:style="{ width: width, height: height }"></div>
+        <div id="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
 
@@ -41,9 +41,8 @@ import {
         },
         created() {
             navigator.geolocation.getCurrentPosition(position =>{
-                let $this = this
-                $this.center.lat = position.coords.latitude
-                $this.center.lng = position.coords.longitude
+                this.center.lat = position.coords.latitude
+                this.center.lng = position.coords.longitude
                 //console.log($this.center);
                 });
             this.updatelocation(this.center);
@@ -53,11 +52,17 @@ import {
             });
              // Get an instance of the routing service:
             this.router = this.platform.getRoutingService();
-
-            this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
-            this.map.setCenter(this.center);
-            this.map.setZoom(10);
-            let marker = new H.map.Maker({lat:lat,lng:lng})
+            var defaultLayers = this.platform.createDefaultLayers();
+            //this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
+            this.map = new H.Map(document.getElementById('map'),
+                defaultLayers.raster.normal.transit,{
+                center: this.center,
+                zoom: 10,
+                pixelRatio: window.devicePixelRatio || 1
+                });
+            //this.map.setCenter(this.center);
+            //this.map.setZoom(10);
+            let marker = new H.map.Maker(this.center)
             this.map.addObject(marker);
             //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             

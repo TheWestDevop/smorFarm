@@ -35854,9 +35854,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         navigator.geolocation.getCurrentPosition(function (position) {
-            var $this = _this;
-            $this.center.lat = position.coords.latitude;
-            $this.center.lng = position.coords.longitude;
+            _this.center.lat = position.coords.latitude;
+            _this.center.lng = position.coords.longitude;
             //console.log($this.center);
         });
         this.updatelocation(this.center);
@@ -35866,11 +35865,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
-
-        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().raster.normal.transit);
-        this.map.setCenter(this.center);
-        this.map.setZoom(10);
-        var marker = new H.map.Maker({ lat: lat, lng: lng });
+        var defaultLayers = this.platform.createDefaultLayers();
+        //this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
+        this.map = new H.Map(document.getElementById('map'), defaultLayers.raster.normal.transit, {
+            center: this.center,
+            zoom: 10,
+            pixelRatio: window.devicePixelRatio || 1
+        });
+        //this.map.setCenter(this.center);
+        //this.map.setZoom(10);
+        var marker = new H.map.Maker(this.center);
         this.map.addObject(marker);
         //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
@@ -35972,7 +35976,10 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "here-map" }, [
-    _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
+    _c("div", {
+      style: { width: _vm.width, height: _vm.height },
+      attrs: { id: "map" }
+    })
   ])
 }
 var staticRenderFns = []
