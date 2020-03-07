@@ -194,7 +194,7 @@ import {
                     routeLine.addObjects([routeOutline, routeArrows]);
     
                     // Add the route polyline and the two markers to the map:
-                    this.map.addObjects([routeOutline, routeArrows, startMarker, endMarker]);
+                    this.map.addObjects([routeLine, startMarker, endMarker]);
 
                     // Set the map's viewport to make the whole route visible:
                     this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
