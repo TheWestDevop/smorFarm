@@ -35977,10 +35977,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "here-map" }, [
-    _c("div", {
-      style: { width: _vm.width, height: _vm.height },
-      attrs: { id: "map" }
-    })
+    _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
   ])
 }
 var staticRenderFns = []

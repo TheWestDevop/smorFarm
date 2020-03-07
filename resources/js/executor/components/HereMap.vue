@@ -1,6 +1,6 @@
 <template>
     <div class="here-map">
-        <div id="map" v-bind:style="{ width: width, height: height }"></div>
+        <div ref="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
 
