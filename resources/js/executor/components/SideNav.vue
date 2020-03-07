@@ -10,7 +10,7 @@
       <router-link :to="{name:'home'}" class="navbar-brand pt-0">
         <div class="h1 text-blue navbar-brand-img">
             <strong class=" font-italic">SMOR</strong>
-            Farm
+            
         </div>
       </router-link>
 

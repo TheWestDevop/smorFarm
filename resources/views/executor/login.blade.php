@@ -32,7 +32,7 @@
                             <a class="navbar-brand" href="../index.html">
                                 <div class="h1 text-white">
                                     <strong class=" font-italic">SMOR</strong>
-                                    Farm <i class="fa fa-cart"></i>
+                                    
                                 </div>
 
                             </a>

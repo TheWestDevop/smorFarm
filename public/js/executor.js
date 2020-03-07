@@ -35456,9 +35456,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getAddress: function getAddress() {
-            var map = this.$refs.map;
-            map.getAddress(this.address);
-            console.log(map.getAddress(this.address));
+            this.$refs.map.getAddress(this.address);
+            console.log(this.$refs.map.getAddress(this.address));
         }
     }
 
@@ -38344,8 +38343,7 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "h1 text-blue navbar-brand-img" }, [
-                _c("strong", { staticClass: " font-italic" }, [_vm._v("SMOR")]),
-                _vm._v("\n          Farm\n      ")
+                _c("strong", { staticClass: " font-italic" }, [_vm._v("SMOR")])
               ])
             ]
           ),
