@@ -35856,7 +35856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
-            //console.log($this.center);
+            console.log($this.center);
         });
         this.updatelocation(this.center);
 

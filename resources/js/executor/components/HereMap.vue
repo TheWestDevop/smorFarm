@@ -43,7 +43,7 @@ import {
             navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
-                //console.log($this.center);
+                console.log($this.center);
                 });
             this.updatelocation(this.center);
 
