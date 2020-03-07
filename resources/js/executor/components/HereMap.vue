@@ -9,7 +9,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button class="btn btn-primary btn-sm" @click.prevent="this.destination()" >Get Direction</button>
+                                                    <button class="btn btn-primary btn-sm" @click.prevent="destination()" >Get Direction</button>
                                                 </div>
                                             </div>
         </div>
@@ -211,7 +211,7 @@ import {
             onError(error) {
              alert('Can\'t reach the remote server');
             },
-            destination(){
+            destination : function(){
                 geocodingParameters = {
                     searchText:this.address,
                     jsonattributes : 1

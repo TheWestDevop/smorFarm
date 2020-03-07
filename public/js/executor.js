@@ -36025,6 +36025,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onError: function onError(error) {
         alert('Can\'t reach the remote server');
     },
+
     destination: function destination() {
         geocodingParameters = {
             searchText: this.address,
@@ -36116,7 +36117,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return this.destination()
+                      return _vm.destination()
                     }
                   }
                 },
