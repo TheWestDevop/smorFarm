@@ -35456,7 +35456,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getAddress: function getAddress() {
-            console.log(this.$refs.map.getAddress(this.address));
+            var map = this.$refs.map;
+            map.getAddress(this.address);
+            console.log(map.getAddress(this.address));
         }
     }
 
