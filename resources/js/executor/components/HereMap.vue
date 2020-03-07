@@ -50,12 +50,14 @@ import {
             console.log(this.center);
             this.platform = new H.service.Platform({
            "apikey":this.appCode
-         });
+            });
              // Get an instance of the routing service:
             this.router = this.platform.getRoutingService();
-            this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
+
+            this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
             this.map.setCenter(this.center);
             this.map.setZoom(10);
+            
             //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
             console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
