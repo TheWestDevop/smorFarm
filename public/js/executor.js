@@ -35459,7 +35459,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        //
+        getDirection: function getDirection() {
+            var routeOutline = new H.map.Polyline(linestring, {
+                style: {
+                    lineWidth: 10,
+                    strokeColor: 'rgba(0, 128, 255, 0.7)',
+                    lineTailCap: 'arrow-tail',
+                    lineHeadCap: 'arrow-head'
+                }
+            });
+            // Create a patterned polyline:
+            var routeArrows = new H.map.Polyline(linestring, {
+                style: {
+                    lineWidth: 10,
+                    fillColor: 'white',
+                    strokeColor: 'rgba(255, 255, 255, 1)',
+                    lineDash: [0, 2],
+                    lineTailCap: 'arrow-tail',
+                    lineHeadCap: 'arrow-head' }
+            });
+        }
     }
 
 });
@@ -35852,10 +35871,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var defaultLayers = this.platform.createDefaultLayers();
         this.map = new H.Map(this.$refs.map, defaultLayers.vector.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
-        this.map.setZoom(10);
-        var marker = new H.map.Maker({ lat: lat, lng: lng });
-        this.map.addObject(marker);
+        this.map.setZoom(17);
         this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
         dropMaker(this.lat, this.lng);
@@ -35865,7 +35883,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         dropMaker: function dropMaker(lat, lng) {
             var marker = new H.map.Maker({ lat: lat, lng: lng });
             this.map.addObject(marker);
-        }
+        },
+        getDirection: function getDirection() {}
     }
 });
 

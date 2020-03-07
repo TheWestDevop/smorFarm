@@ -24,18 +24,16 @@
         },
         created() {
             this.platform = new H.service.Platform({
-            "apikey":this.appCode
+           "apikey":this.appCode
          });
          },
         mounted() { 
             var defaultLayers = this.platform.createDefaultLayers();
             this.map = new H.Map(this.$refs.map,defaultLayers.vector.normal.map);
             this.map.setCenter({lat:this.lat, lng:this.lng});
-            this.map.setZoom(10);
-            let marker = new H.map.Maker({lat:lat,lng:lng})
-            this.map.addObject(marker);
+            this.map.setZoom(17);
             this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-           
+            var ui = H.ui.UI.createDefault(map, defaultLayers);
             
             console.log('position : lat' + this.lat + ' lng ' + this.lng )
             dropMaker(this.lat,this.lng)
@@ -44,6 +42,9 @@
             dropMaker(lat,lng){
                 let marker = new H.map.Maker({lat:lat,lng:lng})
                 this.map.addObject(marker);
+            },
+            getDirection(){
+
             }
         }
     }

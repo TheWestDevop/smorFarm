@@ -68,7 +68,29 @@ export default {
 
     },
     methods: {
-         //
+         getDirection(){
+             let routeOutline = new H.map.Polyline(linestring, {
+                    style: {
+                        lineWidth: 10,
+                        strokeColor: 'rgba(0, 128, 255, 0.7)',
+                        lineTailCap: 'arrow-tail',
+                        lineHeadCap: 'arrow-head'
+                    }
+                    });
+                // Create a patterned polyline:
+             let routeArrows = new H.map.Polyline(linestring, {
+                style: {
+                    lineWidth: 10,
+                    fillColor: 'white',
+                    strokeColor: 'rgba(255, 255, 255, 1)',
+                    lineDash: [0, 2],
+                    lineTailCap: 'arrow-tail',
+                    lineHeadCap: 'arrow-head' }
+                }
+                );
+            
+
+         }
     }
 
 }
