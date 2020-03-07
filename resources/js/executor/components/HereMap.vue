@@ -61,9 +61,7 @@ import {
                 this.map.getViewModel().setLookAtData({tilt: 45});
                 // Add behavior to the map: panning, zooming, dragging.
                 let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-                // Create the default UI components
-                let ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
-                //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+            
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
                 let marker = new H.map.Marker(this.center,{icon: icon})

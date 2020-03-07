@@ -35880,9 +35880,7 @@ var _this3 = this;
                 _this.map.getViewModel().setLookAtData({ tilt: 45 });
                 // Add behavior to the map: panning, zooming, dragging.
                 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
-                // Create the default UI components
-                var ui = H.ui.UI.createDefault(map, _this.platform.createDefaultLayers());
-                //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
                 var marker = new H.map.Marker(_this.center, { icon: icon });
