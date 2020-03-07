@@ -22,28 +22,29 @@
                     // To retrieve the shape of the route we choose the route
                     // representation mode 'display'
                     'representation': 'display'
-                    }
+                    },
+                    center:{
+                lat:0,
+                lng:0
+            }
             }
         },
         props: {
             appId: String,
             appCode: String,
-            lat: String,
-            lng: String,
             width: String,
             height: String,
         },
         created() {
-
-            console.log(this.lat +" " + this.lng);
-
+            this.updatelocation();
+            console.log(this.center.lat +" " + this.center.lng);
             this.platform = new H.service.Platform({
            "apikey":this.appCode
          });
              // Get an instance of the routing service:
             this.router = this.platform.getRoutingService();
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
-            this.map.setCenter({lat:this.lat, lng:this.lng});
+            this.map.setCenter({lat:this.center.lat, lng:this.center.lng});
             this.map.setZoom(10);
             this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
@@ -54,6 +55,20 @@
             dropMaker(lat,lng){
                 let marker = new H.map.Maker({lat:lat,lng:lng})
                 this.map.addObject(marker);
+            },
+            updatelocation(){
+            let id = localStorage.getItem('executor_user_id');
+            navigator.geolocation.getCurrentPosition(position =>{
+             let $this = this
+             $this.center.lat = position.coords.latitude
+             $this.center.lng = position.coords.longitude
+ 
+           });
+             let form = new FormData();
+             form.append('lat',this.center.lat)
+             form.append('lng',this.center.lng)
+             post(BASE_URL + `/api/driver/location/${id}`,form).then((response) => {});
+            
             },
             onResult(result){
 

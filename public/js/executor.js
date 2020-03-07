@@ -35428,8 +35428,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -35444,43 +35442,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    mounted: function mounted() {
-        this.lat = this.executor.center.lat;
-        this.lng = this.executor.center.lng;
-        console.log(this.lat + " " + this.lng);
-    },
+    mounted: function mounted() {},
 
     computed: {},
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state,
-            lat: '',
-            lng: ''
+            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state
         };
     },
 
-    methods: {
-        getDirection: function getDirection() {
-            var routeOutline = new H.map.Polyline(linestring, {
-                style: {
-                    lineWidth: 10,
-                    strokeColor: 'rgba(0, 128, 255, 0.7)',
-                    lineTailCap: 'arrow-tail',
-                    lineHeadCap: 'arrow-head'
-                }
-            });
-            // Create a patterned polyline:
-            var routeArrows = new H.map.Polyline(linestring, {
-                style: {
-                    lineWidth: 10,
-                    fillColor: 'white',
-                    strokeColor: 'rgba(255, 255, 255, 1)',
-                    lineDash: [0, 2],
-                    lineTailCap: 'arrow-tail',
-                    lineHeadCap: 'arrow-head' }
-            });
-        }
-    }
+    methods: {}
 
 });
 
@@ -35862,6 +35833,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // To retrieve the shape of the route we choose the route
                 // representation mode 'display'
                 'representation': 'display'
+            },
+            center: {
+                lat: 0,
+                lng: 0
             }
         };
     },
@@ -35869,22 +35844,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: {
         appId: String,
         appCode: String,
-        lat: String,
-        lng: String,
         width: String,
         height: String
     },
     created: function created() {
-
-        console.log(this.lat + " " + this.lng);
-
+        this.updatelocation();
+        console.log(this.center.lat + " " + this.center.lng);
         this.platform = new H.service.Platform({
             "apikey": this.appCode
         });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
-        this.map.setCenter({ lat: this.lat, lng: this.lng });
+        this.map.setCenter({ lat: this.center.lat, lng: this.center.lng });
         this.map.setZoom(10);
         this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
@@ -35896,6 +35868,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         dropMaker: function dropMaker(lat, lng) {
             var marker = new H.map.Maker({ lat: lat, lng: lng });
             this.map.addObject(marker);
+        },
+        updatelocation: function updatelocation() {
+            var _this = this;
+
+            var id = localStorage.getItem('executor_user_id');
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var $this = _this;
+                $this.center.lat = position.coords.latitude;
+                $this.center.lng = position.coords.longitude;
+            });
+            var form = new FormData();
+            form.append('lat', this.center.lat);
+            form.append('lng', this.center.lng);
+            post(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
         },
         onResult: function onResult(result) {
 
@@ -36227,8 +36213,6 @@ var render = function() {
                           appId: "vFeicXHJJygakyap4B5z",
                           appCode:
                             "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                          lat: "this.lat",
-                          lng: "this.lng",
                           width: "100%",
                           height: "400px"
                         }
