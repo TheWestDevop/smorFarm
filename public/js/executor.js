@@ -35813,11 +35813,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_api__ = __webpack_require__(10);
-var _this3 = this;
-
-//
-//
-//
 //
 //
 //
@@ -35869,6 +35864,16 @@ var _this3 = this;
         this.geocoder = this.platform.getGeocodingService();
     },
 
+    computed: {
+        destination: function destination() {
+            geocodingParameters = {
+                searchText: this.address,
+                jsonattributes: 1
+            };
+
+            this.geocoder.geocode(geocodingParameters, onSuccess, onError);
+        }
+    },
     methods: {
         init: function init() {
             var _this = this;
@@ -36027,46 +36032,6 @@ var _this3 = this;
     onError: function onError(error) {
         alert('Can\'t reach the remote server');
     },
-
-    destination: function destination() {
-        geocodingParameters = {
-            searchText: this.address,
-            jsonattributes: 1
-        };
-
-        this.geocoder.geocode(geocodingParameters, onSuccess, onError);
-        return;
-    },
-    hi: function hi() {
-        geocodingParameters = {
-            searchText: _this3.address,
-            jsonattributes: 1
-        };
-
-        _this3.geocoder.geocode(geocodingParameters, onSuccess, onError);
-        console.log(onSuccess);
-        return;
-    },
-    hello: function hello() {
-        geocodingParameters = {
-            searchText: _this3.address,
-            jsonattributes: 1
-        };
-
-        _this3.geocoder.geocode(geocodingParameters, onSuccess, onError);
-        console.log(onSuccess);
-        return;
-    },
-    ok: function ok() {
-        geocodingParameters = {
-            searchText: this.address,
-            jsonattributes: 1
-        };
-
-        this.geocoder.geocode(geocodingParameters, onSuccess, onError);
-        console.log(onSuccess);
-        return;
-    },
     addLocationsToMap: function addLocationsToMap(locations) {
         var group = new H.map.Group(),
             position = void 0,
@@ -36150,48 +36115,6 @@ var render = function() {
                     click: function($event) {
                       $event.preventDefault()
                       return _vm.destination()
-                    }
-                  }
-                },
-                [_vm._v("Get Direction")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.hi($event)
-                    }
-                  }
-                },
-                [_vm._v("Get Direction")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.hello($event)
-                    }
-                  }
-                },
-                [_vm._v("Get Direction")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.ok($event)
                     }
                   }
                 },

@@ -10,10 +10,7 @@
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
                                                     <button class="btn btn-primary btn-sm" @click.prevent="destination()" >Get Direction</button>
-                                                    <button class="btn btn-primary btn-sm" @click.prevent="hi" >Get Direction</button>
-                                                    <button class="btn btn-primary btn-sm" @click.prevent="hello" >Get Direction</button>
-                                                    <button class="btn btn-primary btn-sm" @click.prevent="ok" >Get Direction</button>
-                                                </div>
+                                                    </div>
                                             </div>
         </div>
         <br>
@@ -51,6 +48,20 @@ import {
             this.platform = new H.service.Platform({"apikey":this.appCode}); 
             this.router = this.platform.getRoutingService();
             this.geocoder = this.platform.getGeocodingService();
+           },
+           computed: {
+               destination(){
+                geocodingParameters = {
+                    searchText:this.address,
+                    jsonattributes : 1
+                    };
+
+                this.geocoder.geocode(
+                    geocodingParameters,
+                    onSuccess,
+                    onError
+                );
+            },
            },
         methods:{
             init(){
@@ -211,61 +222,7 @@ import {
             onError(error) {
              alert('Can\'t reach the remote server');
             },
-            destination : function(){
-                geocodingParameters = {
-                    searchText:this.address,
-                    jsonattributes : 1
-                    };
-
-                this.geocoder.geocode(
-                    geocodingParameters,
-                    onSuccess,
-                    onError
-                );
-                return;
-            },
-            hi : () => {
-                geocodingParameters = {
-                    searchText:this.address,
-                    jsonattributes : 1
-                    };
-
-                this.geocoder.geocode(
-                    geocodingParameters,
-                    onSuccess,
-                    onError
-                );
-                console.log(onSuccess);
-                return;
-            },
-            hello : () => {
-                geocodingParameters = {
-                    searchText:this.address,
-                    jsonattributes : 1
-                    };
-
-                this.geocoder.geocode(
-                    geocodingParameters,
-                    onSuccess,
-                    onError
-                );
-                console.log(onSuccess);
-                return;
-            },
-            ok(){
-                geocodingParameters = {
-                    searchText:this.address,
-                    jsonattributes : 1
-                    };
-
-                this.geocoder.geocode(
-                    geocodingParameters,
-                    onSuccess,
-                    onError
-                );
-                console.log(onSuccess);
-                return;
-            },
+            
             addLocationsToMap(locations){
                 let group = new  H.map.Group(),
                     position,
