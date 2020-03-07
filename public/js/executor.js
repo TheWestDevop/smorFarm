@@ -35878,7 +35878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.center.lng = position.coords.longitude;
             _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().raster.normal.transit);
             _this.map.setCenter(_this.center);
-            _this.map.setZoom(10);
+            _this.map.setZoom(15);
             var marker = new H.map.Maker(_this.center);
             _this.map.addObject(marker);
             _this.updatelocation(_this.center);
@@ -36777,14 +36777,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var $this = this;
             return $this.executor.orders.data.filter(function (orders) {
-                return orders.user.match(_this.name);
+                return orders.user.match(_this.executor.name);
             });
         }
     },
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
-            name: ''
+            flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state
+
         };
     },
 
@@ -36950,8 +36950,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.name,
-                                        expression: "name"
+                                        value: _vm.executor.name,
+                                        expression: "executor.name"
                                       }
                                     ],
                                     staticClass: "products form-control",
@@ -36959,13 +36959,17 @@ var render = function() {
                                       placeholder: "Search Customer Name ",
                                       type: "text"
                                     },
-                                    domProps: { value: _vm.name },
+                                    domProps: { value: _vm.executor.name },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
                                         }
-                                        _vm.name = $event.target.value
+                                        _vm.$set(
+                                          _vm.executor,
+                                          "name",
+                                          $event.target.value
+                                        )
                                       }
                                     }
                                   })
@@ -37887,7 +37891,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -37941,7 +37945,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             center: {
                 lat: 0,
                 lng: 0
-            }
+            },
+            name: ''
         };
     },
     created: function created() {
@@ -38358,8 +38363,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
+                          value: _vm.executor.name,
+                          expression: "executor.name"
                         }
                       ],
                       staticClass:
@@ -38368,13 +38373,13 @@ var render = function() {
                         placeholder: "Search Customer Name ",
                         type: "text"
                       },
-                      domProps: { value: _vm.name },
+                      domProps: { value: _vm.executor.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.name = $event.target.value
+                          _vm.$set(_vm.executor, "name", $event.target.value)
                         }
                       }
                     }),

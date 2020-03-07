@@ -41,9 +41,9 @@ import {
                     'representation': 'display'
                     },
                     center:{
-                lat:0,
-                lng:0
-            }
+                    lat:0,
+                    lng:0
+                    }
             }
         },
         props: {
@@ -65,7 +65,7 @@ import {
                 this.center.lng = position.coords.longitude
                 this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
                 this.map.setCenter(this.center);
-                this.map.setZoom(10)
+                this.map.setZoom(15)
                 let marker = new H.map.Maker(this.center)
                 this.map.addObject(marker);
                 this.updatelocation(this.center);
