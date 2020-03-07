@@ -13,7 +13,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12 card shadow">
                         
-                            <div class="container-fluid">
+                           
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
@@ -23,10 +23,7 @@
 
                                 </HereMap>
 
-                            <br>
-                            <br>
-                            
-                        </div>
+                          
                     </div>
                 </div>
             </div>

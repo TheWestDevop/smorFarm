@@ -35413,9 +35413,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -36377,27 +36374,21 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row justify-content-center" }, [
-              _c("div", { staticClass: "col-md-12 card shadow" }, [
-                _c(
-                  "div",
-                  { staticClass: "container-fluid" },
-                  [
-                    _c("HereMap", {
-                      attrs: {
-                        appId: "vFeicXHJJygakyap4B5z",
-                        appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                        width: "100vw",
-                        height: "430px"
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("br"),
-                    _vm._v(" "),
-                    _c("br")
-                  ],
-                  1
-                )
-              ])
+              _c(
+                "div",
+                { staticClass: "col-md-12 card shadow" },
+                [
+                  _c("HereMap", {
+                    attrs: {
+                      appId: "vFeicXHJJygakyap4B5z",
+                      appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
+                      width: "100vw",
+                      height: "430px"
+                    }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ]
