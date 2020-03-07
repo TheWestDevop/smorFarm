@@ -35,7 +35,7 @@ import {
                     lat:0,
                     lng:0
                     },
-                    address:''
+                    address:'Osara Close,Abuja'
             }
         },
         props: {
@@ -48,9 +48,11 @@ import {
             this.platform = new H.service.Platform({"apikey":this.appCode}); 
             this.router = this.platform.getRoutingService();
             this.geocoder = this.platform.getGeocodingService();
+            this.destination()
            },
-           computed: {
-               destination(){
+           
+        methods:{
+            destination(){
                 let geocodingParameters = {
                     searchText:this.address,
                     jsonattributes : 1
@@ -62,8 +64,6 @@ import {
                     this.onError
                 );
             },
-           },
-        methods:{
             init(){
                  navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude

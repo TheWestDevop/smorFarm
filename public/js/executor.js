@@ -35848,7 +35848,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 lat: 0,
                 lng: 0
             },
-            address: ''
+            address: 'Osara Close,Abuja'
         };
     },
 
@@ -35862,9 +35862,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.platform = new H.service.Platform({ "apikey": this.appCode });
         this.router = this.platform.getRoutingService();
         this.geocoder = this.platform.getGeocodingService();
+        this.destination();
     },
 
-    computed: {
+
+    methods: {
         destination: function destination() {
             var geocodingParameters = {
                 searchText: this.address,
@@ -35872,9 +35874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
 
             this.geocoder.geocode(geocodingParameters, this.onSuccess, this.onError);
-        }
-    },
-    methods: {
+        },
         init: function init() {
             var _this = this;
 
