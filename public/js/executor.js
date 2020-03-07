@@ -36023,7 +36023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // representation mode 'display'
                 'representation': 'display'
             };
-            router.calculateRoute(routingParameters, this.onResult(), this.onError());
+            this.router.calculateRoute(routingParameters, this.onResult(), this.onError());
         },
         interleave: function interleave() {
             var _this3 = this;

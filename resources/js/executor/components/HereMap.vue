@@ -215,7 +215,7 @@ import {
                     // representation mode 'display'
                     'representation': 'display'
                     }
-             router.calculateRoute(routingParameters, this.onResult(),this.onError());
+             this.router.calculateRoute(routingParameters, this.onResult(),this.onError());
             },
             interleave(){
                 let provider = this.map.getBaseLayer().getProvider();
