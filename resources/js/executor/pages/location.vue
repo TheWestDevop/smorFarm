@@ -18,7 +18,7 @@
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
                                     width="100%"
-                                    height="400px"
+                                    height="600px"
                                 >
 
                                 </HereMap>

@@ -35829,6 +35829,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -35853,7 +35855,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             center: {
                 lat: 0,
                 lng: 0
-            }
+            },
+            address: ''
         };
     },
 
@@ -35879,7 +35882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.trafficincidents);
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
-            var marker = new H.map.Maker(_this.center, { icon: icon });
+            var marker = new H.map.Marker(_this.center, { icon: icon });
             _this.map.addObject(marker);
             _this.map.setZoom(16);
             _this.map.setCenter(_this.center);
@@ -35992,6 +35995,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "here-map" }, [
+    _c("br"),
+    _vm._v(" "),
     _c(
       "form",
       {
@@ -36030,7 +36035,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "submit" },
                 on: {
                   click: function($event) {
@@ -36045,6 +36050,8 @@ var render = function() {
         ])
       ]
     ),
+    _vm._v(" "),
+    _c("br"),
     _vm._v(" "),
     _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
   ])
@@ -36301,7 +36308,7 @@ var render = function() {
                           appCode:
                             "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
                           width: "100%",
-                          height: "400px"
+                          height: "600px"
                         }
                       })
                     ],

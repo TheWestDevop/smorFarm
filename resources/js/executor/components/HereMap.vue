@@ -1,5 +1,6 @@
 <template>
     <div class="here-map">
+        <br>
           <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                             <div class="form-group mb-0">
                                                 <div class="input-group input-group-alternative">
@@ -9,10 +10,11 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative">
-                                                    <button type="submit" class="btn btn-primary" @click.prevent="getDirection(this.address)">Get Direction</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="getDirection(this.address)">Get Direction</button>
                                                 </div>
                                             </div>
         </form>
+        <br>
         <div ref="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
@@ -43,7 +45,8 @@ import {
                     center:{
                     lat:0,
                     lng:0
-                    }
+                    },
+                    address:''
             }
         },
         props: {
@@ -66,7 +69,7 @@ import {
                 this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.trafficincidents);
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
-                let marker = new H.map.Maker(this.center,{icon: icon})
+                let marker = new H.map.Marker(this.center,{icon: icon})
                 this.map.addObject(marker);
                 this.map.setZoom(16)
                 this.map.setCenter(this.center);
