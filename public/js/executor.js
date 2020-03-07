@@ -35945,7 +35945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDirection: function getDirection(start, stop) {
             var _this3 = this;
 
-            console.log("start :" + start + " stop :" + stop);
+            //  console.log("start :" + start +" stop :" + stop);
             var routingParameters = {
                 // The routing mode:
                 'mode': 'fastest;car;traffic:enabled',

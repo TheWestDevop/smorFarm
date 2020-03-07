@@ -134,7 +134,7 @@ import {
                 
             },
             getDirection(start,stop){
-                console.log("start :" + start +" stop :" + stop);
+              //  console.log("start :" + start +" stop :" + stop);
              let routingParameters = {
                     // The routing mode:
                     'mode': 'fastest;car;traffic:enabled',
