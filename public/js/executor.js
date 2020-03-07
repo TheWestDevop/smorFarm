@@ -35428,7 +35428,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    created: function created() {
+    mounted: function mounted() {
         var map = this.$refs.map;
         map.init();
     },

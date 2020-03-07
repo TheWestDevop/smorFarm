@@ -48,7 +48,7 @@ export default {
         Pagination,
         HereMap
     },
-    created() {
+    mounted() {
       let map = this.$refs.map;
       map.init();  
     },
