@@ -10,7 +10,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="getDirection(this.address)">Get Direction</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="getAddress(this.address)">Get Direction</button>
                                                 </div>
                                             </div>
         </form>
@@ -31,17 +31,7 @@ import {
                 map: {},
                 platform: {},
                 router:{},
-                routingParameters:{
-                    // The routing mode:
-                    'mode': 'fastest;car',
-                    // The start point of the route:
-                    'waypoint0': 'geo!50.1120423728813,8.68340740740811',
-                    // The end point of the route:
-                    'waypoint1': 'geo!52.5309916298853,13.3846220493377',
-                    // To retrieve the shape of the route we choose the route
-                    // representation mode 'display'
-                    'representation': 'display'
-                    },
+                geocoder:{},
                     center:{
                     lat:0,
                     lng:0
@@ -61,6 +51,7 @@ import {
             });
              
             this.router = this.platform.getRoutingService();
+            this.geocoder = this.platform.getGeocodingService()
 
             let defaultLayers = this.platform.createDefaultLayers();
             navigator.geolocation.getCurrentPosition(position =>{
@@ -79,17 +70,7 @@ import {
                 this.updatelocation(this.center);
                 //console.log(this.center);
                 });
-            
-
-           
-            //
-            //
-            //this.map.setCenter(this.center);
-            //this.map.setZoom(10);
-            
-            //
-    
-            
+         
          },
         methods:{
             
@@ -172,11 +153,19 @@ import {
                 }
 
             },
-            getDirection(address){
-                router.calculateRoute(this.routingParameters, this.onResult,
-                function(error) {
-                    alert(error.message);
-                });
+            getDirection(start,stop){
+             let routingParameters = {
+                    // The routing mode:
+                    'mode': 'fastest;car',
+                    // The start point of the route:
+                    'waypoint0': start,
+                    // The end point of the route:
+                    'waypoint1': stop,
+                    // To retrieve the shape of the route we choose the route
+                    // representation mode 'display'
+                    'representation': 'display'
+                    }
+             router.calculateRoute(routingParameters, onResult,onError);
             },
             interleave(){
                 let provider = this.map.getBaseLayer().getProvider();
@@ -210,6 +199,55 @@ import {
                     style.addEventListener('change', changeListener);
                   }
                 }
-            }
+            },
+            onSuccess(result) {
+            var locations = result.response.view[0].result;
+            //this.getDirection(locations);
+            addLocationsToMap(locations)
+            // ... etc.
+            },
+            onError(error) {
+            alert('Can\'t reach the remote server');
+            },
+            getAddress(address){
+                geocodingParameters = {
+                    searchText:address,
+                    jsonattributes : 1
+                    };
+
+                this.geocoder.geocode(
+                    geocodingParameters,
+                    onSuccess,
+                    onError
+                );
+                console.log(onSuccess);
+            },
+            addLocationsToMap(locations){
+                let group = new  H.map.Group(),
+                    position,
+                    i;
+
+                // Add a marker for each location found
+                for (i = 0;  i < locations.length; i += 1) {
+                    position = {
+                    lat: locations[i].location.displayPosition.latitude,
+                    lng: locations[i].location.displayPosition.longitude
+                    };
+                    marker = new H.map.Marker(position);
+                    marker.label = locations[i].location.address.label;
+                    group.addObject(marker);
+                }
+
+                group.addEventListener('tap', function (evt) {
+                    this.map.setCenter(evt.target.getGeometry());
+                    openBubble(
+                    evt.target.getGeometry(), evt.target.label);
+                }, false);
+
+                // Add the locations group to the map
+                this.map.addObject(group);
+                this.map.setCenter(group.getBoundingBox().getCenter());
+                }
+            
        }
 </script>

@@ -35842,17 +35842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             map: {},
             platform: {},
             router: {},
-            routingParameters: {
-                // The routing mode:
-                'mode': 'fastest;car',
-                // The start point of the route:
-                'waypoint0': 'geo!50.1120423728813,8.68340740740811',
-                // The end point of the route:
-                'waypoint1': 'geo!52.5309916298853,13.3846220493377',
-                // To retrieve the shape of the route we choose the route
-                // representation mode 'display'
-                'representation': 'display'
-            },
+            geocoder: {},
             center: {
                 lat: 0,
                 lng: 0
@@ -35875,6 +35865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
 
         this.router = this.platform.getRoutingService();
+        this.geocoder = this.platform.getGeocodingService();
 
         var defaultLayers = this.platform.createDefaultLayers();
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -35893,14 +35884,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.updatelocation(_this.center);
             //console.log(this.center);
         });
-
-        //
-        //
-        //this.map.setCenter(this.center);
-        //this.map.setZoom(10);
-
-        //
-
     },
 
     methods: {
@@ -35980,10 +35963,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
             }
         },
-        getDirection: function getDirection(address) {
-            router.calculateRoute(this.routingParameters, this.onResult, function (error) {
-                alert(error.message);
-            });
+        getDirection: function getDirection(start, stop) {
+            var routingParameters = {
+                // The routing mode:
+                'mode': 'fastest;car',
+                // The start point of the route:
+                'waypoint0': start,
+                // The end point of the route:
+                'waypoint1': stop,
+                // To retrieve the shape of the route we choose the route
+                // representation mode 'display'
+                'representation': 'display'
+            };
+            router.calculateRoute(routingParameters, onResult, onError);
         },
         interleave: function interleave() {
             var _this2 = this;
@@ -36019,6 +36011,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 style.addEventListener('change', changeListener);
             };
         }
+    },
+    onSuccess: function onSuccess(result) {
+        var locations = result.response.view[0].result;
+        //this.getDirection(locations);
+        addLocationsToMap(locations);
+        // ... etc.
+    },
+    onError: function onError(error) {
+        alert('Can\'t reach the remote server');
+    },
+    getAddress: function getAddress(address) {
+        geocodingParameters = {
+            searchText: address,
+            jsonattributes: 1
+        };
+
+        this.geocoder.geocode(geocodingParameters, onSuccess, onError);
+        console.log(onSuccess);
+    },
+    addLocationsToMap: function addLocationsToMap(locations) {
+        var group = new H.map.Group(),
+            position = void 0,
+            i = void 0;
+
+        // Add a marker for each location found
+        for (i = 0; i < locations.length; i += 1) {
+            position = {
+                lat: locations[i].location.displayPosition.latitude,
+                lng: locations[i].location.displayPosition.longitude
+            };
+            marker = new H.map.Marker(position);
+            marker.label = locations[i].location.address.label;
+            group.addObject(marker);
+        }
+
+        group.addEventListener('tap', function (evt) {
+            this.map.setCenter(evt.target.getGeometry());
+            openBubble(evt.target.getGeometry(), evt.target.label);
+        }, false);
+
+        // Add the locations group to the map
+        this.map.addObject(group);
+        this.map.setCenter(group.getBoundingBox().getCenter());
     }
 });
 
@@ -36080,7 +36115,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.getDirection(this.address)
+                      return _vm.getAddress(this.address)
                     }
                   }
                 },
