@@ -38514,10 +38514,7 @@ var staticRenderFns = [
           _vm._v(" "),
           _c(
             "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: { href: "/executor/logout" }
-            },
+            { staticClass: "dropdown-item", attrs: { href: "/executor" } },
             [
               _c("i", { staticClass: "ni ni-user-run" }),
               _vm._v(" "),
