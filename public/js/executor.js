@@ -35879,10 +35879,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
-        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().raster.terrain.transit);
+        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
         this.map.setZoom(10);
-        this.map.addLayer(this.platform.createDefaultLayers().raster.terrain.transit.trafficincidents);
+        this.map.addLayer(this.platform.createDefaultLayers().vector.normal.trafficincidents);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
         this.dropMaker(this.lat, this.lng);
