@@ -36134,7 +36134,11 @@ var render = function() {
     _vm._v(" "),
     _c("br"),
     _vm._v(" "),
-    _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
+    _c("div", {
+      ref: "map",
+      staticClass: "row justify-content-center",
+      style: { width: _vm.width, height: _vm.height }
+    })
   ])
 }
 var staticRenderFns = [

@@ -14,7 +14,7 @@
                                             </div>
         </div>
         <br>
-        <div ref="map" v-bind:style="{ width: width, height: height }"></div>
+        <div class="row justify-content-center" ref="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
 
