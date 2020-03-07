@@ -48,12 +48,12 @@ import {
              // Get an instance of the routing service:
             this.router = this.platform.getRoutingService();
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
-            this.map.setCenter({lat:"9.09741", lng:"9.09741"});
+            this.map.setCenter({lat:9.09741, lng:7.4932838});
             this.map.setZoom(10);
             this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
             console.log('position : lat' + this.lat + ' lng ' + this.lng )
-            this.dropMaker("9.09741","9.09741")
+            this.dropMaker(9.09741,7.4932838)
          },
         methods:{
             dropMaker(lat,lng){
@@ -61,18 +61,18 @@ import {
                 this.map.addObject(marker);
             },
             updatelocation(){
-            let id = localStorage.getItem('executor_user_id');
-            navigator.geolocation.getCurrentPosition(position =>{
-             let $this = this
-             $this.center.lat = position.coords.latitude
-             $this.center.lng = position.coords.longitude
- 
-           });
-             let form = new FormData();
-             form.append('lat',this.center.lat)
-             form.append('lng',this.center.lng)
-             post(BASE_URL + `/api/driver/location/${id}`,form).then((response) => {});
-            
+                let id = localStorage.getItem('executor_user_id');
+                navigator.geolocation.getCurrentPosition(position =>{
+                let $this = this
+                $this.center.lat = position.coords.latitude
+                $this.center.lng = position.coords.longitude
+                console.log($this.center);
+                });
+                let form = new FormData();
+                form.append('lat',this.center.lat)
+                form.append('lng',this.center.lng)
+                post(BASE_URL + `/api/driver/location/${id}`,form).then((response) => {});
+                
             },
             onResult(result){
 

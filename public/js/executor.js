@@ -35859,12 +35859,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
-        this.map.setCenter({ lat: "9.09741", lng: "9.09741" });
+        this.map.setCenter({ lat: 9.09741, lng: 7.4932838 });
         this.map.setZoom(10);
         this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
-        this.dropMaker("9.09741", "9.09741");
+        this.dropMaker(9.09741, 7.4932838);
     },
 
     methods: {
@@ -35880,6 +35880,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var $this = _this;
                 $this.center.lat = position.coords.latitude;
                 $this.center.lng = position.coords.longitude;
+                console.log($this.center);
             });
             var form = new FormData();
             form.append('lat', this.center.lat);
