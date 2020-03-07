@@ -35912,7 +35912,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 startPoint = void 0,
                 endPoint = void 0,
                 linestring = void 0;
-            if (result.response.route) {
+            if (result.response.route > 0) {
                 // Pick the first route from the response:
                 route = result.response.route[0];
                 // Pick the route's shape:

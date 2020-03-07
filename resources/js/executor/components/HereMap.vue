@@ -99,7 +99,7 @@ import {
                 console.log(result);
 
                 let route,routeShape,startPoint,endPoint,linestring;
-                if(result.response.route) {
+                if(result.response.route > 0) {
                     // Pick the first route from the response:
                     route = result.response.route[0];
                     // Pick the route's shape:
