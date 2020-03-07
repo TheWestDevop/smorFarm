@@ -35853,7 +35853,7 @@ var _this3 = this;
                 lat: 0,
                 lng: 0
             },
-            address: 'Osara Close,Abuja'
+            address: ''
         };
     },
 
