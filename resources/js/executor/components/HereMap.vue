@@ -33,7 +33,7 @@
         this.platform.createDefaultLayers().normal.map,
         {
             zoom: 17,
-            center: { lng: this.lng, lat: this.lat }
+            center: { lng: 9.00, lat: 6.00 }
         }
         );
         console.log('position : lat' + this.lat + ' lng ' + this.lng )

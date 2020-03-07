@@ -105,7 +105,7 @@ import Navbar from '../components/navbar'
 import Flash from "../../util/flash"
 import Pagination from "../components/pagination";
 import {
-    get
+    get,post
 } from '../../util/api'
 export default {
     name: 'orders',
