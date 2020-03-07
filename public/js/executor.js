@@ -35867,7 +35867,6 @@ var _this3 = this;
         this.platform = new H.service.Platform({ "apikey": this.appCode });
         this.router = this.platform.getRoutingService();
         this.geocoder = this.platform.getGeocodingService();
-        var defaultLayers = this.platform.createDefaultLayers();
     },
 
     methods: {
@@ -35882,7 +35881,7 @@ var _this3 = this;
                 // Add behavior to the map: panning, zooming, dragging.
                 var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
                 // Create the default UI components
-                var ui = H.ui.UI.createDefault(map, defaultLayers);
+                var ui = H.ui.UI.createDefault(map, _this.platform.createDefaultLayers());
                 //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');

@@ -51,7 +51,6 @@ import {
             this.platform = new H.service.Platform({"apikey":this.appCode}); 
             this.router = this.platform.getRoutingService();
             this.geocoder = this.platform.getGeocodingService();
-            let defaultLayers = this.platform.createDefaultLayers();
            },
         methods:{
             init(){
@@ -63,7 +62,7 @@ import {
                 // Add behavior to the map: panning, zooming, dragging.
                 let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create the default UI components
-                let ui = H.ui.UI.createDefault(map, defaultLayers);
+                let ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
                 //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
