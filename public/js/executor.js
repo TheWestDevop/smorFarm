@@ -35906,7 +35906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.map.setCenter(group.getBoundingBox().getCenter());
                 //console.log(position);
                 var start = _this.center.lat + ',' + _this.center.lng;
-                var stop = locations[0].location.displayPosition.latitude + ',' + locations[0].location.displayPosition.latitude;
+                var stop = locations[0].location.displayPosition.latitude + ',' + locations[0].location.displayPosition.longitude;
                 _this.getDirection(start, stop);
             }, function (error) {
                 _this.$toast.error("Address Not Found...");
@@ -35950,9 +35950,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // The routing mode:
                 'mode': 'fastest;car;traffic:enabled',
                 // The start point of the route:
-                'waypoint0': '9.060352,7.4711039999999995',
+                'waypoint0': start,
                 // The end point of the route:
-                'waypoint1': '9.0979,7.49551',
+                'waypoint1': stop,
                 // To retrieve the shape of the route we choose the route
                 // representation mode 'display'
                 'representation': 'display'
