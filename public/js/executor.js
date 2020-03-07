@@ -35878,7 +35878,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.center.lng = position.coords.longitude;
             _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.trafficincidents);
             _this.map.setCenter(_this.center);
-            _this.map.setZoom(15);
+            _this.map.setZoom(16);
             var svgMarkup = '<svg width="24" height="24" ' + 'xmlns="http://www.w3.org/2000/svg">' + '<rect stroke="white" fill="#1b468d" x="1" y="1" width="22" ' + 'height="22" /><text x="12" y="18" font-size="12pt" ' + 'font-family="Arial" font-weight="bold" text-anchor="middle" ' + 'fill="white">H</text></svg>';
 
             // Create an icon, an object holding the latitude and longitude, and a marker:
