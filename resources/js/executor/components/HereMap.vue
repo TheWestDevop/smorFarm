@@ -63,13 +63,13 @@ import {
             navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
-                this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
+                this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.trafficincidents);
                 this.map.setCenter(this.center);
                 this.map.setZoom(15)
                 let marker = new H.map.Maker(this.center)
                 this.map.addObject(marker);
                 this.updatelocation(this.center);
-                console.log(this.center);
+                //console.log(this.center);
                 });
             
 

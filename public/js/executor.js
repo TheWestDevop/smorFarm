@@ -35876,13 +35876,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
-            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().raster.normal.transit);
+            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.trafficincidents);
             _this.map.setCenter(_this.center);
             _this.map.setZoom(15);
             var marker = new H.map.Maker(_this.center);
             _this.map.addObject(marker);
             _this.updatelocation(_this.center);
-            console.log(_this.center);
+            //console.log(this.center);
         });
 
         //
