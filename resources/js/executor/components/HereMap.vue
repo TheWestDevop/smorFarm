@@ -38,7 +38,7 @@
            "apikey":this.appCode
          });
              // Get an instance of the routing service:
-            this.router = platform.getRoutingService();
+            this.router = this.platform.getRoutingService();
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
             this.map.setCenter({lat:this.lat, lng:this.lng});
             this.map.setZoom(10);
