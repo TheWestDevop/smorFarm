@@ -35414,19 +35414,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -35449,17 +35436,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     computed: {},
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state,
-            address: ''
+            flash: __WEBPACK_IMPORTED_MODULE_2__util_flash__["a" /* default */].state
+
         };
     },
 
-    methods: {
-        destination: function destination() {
-            this.$refs.map.getAddress(this.address);
-            console.log(this.$refs.map.getAddress(this.address));
-        }
-    }
+    methods: {}
 
 });
 
@@ -35837,6 +35819,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -36027,9 +36023,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onError: function onError(error) {
         alert('Can\'t reach the remote server');
     },
-    getAddress: function getAddress(address) {
+    destination: function destination() {
         geocodingParameters = {
-            searchText: address,
+            searchText: this.address,
             jsonattributes: 1
         };
 
@@ -36073,10 +36069,80 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "here-map" }, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "navbar-search navbar-search-dark form-inline mr-3 mt-1 d-md-flex ml-lg-auto"
+      },
+      [
+        _c("div", { staticClass: "form-group mb-0" }, [
+          _c("div", { staticClass: "input-group input-group-alternative" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.address,
+                  expression: "address"
+                }
+              ],
+              staticClass: "products form-control",
+              attrs: { placeholder: "Destination Address", type: "text" },
+              domProps: { value: _vm.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.address = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "input-group input-group-alternative ml-2" },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.destination()
+                    }
+                  }
+                },
+                [_vm._v("Get Direction")]
+              )
+            ]
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _vm._v(" "),
     _c("div", { ref: "map", style: { width: _vm.width, height: _vm.height } })
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-search text-black-50" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -36309,77 +36375,6 @@ var render = function() {
                 "div",
                 { staticClass: "col-md-12 card shadow" },
                 [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "navbar-search navbar-search-dark form-inline mr-3 mt-1 d-md-flex ml-lg-auto"
-                    },
-                    [
-                      _c("div", { staticClass: "form-group mb-0" }, [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "input-group input-group-alternative"
-                          },
-                          [
-                            _vm._m(0),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.address,
-                                  expression: "address"
-                                }
-                              ],
-                              staticClass: "products form-control",
-                              attrs: {
-                                placeholder: "Destination Address",
-                                type: "text"
-                              },
-                              domProps: { value: _vm.address },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.address = $event.target.value
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "input-group input-group-alternative ml-2"
-                          },
-                          [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-primary btn-sm",
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.destination()
-                                  }
-                                }
-                              },
-                              [_vm._v("Get Direction")]
-                            )
-                          ]
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
                   _c("HereMap", {
                     ref: "map",
                     attrs: {
@@ -36400,18 +36395,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
-      _c("span", { staticClass: "input-group-text" }, [
-        _c("i", { staticClass: "fas fa-search text-black-50" })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

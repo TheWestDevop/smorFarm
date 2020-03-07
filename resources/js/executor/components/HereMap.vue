@@ -1,5 +1,19 @@
 <template>
     <div class="here-map">
+                  <div  class="navbar-search navbar-search-dark form-inline mr-3 mt-1 d-md-flex ml-lg-auto">
+                                            <div class="form-group mb-0">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                                                    </div>
+                                                    <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
+                                                </div>
+                                                <div class="input-group input-group-alternative ml-2">
+                                                    <button class="btn btn-primary btn-sm" @click.prevent="destination()" >Get Direction</button>
+                                                </div>
+                                            </div>
+        </div>
+        <br>
         <div ref="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
@@ -195,9 +209,9 @@ import {
             onError(error) {
              alert('Can\'t reach the remote server');
             },
-            getAddress(address){
+            destination(){
                 geocodingParameters = {
-                    searchText:address,
+                    searchText:this.address,
                     jsonattributes : 1
                     };
 
