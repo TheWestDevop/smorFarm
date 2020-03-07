@@ -35879,7 +35879,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
-        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
+        this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().transit.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
         this.map.setZoom(10);
         var ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
