@@ -51,7 +51,7 @@ import {
            },
            computed: {
                destination(){
-                geocodingParameters = {
+                let geocodingParameters = {
                     searchText:this.address,
                     jsonattributes : 1
                     };

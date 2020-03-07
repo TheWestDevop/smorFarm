@@ -35866,7 +35866,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         destination: function destination() {
-            geocodingParameters = {
+            var geocodingParameters = {
                 searchText: this.address,
                 jsonattributes: 1
             };
