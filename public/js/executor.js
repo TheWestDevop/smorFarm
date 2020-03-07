@@ -35878,11 +35878,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.map.addObject(marker);
         //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
-        console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng);
     },
 
     methods: {
         updatelocation: function updatelocation(center) {
+            console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng);
             var id = localStorage.getItem('executor_user_id');
             var form = new FormData();
             form.append('lat', center.lat);

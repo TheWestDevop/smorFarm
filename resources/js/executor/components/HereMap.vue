@@ -65,13 +65,13 @@ import {
             let marker = new H.map.Maker(this.center)
             this.map.addObject(marker);
             //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
-            
-            console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
+    
             
          },
         methods:{
             
             updatelocation(center){
+                console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
                 let id = localStorage.getItem('executor_user_id');
                 let form = new FormData();
                 form.append('lat',center.lat)
