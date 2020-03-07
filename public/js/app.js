@@ -53975,7 +53975,7 @@ var render = function() {
                 staticClass: "pt-sm-30 pt-xs-30",
                 attrs: {
                   "per-page": 1,
-                  autoplayTimeout: 2000,
+                  autoplayTimeout: 7000,
                   scrollPerPage: true,
                   autoplay: true
                 }
