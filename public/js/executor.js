@@ -35970,11 +35970,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getDirection: function getDirection(start, stop) {
             var routingParameters = {
                 // The routing mode:
-                'mode': 'fastest;car',
+                'mode': 'fastest;car;traffic:enabled',
                 // The start point of the route:
-                'waypoint0': start,
+                'waypoint0': start.lat + ',' + start.lng,
                 // The end point of the route:
-                'waypoint1': stop,
+                'waypoint1': stop.lat + ',' + stop.lng,
                 // To retrieve the shape of the route we choose the route
                 // representation mode 'display'
                 'representation': 'display'
