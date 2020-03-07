@@ -1,7 +1,7 @@
 <template>
     <div class="here-map">
         <br>
-          <form v-on:submit.prevent="getAddress(this.address)" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <form v-on:submit.prevent="getAddress" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                             <div class="form-group mb-0">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
@@ -46,15 +46,15 @@ import {
             height: String,
         },
         created() {
-             this.platform = new H.service.Platform({
-           "apikey":this.appCode
-            });
-             
+            this.platform = new H.service.Platform({"apikey":this.appCode}); 
             this.router = this.platform.getRoutingService();
-            this.geocoder = this.platform.getGeocodingService()
-
+            this.geocoder = this.platform.getGeocodingService();
             let defaultLayers = this.platform.createDefaultLayers();
-            navigator.geolocation.getCurrentPosition(position =>{
+            this.init()
+           },
+        methods:{
+            init(){
+                 navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
                 this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
@@ -73,9 +73,8 @@ import {
                 //console.log(this.center);
                 });
          
-         },
-        methods:{
-            
+         
+            },
             updatelocation(center){
                 let id = localStorage.getItem('executor_user_id');
                 let form = new FormData();
@@ -212,7 +211,7 @@ import {
             onError(error) {
              alert('Can\'t reach the remote server');
             },
-            getAddress(address){
+            getAddress(){
                 geocodingParameters = {
                     searchText:address,
                     jsonattributes : 1

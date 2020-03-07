@@ -35858,37 +35858,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         height: String
     },
     created: function created() {
-        var _this = this;
-
-        this.platform = new H.service.Platform({
-            "apikey": this.appCode
-        });
-
+        this.platform = new H.service.Platform({ "apikey": this.appCode });
         this.router = this.platform.getRoutingService();
         this.geocoder = this.platform.getGeocodingService();
-
         var defaultLayers = this.platform.createDefaultLayers();
-        navigator.geolocation.getCurrentPosition(function (position) {
-            _this.center.lat = position.coords.latitude;
-            _this.center.lng = position.coords.longitude;
-            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
-            _this.map.getViewModel().setLookAtData({ tilt: 45 });
-            // Add behavior to the map: panning, zooming, dragging.
-            var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
-            //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-            // Create an icon, an object holding the latitude and longitude, and a marker:
-            var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
-            var marker = new H.map.Marker(_this.center, { icon: icon });
-            _this.map.addObject(marker);
-            _this.map.setCenter(_this.center);
-            _this.map.setZoom(18);
-            _this.interleave();
-            _this.updatelocation(_this.center);
-            //console.log(this.center);
-        });
+        this.init();
     },
 
     methods: {
+        init: function init() {
+            var _this = this;
+
+            navigator.geolocation.getCurrentPosition(function (position) {
+                _this.center.lat = position.coords.latitude;
+                _this.center.lng = position.coords.longitude;
+                _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
+                _this.map.getViewModel().setLookAtData({ tilt: 45 });
+                // Add behavior to the map: panning, zooming, dragging.
+                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
+                //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+                // Create an icon, an object holding the latitude and longitude, and a marker:
+                var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
+                var marker = new H.map.Marker(_this.center, { icon: icon });
+                _this.map.addObject(marker);
+                _this.map.setCenter(_this.center);
+                _this.map.setZoom(18);
+                _this.interleave();
+                _this.updatelocation(_this.center);
+                //console.log(this.center);
+            });
+        },
         updatelocation: function updatelocation(center) {
             var id = localStorage.getItem('executor_user_id');
             var form = new FormData();
@@ -36024,7 +36023,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     onError: function onError(error) {
         alert('Can\'t reach the remote server');
     },
-    getAddress: function getAddress(address) {
+    getAddress: function getAddress() {
         geocodingParameters = {
             searchText: address,
             jsonattributes: 1
@@ -36080,7 +36079,7 @@ var render = function() {
         on: {
           submit: function($event) {
             $event.preventDefault()
-            return _vm.getAddress(this.address)
+            return _vm.getAddress($event)
           }
         }
       },
