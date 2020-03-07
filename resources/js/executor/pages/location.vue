@@ -78,7 +78,7 @@ export default {
     },
     methods: {
        getAddress(){
-           this.$refs.map.getAddress(this.address);
+           console.log(this.$refs.map.getAddress(this.address));
        }
     }
 
