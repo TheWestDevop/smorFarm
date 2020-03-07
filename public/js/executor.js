@@ -36301,24 +36301,21 @@ var render = function() {
           _c("div", { staticClass: "container" }, [
             _c("div", { staticClass: "row justify-content-center" }, [
               _c("div", { staticClass: "col-md-12 " }, [
-                _c("div", { staticClass: "card shadow" }, [
-                  _c(
-                    "div",
-                    { staticClass: "container" },
-                    [
-                      _c("HereMap", {
-                        attrs: {
-                          appId: "vFeicXHJJygakyap4B5z",
-                          appCode:
-                            "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                          width: "100%",
-                          height: "600px"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ])
+                _c(
+                  "div",
+                  { staticClass: "container-fluid" },
+                  [
+                    _c("HereMap", {
+                      attrs: {
+                        appId: "vFeicXHJJygakyap4B5z",
+                        appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
+                        width: "100%",
+                        height: "600px"
+                      }
+                    })
+                  ],
+                  1
+                )
               ])
             ])
           ])

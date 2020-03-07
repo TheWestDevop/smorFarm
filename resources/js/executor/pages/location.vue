@@ -12,8 +12,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 ">
-                        <div class="card shadow">
-                            <div class="container">
+                        
+                            <div class="container-fluid">
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
@@ -23,7 +23,7 @@
 
                                 </HereMap>
 
-                            </div>
+                            
                             
                         </div>
                     </div>
