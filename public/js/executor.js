@@ -35875,9 +35875,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.geocoder.geocode(geocodingParameters, function (result) {
 
-                // console.log(result);
                 var locations = result.response.view[0].result;
-                console.log(locations);
 
                 //this.addLocationsToMap(locations)
                 var group = new H.map.Group();
@@ -35907,7 +35905,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.map.addObject(group);
                 _this.map.setCenter(group.getBoundingBox().getCenter());
                 console.log(position);
-                _this.getDirection(_this.center, position);
+                _this.getDirection({ lat: _this.center.lat, lng: _this.center.lng }, { lat: position.lat, lng: position.lng });
             }, function (error) {
                 _this.$toast.error("Address Not Found...");
             });
@@ -36023,7 +36021,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // The start point of the route:
                 'waypoint0': '9.060352,7.4711039999999995',
                 // The end point of the route:
-                'waypoint1': stop.lat + ',' + stop.lng,
+                'waypoint1': '9.0979,7.49551',
                 // To retrieve the shape of the route we choose the route
                 // representation mode 'display'
                 'representation': 'display'

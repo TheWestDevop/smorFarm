@@ -61,9 +61,9 @@ import {
                     geocodingParameters,
                     (result) => {
 
-                       // console.log(result);
+                       
                         var locations = result.response.view[0].result;
-                        console.log(locations);
+                        
                         
                         //this.addLocationsToMap(locations)
                         let group = new  H.map.Group()
@@ -93,7 +93,7 @@ import {
                         this.map.addObject(group);
                         this.map.setCenter(group.getBoundingBox().getCenter());
                         console.log(position);
-                        this.getDirection(this.center,position);
+                        this.getDirection({lat:this.center.lat,lng:this.center.lng},{lat:position.lat,lng:position.lng});
                         },
                         (error)=>{
                         this.$toast.error("Address Not Found...");
@@ -212,7 +212,7 @@ import {
                     // The start point of the route:
                     'waypoint0': `9.060352,7.4711039999999995`,
                     // The end point of the route:
-                    'waypoint1': `${stop.lat},${stop.lng}`,
+                    'waypoint1': `9.0979,7.49551`,
                     // To retrieve the shape of the route we choose the route
                     // representation mode 'display'
                     'representation': 'display'
