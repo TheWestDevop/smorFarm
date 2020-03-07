@@ -1,5 +1,18 @@
 <template>
     <div class="here-map">
+          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                                            <div class="form-group mb-0">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                                                    </div>
+                                                    <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
+                                                </div>
+                                                <div class="input-group input-group-alternative">
+                                                    <button type="submit" @click="getDirection(this.address)">Get Direction</button>
+                                                </div>
+                                            </div>
+        </form>
         <div ref="map" v-bind:style="{ width: width, height: height }"></div>
     </div>
 </template>
@@ -152,7 +165,7 @@ import {
                 }
 
             },
-            direction(){
+            getDirection(address){
                 router.calculateRoute(this.routingParameters, this.onResult,
                 function(error) {
                     alert(error.message);
