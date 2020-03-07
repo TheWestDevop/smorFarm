@@ -35867,33 +35867,72 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         destination: function destination() {
+            var _this = this;
+
             var geocodingParameters = {
                 searchText: this.address,
                 jsonattributes: 1
             };
-            this.geocoder.geocode(geocodingParameters, this.onSuccess(), this.onError());
+            this.geocoder.geocode(geocodingParameters, function (result) {
+
+                // console.log(result);
+                var locations = result.response.view[0].result;
+                console.log(locations);
+
+                //this.addLocationsToMap(locations)
+                var group = new H.map.Group();
+                var position = void 0;
+                var i = void 0;
+
+                // Add a marker for each location found
+                for (i = 0; i < locations.length; i += 1) {
+                    position = {
+                        lat: locations[i].location.displayPosition.latitude,
+                        lng: locations[i].location.displayPosition.longitude
+                    };
+                    var marker = new H.map.Marker(position);
+                    marker.label = locations[i].location.address.label;
+                    group.addObject(marker);
+                }
+
+                group.addEventListener('tap', function (evt) {
+                    this.map.setCenter(evt.target.getGeometry());
+                    var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+                        // read custom data
+                        content: evt.target.getData()
+                    });
+                }, false);
+
+                // Add the locations group to the map
+                _this.map.addObject(group);
+                _this.map.setCenter(group.getBoundingBox().getCenter());
+                console.log(position);
+                _this.getDirection(_this.center, position);
+            }, function (error) {
+                _this.$toast.error("Address Not Found...");
+            });
         },
         init: function init() {
-            var _this = this;
+            var _this2 = this;
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                _this.center.lat = position.coords.latitude;
-                _this.center.lng = position.coords.longitude;
-                _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
-                _this.map.getViewModel().setLookAtData({ tilt: 45 });
+                _this2.center.lat = position.coords.latitude;
+                _this2.center.lng = position.coords.longitude;
+                _this2.map = new H.Map(_this2.$refs.map, _this2.platform.createDefaultLayers().vector.normal.map);
+                _this2.map.getViewModel().setLookAtData({ tilt: 45 });
                 // Add behavior to the map: panning, zooming, dragging.
-                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
+                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this2.map));
 
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
-                var marker = new H.map.Marker(_this.center, { icon: icon });
-                _this.map.addObject(marker);
-                _this.map.setCenter(_this.center);
-                _this.map.setZoom(18);
-                _this.interleave();
-                _this.updatelocation(_this.center);
-                _this.destination();
-                console.log(_this.center);
+                var marker = new H.map.Marker(_this2.center, { icon: icon });
+                _this2.map.addObject(marker);
+                _this2.map.setCenter(_this2.center);
+                _this2.map.setZoom(18);
+                _this2.interleave();
+                _this2.updatelocation(_this2.center);
+                _this2.destination();
+                console.log(_this2.center);
             });
         },
         updatelocation: function updatelocation(center) {
@@ -35992,7 +36031,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.router.calculateRoute(routingParameters, this.onResult(), this.onError());
         },
         interleave: function interleave() {
-            var _this2 = this;
+            var _this3 = this;
 
             var provider = this.map.getBaseLayer().getProvider();
 
@@ -36007,64 +36046,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var objectProvider = new H.map.provider.LocalObjectProvider();
                     var objectLayer = new H.map.layer.ObjectLayer(objectProvider);
                     // add a circle to this provider the circle will appear under the buildings
-                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this2.map.getCenter(), 500));
+                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this3.map.getCenter(), 500));
                     // add the layer to the map
-                    _this2.map.addLayer(objectLayer);
+                    _this3.map.addLayer(objectLayer);
 
                     // extract buildings from the base layer config 
                     // in order to inspect the config calling style.getConfig()
                     buildings = new H.map.Style(style.extractConfig('buildings'));
                     // create the new layer for the buildings
-                    buildingsLayer = _this2.platform.getOMVService().createLayer(buildings);
+                    buildingsLayer = _this3.platform.getOMVService().createLayer(buildings);
                     // add the layer to the map
-                    _this2.map.addLayer(buildingsLayer);
+                    _this3.map.addLayer(buildingsLayer);
 
                     // the default object layer and its objects will remain on top of the buildings layer
-                    _this2.map.addObject(new H.map.Marker(_this2.map.getCenter()));
+                    _this3.map.addObject(new H.map.Marker(_this3.map.getCenter()));
                 }
                 style.addEventListener('change', changeListener);
             };
         }
-    },
-    onError: function onError(error) {
-        this.$toast.error("Address Not Found...");
-    },
-    onSuccess: function onSuccess(result) {
-
-        // console.log(result);
-        var locations = result.response.view[0].result;
-        console.log(locations);
-
-        //this.addLocationsToMap(locations)
-        var group = new H.map.Group();
-        var position = void 0;
-        var i = void 0;
-
-        // Add a marker for each location found
-        for (i = 0; i < locations.length; i += 1) {
-            position = {
-                lat: locations[i].location.displayPosition.latitude,
-                lng: locations[i].location.displayPosition.longitude
-            };
-            var marker = new H.map.Marker(position);
-            marker.label = locations[i].location.address.label;
-            group.addObject(marker);
-        }
-
-        group.addEventListener('tap', function (evt) {
-            this.map.setCenter(evt.target.getGeometry());
-            var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
-                // read custom data
-                content: evt.target.getData()
-            });
-        }, false);
-
-        // Add the locations group to the map
-        this.map.addObject(group);
-        this.map.setCenter(group.getBoundingBox().getCenter());
-        console.log(position);
-        this.getDirection(this.center, position);
     }
+
 });
 
 /***/ }),
