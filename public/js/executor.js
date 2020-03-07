@@ -36028,9 +36028,11 @@ var render = function() {
             _c(
               "button",
               {
+                staticClass: "btn btn-primary",
                 attrs: { type: "submit" },
                 on: {
                   click: function($event) {
+                    $event.preventDefault()
                     return _vm.getDirection(this.address)
                   }
                 }

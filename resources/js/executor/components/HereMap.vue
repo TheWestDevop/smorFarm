@@ -9,7 +9,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative">
-                                                    <button type="submit" @click="getDirection(this.address)">Get Direction</button>
+                                                    <button type="submit" class="btn btn-primary" @click.prevent="getDirection(this.address)">Get Direction</button>
                                                 </div>
                                             </div>
         </form>
