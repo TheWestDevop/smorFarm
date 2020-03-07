@@ -16,7 +16,7 @@
                             <div class="container">
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
-                                    appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
+                                  
                                     lat= this.lat
                                     lng= this.lng 
                                     width="100%"
@@ -68,6 +68,7 @@ export default {
 
     },
     methods: {
+         //appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
     }
 
 }

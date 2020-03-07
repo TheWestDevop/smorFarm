@@ -10,12 +10,13 @@
          data() {
             return {
                 map: {},
-                platform: {}
+                platform: {},
+                behavior:'',
             }
         },
         props: {
             appId: String,
-            appCode: String,
+            //appCode: String,
             lat: String,
             lng: String,
             width: String,
@@ -23,14 +24,16 @@
         },
         created() {
             this.platform = new H.service.Platform({
-        "app_id": this.appId,
-        "app_code": this.appCode
-    });
+        "app_id": this.appId
+         });
          },
         mounted() { 
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
             this.map.setCenter({lat:this.lat, lng:this.lng});
             this.map.setZoom(17);
+            this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+            var ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
+            
             console.log('position : lat' + this.lat + ' lng ' + this.lng )
             dropMaker(this.lat,this.lng)
         },
