@@ -48,12 +48,12 @@ import {
              // Get an instance of the routing service:
             this.router = this.platform.getRoutingService();
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
-            this.map.setCenter({lat:9.09741, lng:9.09741});
+            this.map.setCenter({lat:"9.09741", lng:"9.09741"});
             this.map.setZoom(10);
             this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
             console.log('position : lat' + this.lat + ' lng ' + this.lng )
-            this.dropMaker(9.09741,9.09741)
+            this.dropMaker("9.09741","9.09741")
          },
         methods:{
             dropMaker(lat,lng){
