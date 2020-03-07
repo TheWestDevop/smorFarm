@@ -35879,8 +35879,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
-            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.traffic);
-            _this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
+            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.traffic);
+            //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
             var marker = new H.map.Marker(_this.center, { icon: icon });
