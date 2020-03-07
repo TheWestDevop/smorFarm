@@ -35861,7 +35861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
-        this.dropMaker(this.lat, this.lng);
+        this.dropMaker(this.center.lat, this.center.lng);
     },
 
     methods: {
