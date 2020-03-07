@@ -35172,51 +35172,38 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ 58:
-/***/ (function(module, exports, __webpack_require__) {
+/***/ 55:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(588)
-/* template */
-var __vue_template__ = __webpack_require__(589)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/executor/components/navbar.vue"
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = post;
+/* harmony export (immutable) */ __webpack_exports__["a"] = get;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3645916b", Component.options)
-  } else {
-    hotAPI.reload("data-v-3645916b", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
 
-module.exports = Component.exports
+function post(url, data) {
 
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'POST',
+        url: url,
+        data: data,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('executor_api_token')
+        }
+    });
+}
+function get(url, data) {
+
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
+        method: 'GET',
+        url: url,
+        data: data,
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('executor_api_token')
+        }
+    });
+}
 
 /***/ }),
 
@@ -35385,14 +35372,14 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_navbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_HereMap__ = __webpack_require__(590);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_HereMap__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__util_flash__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pagination__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pagination__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_api__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_api__ = __webpack_require__(55);
 //
 //
 //
@@ -35723,37 +35710,50 @@ if (false) {
 /***/ }),
 
 /***/ 59:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(588)
+/* template */
+var __vue_template__ = __webpack_require__(589)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/executor/components/navbar.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3645916b", Component.options)
+  } else {
+    hotAPI.reload("data-v-3645916b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
-function post(url, data) {
+module.exports = Component.exports
 
-    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'POST',
-        url: url,
-        data: data,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('executor_api_token')
-        }
-    });
-}
-function get(url, data) {
-
-    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'GET',
-        url: url,
-        data: data,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('executor_api_token')
-        }
-    });
-}
 
 /***/ }),
 
@@ -35881,13 +35881,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
             _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
-            //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
+            var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
             var marker = new H.map.Marker(_this.center, { icon: icon });
             _this.map.addObject(marker);
             _this.map.setCenter(_this.center);
-            _this.map.setZoom(16);
+            _this.map.setZoom(18);
             _this.updatelocation(_this.center);
             //console.log(this.center);
         });
@@ -36664,12 +36664,12 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_navbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_flash__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_pagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_pagination__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_api__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_api__ = __webpack_require__(55);
 //
 //
 //
@@ -37327,8 +37327,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_Auth__ = __webpack_require__(613);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_api__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_navbar__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_api__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_navbar__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_navbar__);
 //
 //
@@ -37919,7 +37919,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__executor_components_SideNav__ = __webpack_require__(619);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__executor_components_SideNav___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__executor_components_SideNav__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__executor_util_api__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__executor_util_api__ = __webpack_require__(55);
 //
 //
 //
@@ -38120,7 +38120,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_api__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_api__ = __webpack_require__(55);
 //
 //
 //

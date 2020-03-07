@@ -1187,7 +1187,7 @@ exports.default = function (options) {
 
 exports.mappedPropsToVueProps = mappedPropsToVueProps;
 
-var _bindEvents = __webpack_require__(55);
+var _bindEvents = __webpack_require__(56);
 
 var _bindEvents2 = _interopRequireDefault(_bindEvents);
 
@@ -35427,7 +35427,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.getPropsValues = getPropsValues;
 exports.bindProps = bindProps;
 
-var _WatchPrimitiveProperties = __webpack_require__(56);
+var _WatchPrimitiveProperties = __webpack_require__(57);
 
 var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
 
@@ -35510,7 +35510,8 @@ function bindProps(vueInst, googleMapsInst, props) {
 }
 
 /***/ }),
-/* 55 */
+/* 55 */,
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35556,7 +35557,7 @@ exports.default = function (vueInst, googleMapsInst, events) {
 };
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35615,7 +35616,7 @@ function WatchPrimitiveProperties(vueInst, propertiesToTrack, handler) {
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35686,7 +35687,6 @@ exports.default = {
 };
 
 /***/ }),
-/* 58 */,
 /* 59 */,
 /* 60 */,
 /* 61 */,
@@ -36318,7 +36318,7 @@ var _mapElementFactory = __webpack_require__(15);
 
 var _mapElementFactory2 = _interopRequireDefault(_mapElementFactory);
 
-var _mountableMixin = __webpack_require__(57);
+var _mountableMixin = __webpack_require__(58);
 
 var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
 
@@ -37350,13 +37350,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _bindEvents = __webpack_require__(55);
+var _bindEvents = __webpack_require__(56);
 
 var _bindEvents2 = _interopRequireDefault(_bindEvents);
 
 var _bindProps = __webpack_require__(54);
 
-var _mountableMixin = __webpack_require__(57);
+var _mountableMixin = __webpack_require__(58);
 
 var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
 
@@ -37364,7 +37364,7 @@ var _TwoWayBindingWrapper = __webpack_require__(189);
 
 var _TwoWayBindingWrapper2 = _interopRequireDefault(_TwoWayBindingWrapper);
 
-var _WatchPrimitiveProperties = __webpack_require__(56);
+var _WatchPrimitiveProperties = __webpack_require__(57);
 
 var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
 
@@ -37681,13 +37681,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _bindEvents = __webpack_require__(55);
+var _bindEvents = __webpack_require__(56);
 
 var _bindEvents2 = _interopRequireDefault(_bindEvents);
 
 var _bindProps = __webpack_require__(54);
 
-var _mountableMixin = __webpack_require__(57);
+var _mountableMixin = __webpack_require__(58);
 
 var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
 
@@ -37695,7 +37695,7 @@ var _TwoWayBindingWrapper = __webpack_require__(189);
 
 var _TwoWayBindingWrapper2 = _interopRequireDefault(_TwoWayBindingWrapper);
 
-var _WatchPrimitiveProperties = __webpack_require__(56);
+var _WatchPrimitiveProperties = __webpack_require__(57);
 
 var _WatchPrimitiveProperties2 = _interopRequireDefault(_WatchPrimitiveProperties);
 
