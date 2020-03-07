@@ -36074,7 +36074,13 @@ var render = function() {
       "form",
       {
         staticClass:
-          "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+          "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.getAddress(this.address)
+          }
+        }
       },
       [
         _c("div", { staticClass: "form-group mb-0" }, [
@@ -36104,26 +36110,7 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "input-group input-group-alternative ml-2" },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary btn-sm",
-                  attrs: { type: "submit" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return this.getAddress(this.address)
-                    }
-                  }
-                },
-                [_vm._v("Get Direction")]
-              )
-            ]
-          )
+          _vm._m(1)
         ])
       ]
     ),
@@ -36143,6 +36130,22 @@ var staticRenderFns = [
         _c("i", { staticClass: "fas fa-search text-black-50" })
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "input-group input-group-alternative ml-2" },
+      [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary btn-sm", attrs: { type: "submit" } },
+          [_vm._v("Get Direction")]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true

@@ -1,7 +1,7 @@
 <template>
     <div class="here-map">
         <br>
-          <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <form v-on:submit.prevent="getAddress(this.address)" class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
                                             <div class="form-group mb-0">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
@@ -10,7 +10,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="this.getAddress(this.address)">Get Direction</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" >Get Direction</button>
                                                 </div>
                                             </div>
         </form>
