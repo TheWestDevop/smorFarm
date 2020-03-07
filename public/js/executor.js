@@ -35258,8 +35258,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(52);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = false;
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.debug = false;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.devtools = true;
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.debug = true;
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.silent = false;
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTips = false;
 
