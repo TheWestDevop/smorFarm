@@ -24,8 +24,7 @@
         },
         created() {
             this.platform = new H.service.Platform({
-        "app_id": this.appId,
-        "apikey":this.appCode
+            "apikey":this.appCode
          });
          },
         mounted() { 
