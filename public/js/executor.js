@@ -35871,7 +35871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 jsonattributes: 1
             };
 
-            this.geocoder.geocode(geocodingParameters, onSuccess, onError);
+            this.geocoder.geocode(geocodingParameters, this.onSuccess, this.onError);
         }
     },
     methods: {
@@ -36026,7 +36026,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var locations = result.response.view[0].result;
         console.log(locations);
         //this.getDirection(locations);
-        addLocationsToMap(locations);
+        this.addLocationsToMap(locations);
         // ... etc.
     },
     onError: function onError(error) {

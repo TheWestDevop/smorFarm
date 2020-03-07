@@ -58,8 +58,8 @@ import {
 
                 this.geocoder.geocode(
                     geocodingParameters,
-                    onSuccess,
-                    onError
+                    this.onSuccess,
+                    this.onError
                 );
             },
            },
@@ -216,7 +216,7 @@ import {
                 var locations = result.response.view[0].result;
                 console.log(locations);
                 //this.getDirection(locations);
-                addLocationsToMap(locations)
+                this.addLocationsToMap(locations)
                 // ... etc.
             },
             onError(error) {
