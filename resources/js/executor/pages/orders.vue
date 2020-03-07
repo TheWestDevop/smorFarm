@@ -16,13 +16,13 @@
                             <div class="card-header borders-0">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                                        <form class="navbar-search navbar-search-dark form-inline mr-3  d-md-flex ml-lg-auto">
                                             <div class="form-group mb-0">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
                                                     </div>
-                                                    <input class="products form-control" placeholder="Search Customer Name " v-model="executor.name" type="text">
+                                                    <input class="products form-control" placeholder="Search Customer Name " v-model="name" type="text">
                                                 </div>
                                             </div>
                                         </form>
@@ -121,7 +121,7 @@ export default {
         filterorders() {
             let $this = this
             return $this.executor.orders.data.filter((orders) => {
-                return orders.user.match(this.executor.name);
+                return orders.user.match(this.name);
 
             });
 
@@ -131,6 +131,7 @@ export default {
     data() {
         return {
             flash: Flash.state,
+            name:''
            
         }
 

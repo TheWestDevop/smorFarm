@@ -36788,13 +36788,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var $this = this;
             return $this.executor.orders.data.filter(function (orders) {
-                return orders.user.match(_this.executor.name);
+                return orders.user.match(_this.name);
             });
         }
     },
     data: function data() {
         return {
-            flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state
+            flash: __WEBPACK_IMPORTED_MODULE_1__util_flash__["a" /* default */].state,
+            name: ''
 
         };
     },
@@ -36943,7 +36944,7 @@ var render = function() {
                           "form",
                           {
                             staticClass:
-                              "navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto"
+                              "navbar-search navbar-search-dark form-inline mr-3  d-md-flex ml-lg-auto"
                           },
                           [
                             _c("div", { staticClass: "form-group mb-0" }, [
@@ -36961,8 +36962,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.executor.name,
-                                        expression: "executor.name"
+                                        value: _vm.name,
+                                        expression: "name"
                                       }
                                     ],
                                     staticClass: "products form-control",
@@ -36970,17 +36971,13 @@ var render = function() {
                                       placeholder: "Search Customer Name ",
                                       type: "text"
                                     },
-                                    domProps: { value: _vm.executor.name },
+                                    domProps: { value: _vm.name },
                                     on: {
                                       input: function($event) {
                                         if ($event.target.composing) {
                                           return
                                         }
-                                        _vm.$set(
-                                          _vm.executor,
-                                          "name",
-                                          $event.target.value
-                                        )
+                                        _vm.name = $event.target.value
                                       }
                                     }
                                   })
@@ -37956,8 +37953,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             center: {
                 lat: 0,
                 lng: 0
-            },
-            name: ''
+            }
+
         };
     },
     created: function created() {
@@ -38105,7 +38102,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -38219,36 +38216,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'side_nav',
   props: ["executor"],
-  computed: {
-    filterorders: function filterorders() {
-      var _this = this;
-
-      var $this = this;
-      return $this.executor.orders.data.filter(function (orders) {
-        return orders.user.match(_this.executor.name);
-      });
-    }
-  },
-  data: function data() {
-    return {
-      name: ''
-    };
-  },
-
   methods: {}
 });
 
@@ -38368,45 +38341,6 @@ var render = function() {
             },
             [
               _vm._m(2),
-              _vm._v(" "),
-              _c("form", { staticClass: "mt-4 mb-3 d-md-none" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "input-group input-group-rounded input-group-merge"
-                  },
-                  [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.executor.name,
-                          expression: "executor.name"
-                        }
-                      ],
-                      staticClass:
-                        "form-control form-control-rounded form-control-prepended",
-                      attrs: {
-                        placeholder: "Search Customer Name ",
-                        type: "text"
-                      },
-                      domProps: { value: _vm.executor.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.executor, "name", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-prepend" })
-                  ]
-                )
-              ]),
               _vm._v(" "),
               _c("ul", { staticClass: "navbar-nav" }, [
                 _c(

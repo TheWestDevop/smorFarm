@@ -77,14 +77,6 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
-          <div class="input-group input-group-rounded input-group-merge">
-            <input class="form-control form-control-rounded form-control-prepended" placeholder="Search Customer Name " v-model="executor.name" type="text">
-             <div class="input-group-prepend">
-              
-            </div>
-          </div>
-        </form>
       
         <!-- Navigation -->
         <ul class="navbar-nav">
@@ -115,22 +107,6 @@ import {
 export default {
   name:'side_nav',
   props: ["executor"],
-  computed: {
-        filterorders() {
-            let $this = this
-            return $this.executor.orders.data.filter((orders) => {
-                return orders.user.match(this.executor.name);
-
-            });
-
-        },
-
-    },
-  data(){
-    return{
-      name:''
-    }
-  },
   methods:{
 
   }
