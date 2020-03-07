@@ -82,7 +82,7 @@ import {
                         }
 
                         group.addEventListener('tap', function (evt) {
-                            this.map.setCenter(evt.target.getGeometry());
+                            this.map.setCenter(position);
                             var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
                             // read custom data
                             content: evt.target.getData()
@@ -129,12 +129,6 @@ import {
                 form.append('lat',center.lat)
                 form.append('lng',center.lng)
                 post(BASE_URL + `/api/driver/location/${id}`,form).then((response) => {});
-                
-            },
-            onResult(result){
-
-                console.log(result);
-
                 
             },
             getDirection(start,stop){

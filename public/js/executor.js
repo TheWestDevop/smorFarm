@@ -35894,7 +35894,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
 
                 group.addEventListener('tap', function (evt) {
-                    this.map.setCenter(evt.target.getGeometry());
+                    this.map.setCenter(position);
                     var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
                         // read custom data
                         content: evt.target.getData()
@@ -35939,10 +35939,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form.append('lat', center.lat);
             form.append('lng', center.lng);
             Object(__WEBPACK_IMPORTED_MODULE_0__util_api__["b" /* post */])(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
-        },
-        onResult: function onResult(result) {
-
-            console.log(result);
         },
         getDirection: function getDirection(start, stop) {
             var _this3 = this;
