@@ -14,15 +14,9 @@
                     <div class="col-md-12 ">
                         <div class="card shadow">
                             <div class="container">
-                                <HereMap 
-                                    appId="vFeicXHJJygakyap4B5z"
-                                  
-                                     
-                                    width="100%"
-                                    height="400px"
-                                >
-
-                                </HereMap>
+                                <div id="map">
+                                    
+                                </div>
 
                             </div>
                             
