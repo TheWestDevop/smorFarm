@@ -72,8 +72,8 @@ import {
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
                 let marker = new H.map.Marker(this.center,{icon: icon})
                 this.map.addObject(marker);
-                this.map.setZoom(16)
                 this.map.setCenter(this.center);
+                this.map.setZoom(16)
                 this.updatelocation(this.center);
                 //console.log(this.center);
                 });
