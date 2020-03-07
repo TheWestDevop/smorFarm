@@ -35856,7 +35856,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         navigator.geolocation.getCurrentPosition(function (position) {
             _this.center.lat = position.coords.latitude;
             _this.center.lng = position.coords.longitude;
-            console.log($this.center);
+            console.log(_this.center);
         });
         this.updatelocation(this.center);
 
@@ -35864,7 +35864,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             "apikey": this.appCode
         });
         // Get an instance of the routing service:
-        this.router = this.platform.getRoutingService();
+        //this.router = this.platform.getRoutingService();
         var defaultLayers = this.platform.createDefaultLayers();
         //this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
         this.map = new H.Map(document.getElementById('map'), defaultLayers.raster.normal.transit, {
