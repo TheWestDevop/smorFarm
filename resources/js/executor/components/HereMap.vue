@@ -62,7 +62,7 @@ import {
                     (result) => {
 
                        
-                        var locations = result.response.view[0].result;
+                        let locations = result.response.view[0].result;
                         
                         
                         //this.addLocationsToMap(locations)
