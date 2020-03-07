@@ -35871,7 +35871,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 searchText: this.address,
                 jsonattributes: 1
             };
-
             this.geocoder.geocode(geocodingParameters, this.onSuccess(), this.onError());
         },
         init: function init() {
@@ -35907,6 +35906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onResult: function onResult(result) {
 
             console.log(result);
+
             var route = void 0,
                 routeShape = void 0,
                 startPoint = void 0,
@@ -35972,14 +35972,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                 // Set the map's viewport to make the whole route visible:
                 this.map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
+            } else {
+                this.$toast.error("Navigation Unavaliable ...");
             }
         },
         getDirection: function getDirection(start, stop) {
+            console.log("start :" + start + " stop :" + stop);
             var routingParameters = {
                 // The routing mode:
                 'mode': 'fastest;car;traffic:enabled',
                 // The start point of the route:
-                'waypoint0': start.lat + ',' + start.lng,
+                'waypoint0': '9.060352,7.4711039999999995',
                 // The end point of the route:
                 'waypoint1': stop.lat + ',' + stop.lng,
                 // To retrieve the shape of the route we choose the route
@@ -36027,6 +36030,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.$toast.error("Address Not Found...");
     },
     onSuccess: function onSuccess(result) {
+
         // console.log(result);
         var locations = result.response.view[0].result;
         console.log(locations);
@@ -36058,7 +36062,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         // Add the locations group to the map
         this.map.addObject(group);
         this.map.setCenter(group.getBoundingBox().getCenter());
-
+        console.log(position);
         this.getDirection(this.center, position);
     }
 });

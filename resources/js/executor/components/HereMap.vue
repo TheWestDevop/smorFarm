@@ -57,7 +57,6 @@ import {
                     searchText:this.address,
                     jsonattributes : 1
                     };
-
                 this.geocoder.geocode(
                     geocodingParameters,
                     this.onSuccess(),
@@ -97,80 +96,84 @@ import {
             },
             onResult(result){
 
-                console.log(result)
+                console.log(result);
+
                 let route,routeShape,startPoint,endPoint,linestring;
                 if(result.response.route) {
-                // Pick the first route from the response:
-                route = result.response.route[0];
-                // Pick the route's shape:
-                routeShape = route.shape;
+                    // Pick the first route from the response:
+                    route = result.response.route[0];
+                    // Pick the route's shape:
+                    routeShape = route.shape;
 
-                // Create a linestring to use as a point source for the route line
-                linestring = new H.geo.LineString();
+                    // Create a linestring to use as a point source for the route line
+                    linestring = new H.geo.LineString();
 
-                // Push all the points in the shape into the linestring:
-                routeShape.forEach(function(point) {
-                    let parts = point.split(',');
-                    linestring.pushLatLngAlt(parts[0], parts[1]);
-                });
+                    // Push all the points in the shape into the linestring:
+                    routeShape.forEach(function(point) {
+                        let parts = point.split(',');
+                        linestring.pushLatLngAlt(parts[0], parts[1]);
+                    });
 
-                // Retrieve the mapped positions of the requested waypoints:
-                startPoint = route.waypoint[0].mappedPosition;
-                endPoint = route.waypoint[1].mappedPosition;
+                    // Retrieve the mapped positions of the requested waypoints:
+                    startPoint = route.waypoint[0].mappedPosition;
+                    endPoint = route.waypoint[1].mappedPosition;
 
 
-                // Create a marker for the start point:
-                let startMarker = new H.map.Marker({
-                    lat: startPoint.latitude,
-                    lng: startPoint.longitude
-                });
+                    // Create a marker for the start point:
+                    let startMarker = new H.map.Marker({
+                        lat: startPoint.latitude,
+                        lng: startPoint.longitude
+                    });
 
-                // Create a marker for the end point:
-                let endMarker = new H.map.Marker({
-                    lat: endPoint.latitude,
-                    lng: endPoint.longitude
-                });
+                    // Create a marker for the end point:
+                    let endMarker = new H.map.Marker({
+                        lat: endPoint.latitude,
+                        lng: endPoint.longitude
+                    });
 
-                // Create an outline for the route polyline:
-                let routeOutline = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        strokeColor: 'rgba(0, 128, 255, 0.7)',
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head'
+                    // Create an outline for the route polyline:
+                    let routeOutline = new H.map.Polyline(linestring, {
+                        style: {
+                            lineWidth: 10,
+                            strokeColor: 'rgba(0, 128, 255, 0.7)',
+                            lineTailCap: 'arrow-tail',
+                            lineHeadCap: 'arrow-head'
+                        }
+                    });
+                    // Create a patterned polyline:
+                    let routeArrows = new H.map.Polyline(linestring, {
+                        style: {
+                            lineWidth: 10,
+                            fillColor: 'white',
+                            strokeColor: 'rgba(255, 255, 255, 1)',
+                            lineDash: [0, 2],
+                            lineTailCap: 'arrow-tail',
+                            lineHeadCap: 'arrow-head' }
+                        }
+                    );
+                    // create a group that represents the route line and contains
+                    // outline and the pattern
+                    let routeLine = new H.map.Group();
+                    routeLine.addObjects([routeOutline, routeArrows]);
+    
+                    // Add the route polyline and the two markers to the map:
+                    this.map.addObjects([routeOutline, routeArrows, startMarker, endMarker]);
+
+                    // Set the map's viewport to make the whole route visible:
+                    this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
+                    
+                    }else{
+                        this.$toast.error("Navigation Unavaliable ...");
                     }
-                });
-                // Create a patterned polyline:
-                let routeArrows = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        fillColor: 'white',
-                        strokeColor: 'rgba(255, 255, 255, 1)',
-                        lineDash: [0, 2],
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head' }
-                    }
-                );
-                // create a group that represents the route line and contains
-                // outline and the pattern
-                let routeLine = new H.map.Group();
-                routeLine.addObjects([routeOutline, routeArrows]);
- 
-                // Add the route polyline and the two markers to the map:
-                this.map.addObjects([routeOutline, routeArrows, startMarker, endMarker]);
-
-                // Set the map's viewport to make the whole route visible:
-                this.map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
-                
-                }
 
             },
             getDirection(start,stop){
+                console.log("start :" + start +" stop :" + stop);
              let routingParameters = {
                     // The routing mode:
                     'mode': 'fastest;car;traffic:enabled',
                     // The start point of the route:
-                    'waypoint0': `${start.lat},${start.lng}`,
+                    'waypoint0': `9.060352,7.4711039999999995`,
                     // The end point of the route:
                     'waypoint1': `${stop.lat},${stop.lng}`,
                     // To retrieve the shape of the route we choose the route
@@ -216,6 +219,7 @@ import {
               this.$toast.error("Address Not Found...");
             },
             onSuccess(result){
+
                        // console.log(result);
                         var locations = result.response.view[0].result;
                         console.log(locations);
@@ -247,7 +251,7 @@ import {
                         // Add the locations group to the map
                         this.map.addObject(group);
                         this.map.setCenter(group.getBoundingBox().getCenter());
-                            
+                        console.log(position);
                         this.getDirection(this.center,position);
                         }
             
