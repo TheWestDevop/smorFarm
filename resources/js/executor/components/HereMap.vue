@@ -50,7 +50,6 @@ import {
             this.router = this.platform.getRoutingService();
             this.geocoder = this.platform.getGeocodingService();
             let defaultLayers = this.platform.createDefaultLayers();
-            this.init()
            },
         methods:{
             init(){

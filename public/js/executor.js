@@ -35413,6 +35413,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -35427,7 +35428,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Pagination: __WEBPACK_IMPORTED_MODULE_3__components_pagination___default.a,
         HereMap: __WEBPACK_IMPORTED_MODULE_1__components_HereMap___default.a
     },
-    mounted: function mounted() {},
+    created: function created() {
+        var map = this.$refs.map;
+        map.init();
+    },
 
     computed: {},
     data: function data() {
@@ -35859,7 +35863,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.router = this.platform.getRoutingService();
         this.geocoder = this.platform.getGeocodingService();
         var defaultLayers = this.platform.createDefaultLayers();
-        this.init();
     },
 
     methods: {
@@ -36379,6 +36382,7 @@ var render = function() {
                 { staticClass: "col-md-12 card shadow" },
                 [
                   _c("HereMap", {
+                    ref: "map",
                     attrs: {
                       appId: "vFeicXHJJygakyap4B5z",
                       appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
