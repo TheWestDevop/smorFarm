@@ -35851,17 +35851,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         height: String
     },
     created: function created() {
-        this.updatelocation();
-        console.log(this.center.lat + " " + this.center.lng);
+        var _this = this;
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var $this = _this;
+            $this.center.lat = position.coords.latitude;
+            $this.center.lng = position.coords.longitude;
+            console.log($this.center);
+        });
+        this.updatelocation(this.center);
+        console.log(this.center);
         this.platform = new H.service.Platform({
             "apikey": this.appCode
         });
         // Get an instance of the routing service:
         this.router = this.platform.getRoutingService();
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
-        this.map.setCenter({ lat: 9.09741, lng: 7.4932838 });
+        this.map.setCenter(this.center);
         this.map.setZoom(10);
-        this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
+        //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
         console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng);
         this.dropMaker(9.09741, 7.4932838);
@@ -35872,19 +35880,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var marker = new H.map.Maker({ lat: lat, lng: lng });
             this.map.addObject(marker);
         },
-        updatelocation: function updatelocation() {
-            var _this = this;
-
+        updatelocation: function updatelocation(center) {
             var id = localStorage.getItem('executor_user_id');
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var $this = _this;
-                $this.center.lat = position.coords.latitude;
-                $this.center.lng = position.coords.longitude;
-                console.log($this.center);
-            });
             var form = new FormData();
-            form.append('lat', this.center.lat);
-            form.append('lng', this.center.lng);
+            form.append('lat', center.lat);
+            form.append('lng', center.lng);
             Object(__WEBPACK_IMPORTED_MODULE_0__util_api__["b" /* post */])(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
         },
         onResult: function onResult(result) {
