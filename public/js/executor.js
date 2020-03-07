@@ -35876,9 +35876,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
 
             this.geocoder.geocode(geocodingParameters, function (result) {
+                console.log(result);
                 var locations = result.response.view[0].result;
                 console.log(locations);
-                //this.getDirection(locations);
+
                 //this.addLocationsToMap(locations)
                 var group = new H.map.Group();
                 var position = void 0;
@@ -35895,9 +35896,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     group.addObject(marker);
                 }
 
+                _this.getDirection(_this.center, position);
+
                 group.addEventListener('tap', function (evt) {
                     this.map.setCenter(evt.target.getGeometry());
-                    openBubble(evt.target.getGeometry(), evt.target.label);
+                    var bubble = new H.ui.InfoBubble(evt.target.getGeometry(), {
+                        // read custom data
+                        content: evt.target.getData()
+                    });
                 }, false);
 
                 // Add the locations group to the map
@@ -35926,7 +35932,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.map.setZoom(18);
                 _this2.interleave();
                 _this2.updatelocation(_this2.center);
-                //console.log(this.center);
+                _this2.destination();
+                console.log(_this2.center);
             });
         },
         updatelocation: function updatelocation(center) {
@@ -36017,7 +36024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // representation mode 'display'
                 'representation': 'display'
             };
-            router.calculateRoute(routingParameters, onResult, onError);
+            router.calculateRoute(routingParameters, this.onResult(), this.onError());
         },
         interleave: function interleave() {
             var _this3 = this;

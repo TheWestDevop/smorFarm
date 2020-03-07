@@ -61,9 +61,10 @@ import {
                 this.geocoder.geocode(
                     geocodingParameters,
                     (result) => {
+                        console.log(result);
                         var locations = result.response.view[0].result;
                         console.log(locations);
-                        //this.getDirection(locations);
+                        
                         //this.addLocationsToMap(locations)
                         let group = new  H.map.Group()
                         let position
@@ -80,10 +81,14 @@ import {
                             group.addObject(marker);
                         }
 
+                        this.getDirection(this.center,position);
+
                         group.addEventListener('tap', function (evt) {
                             this.map.setCenter(evt.target.getGeometry());
-                            openBubble(
-                            evt.target.getGeometry(), evt.target.label);
+                            var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
+                            // read custom data
+                            content: evt.target.getData()
+                            });
                         }, false);
 
                         // Add the locations group to the map
@@ -113,7 +118,8 @@ import {
                 this.map.setZoom(18)
                 this.interleave()
                 this.updatelocation(this.center);
-                //console.log(this.center);
+                this.destination()
+                console.log(this.center);
                 });
          
          
@@ -209,7 +215,7 @@ import {
                     // representation mode 'display'
                     'representation': 'display'
                     }
-             router.calculateRoute(routingParameters, onResult,onError);
+             router.calculateRoute(routingParameters, this.onResult(),this.onError());
             },
             interleave(){
                 let provider = this.map.getBaseLayer().getProvider();
