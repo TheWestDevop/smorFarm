@@ -93,7 +93,9 @@ import {
                         this.map.addObject(group);
                         this.map.setCenter(group.getBoundingBox().getCenter());
                         //console.log(position);
-                        this.getDirection({lat:this.center.lat,lng:this.center.lng},{lat:position.lat,lng:position.lng});
+                       let start = `${this.center.lat},${this.center.lng}`
+                       let stop  = `${this.position.lat},${this.position.lng}`
+                        this.getDirection(start,stop);
                         },
                         (error)=>{
                         this.$toast.error("Address Not Found...");
@@ -147,7 +149,7 @@ import {
              this.router.calculateRoute(
                  routingParameters, 
                  data =>{
-                           console.log(data)
+                           //console.log(data)
                             let route,routeShape,startPoint,endPoint,linestring;
                             if(data.response.route.length > 0) {
                                 // Pick the first route from the response:

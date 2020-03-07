@@ -35905,7 +35905,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.map.addObject(group);
                 _this.map.setCenter(group.getBoundingBox().getCenter());
                 //console.log(position);
-                _this.getDirection({ lat: _this.center.lat, lng: _this.center.lng }, { lat: position.lat, lng: position.lng });
+                var start = _this.center.lat + ',' + _this.center.lng;
+                var stop = _this.position.lat + ',' + _this.position.lng;
+                _this.getDirection(start, stop);
             }, function (error) {
                 _this.$toast.error("Address Not Found...");
             });
@@ -35956,7 +35958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'representation': 'display'
             };
             this.router.calculateRoute(routingParameters, function (data) {
-                console.log(data);
+                //console.log(data)
                 var route = void 0,
                     routeShape = void 0,
                     startPoint = void 0,
