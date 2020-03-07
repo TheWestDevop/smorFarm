@@ -19,7 +19,7 @@
             lat: String,
             lng: String,
             width: String,
-            height: String
+            height: String,
         },
         created() {
             this.platform = new H.service.Platform({
@@ -36,6 +36,14 @@
             center: { lng: this.lng, lat: this.lat }
         }
         );
+        console.log('position : lat' + this.lat + ' lng ' + this.lng )
+        dropMaker(this.lat,this.lng)
+        },
+        methods:{
+            dropMaker(lat,lng){
+                let marker = new H.map.Maker({lat:lat,lng:lng})
+                this.map.addObject(marker);
+            }
         }
     }
 </script>
