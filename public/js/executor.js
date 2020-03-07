@@ -175,42 +175,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ 10:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = post;
-/* harmony export (immutable) */ __webpack_exports__["a"] = get;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-
-
-function post(url, data) {
-
-    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'POST',
-        url: url,
-        data: data,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || '',
-            'X-CSRF-TOKEN': myToken
-        }
-    });
-}
-function get(url, data) {
-
-    return __WEBPACK_IMPORTED_MODULE_0_axios___default()({
-        method: 'GET',
-        url: url,
-        data: data,
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token') || ''
-        }
-    });
-}
-
-/***/ }),
-
 /***/ 11:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35808,259 +35772,9 @@ module.exports = Component.exports
 /***/ }),
 
 /***/ 591:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_api__ = __webpack_require__(10);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "HereMap",
-    data: function data() {
-        return {
-            map: {},
-            platform: {},
-            router: {},
-            geocoder: {},
-            center: {
-                lat: 0,
-                lng: 0
-            },
-            address: ''
-        };
-    },
-
-    props: {
-        appId: String,
-        appCode: String,
-        width: String,
-        height: String
-    },
-    created: function created() {
-        this.platform = new H.service.Platform({ "apikey": this.appCode });
-        this.router = this.platform.getRoutingService();
-        this.geocoder = this.platform.getGeocodingService();
-        var defaultLayers = this.platform.createDefaultLayers();
-    },
-
-    methods: {
-        init: function init() {
-            var _this = this;
-
-            navigator.geolocation.getCurrentPosition(function (position) {
-                _this.center.lat = position.coords.latitude;
-                _this.center.lng = position.coords.longitude;
-                _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
-                _this.map.getViewModel().setLookAtData({ tilt: 45 });
-                // Add behavior to the map: panning, zooming, dragging.
-                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
-                // Create the default UI components
-                var ui = H.ui.UI.createDefault(map, defaultLayers);
-                //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
-                // Create an icon, an object holding the latitude and longitude, and a marker:
-                var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
-                var marker = new H.map.Marker(_this.center, { icon: icon });
-                _this.map.addObject(marker);
-                _this.map.setCenter(_this.center);
-                _this.map.setZoom(18);
-                _this.interleave();
-                _this.updatelocation(_this.center);
-                //console.log(this.center);
-            });
-        },
-        updatelocation: function updatelocation(center) {
-            var id = localStorage.getItem('executor_user_id');
-            var form = new FormData();
-            form.append('lat', center.lat);
-            form.append('lng', center.lng);
-            Object(__WEBPACK_IMPORTED_MODULE_0__util_api__["b" /* post */])(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
-        },
-        onResult: function onResult(result) {
-
-            var route = void 0,
-                routeShape = void 0,
-                startPoint = void 0,
-                endPoint = void 0,
-                linestring = void 0;
-            if (result.response.route) {
-                // Pick the first route from the response:
-                route = result.response.route[0];
-                // Pick the route's shape:
-                routeShape = route.shape;
-
-                // Create a linestring to use as a point source for the route line
-                linestring = new H.geo.LineString();
-
-                // Push all the points in the shape into the linestring:
-                routeShape.forEach(function (point) {
-                    var parts = point.split(',');
-                    linestring.pushLatLngAlt(parts[0], parts[1]);
-                });
-
-                // Retrieve the mapped positions of the requested waypoints:
-                startPoint = route.waypoint[0].mappedPosition;
-                endPoint = route.waypoint[1].mappedPosition;
-
-                // Create a marker for the start point:
-                var startMarker = new H.map.Marker({
-                    lat: startPoint.latitude,
-                    lng: startPoint.longitude
-                });
-
-                // Create a marker for the end point:
-                var endMarker = new H.map.Marker({
-                    lat: endPoint.latitude,
-                    lng: endPoint.longitude
-                });
-
-                // Create an outline for the route polyline:
-                var routeOutline = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        strokeColor: 'rgba(0, 128, 255, 0.7)',
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head'
-                    }
-                });
-                // Create a patterned polyline:
-                var routeArrows = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        fillColor: 'white',
-                        strokeColor: 'rgba(255, 255, 255, 1)',
-                        lineDash: [0, 2],
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head' }
-                });
-                // create a group that represents the route line and contains
-                // outline and the pattern
-                var routeLine = new H.map.Group();
-                routeLine.addObjects([routeOutline, routeArrows]);
-
-                // Add the route polyline and the two markers to the map:
-                this.map.addObjects([routeOutline, routeArrows, startMarker, endMarker]);
-
-                // Set the map's viewport to make the whole route visible:
-                this.map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
-            }
-        },
-        getDirection: function getDirection(start, stop) {
-            var routingParameters = {
-                // The routing mode:
-                'mode': 'fastest;car;traffic:enabled',
-                // The start point of the route:
-                'waypoint0': start.lat + ',' + start.lng,
-                // The end point of the route:
-                'waypoint1': stop.lat + ',' + stop.lng,
-                // To retrieve the shape of the route we choose the route
-                // representation mode 'display'
-                'representation': 'display'
-            };
-            router.calculateRoute(routingParameters, onResult, onError);
-        },
-        interleave: function interleave() {
-            var _this2 = this;
-
-            var provider = this.map.getBaseLayer().getProvider();
-
-            // get the style object for the base layer
-            var style = provider.getStyle();
-
-            var changeListener = function changeListener() {
-                if (style.getState() === H.map.Style.State.READY) {
-                    style.removeEventListener('change', changeListener);
-
-                    // create a provider and a layer that are placed under the buildings layer
-                    var objectProvider = new H.map.provider.LocalObjectProvider();
-                    var objectLayer = new H.map.layer.ObjectLayer(objectProvider);
-                    // add a circle to this provider the circle will appear under the buildings
-                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this2.map.getCenter(), 500));
-                    // add the layer to the map
-                    _this2.map.addLayer(objectLayer);
-
-                    // extract buildings from the base layer config 
-                    // in order to inspect the config calling style.getConfig()
-                    buildings = new H.map.Style(style.extractConfig('buildings'));
-                    // create the new layer for the buildings
-                    buildingsLayer = _this2.platform.getOMVService().createLayer(buildings);
-                    // add the layer to the map
-                    _this2.map.addLayer(buildingsLayer);
-
-                    // the default object layer and its objects will remain on top of the buildings layer
-                    _this2.map.addObject(new H.map.Marker(_this2.map.getCenter()));
-                }
-                style.addEventListener('change', changeListener);
-            };
-        }
-    },
-    onSuccess: function onSuccess(result) {
-        var locations = result.response.view[0].result;
-        console.log(locations);
-        //this.getDirection(locations);
-        addLocationsToMap(locations);
-        // ... etc.
-    },
-    onError: function onError(error) {
-        alert('Can\'t reach the remote server');
-    },
-
-    destination: function destination() {
-        geocodingParameters = {
-            searchText: this.address,
-            jsonattributes: 1
-        };
-
-        this.geocoder.geocode(geocodingParameters, onSuccess, onError);
-        console.log(onSuccess);
-    },
-    addLocationsToMap: function addLocationsToMap(locations) {
-        var group = new H.map.Group(),
-            position = void 0,
-            i = void 0;
-
-        // Add a marker for each location found
-        for (i = 0; i < locations.length; i += 1) {
-            position = {
-                lat: locations[i].location.displayPosition.latitude,
-                lng: locations[i].location.displayPosition.longitude
-            };
-            marker = new H.map.Marker(position);
-            marker.label = locations[i].location.address.label;
-            group.addObject(marker);
-        }
-
-        group.addEventListener('tap', function (evt) {
-            this.map.setCenter(evt.target.getGeometry());
-            openBubble(evt.target.getGeometry(), evt.target.label);
-        }, false);
-
-        // Add the locations group to the map
-        this.map.addObject(group);
-        this.map.setCenter(group.getBoundingBox().getCenter());
-    }
-});
+throw new Error("Module build failed: SyntaxError: C:/Users/nasir/Desktop/workspace/smor-demo/smorfarm/resources/js/executor/components/HereMap.vue: Unexpected token (230:15)\n\n\u001b[0m \u001b[90m 228 | \u001b[39m                \u001b[36mreturn\u001b[39m\u001b[33m;\u001b[39m\n \u001b[90m 229 | \u001b[39m            }\u001b[33m,\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 230 | \u001b[39m            hi \u001b[33m=\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m     | \u001b[39m               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 231 | \u001b[39m                geocodingParameters \u001b[33m=\u001b[39m {\n \u001b[90m 232 | \u001b[39m                    searchText\u001b[33m:\u001b[39m\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39maddress\u001b[33m,\u001b[39m\n \u001b[90m 233 | \u001b[39m                    jsonattributes \u001b[33m:\u001b[39m \u001b[35m1\u001b[39m\u001b[0m\n");
 
 /***/ }),
 
@@ -36118,6 +35832,48 @@ var render = function() {
                     click: function($event) {
                       $event.preventDefault()
                       return _vm.destination()
+                    }
+                  }
+                },
+                [_vm._v("Get Direction")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.hi($event)
+                    }
+                  }
+                },
+                [_vm._v("Get Direction")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.hello($event)
+                    }
+                  }
+                },
+                [_vm._v("Get Direction")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.ok($event)
                     }
                   }
                 },
