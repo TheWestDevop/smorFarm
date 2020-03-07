@@ -35906,7 +35906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.map.setCenter(group.getBoundingBox().getCenter());
                 //console.log(position);
                 var start = _this.center.lat + ',' + _this.center.lng;
-                var stop = _this.position.lat + ',' + _this.position.lng;
+                var stop = locations[0].location.displayPosition.latitude + ',' + locations[0].location.displayPosition.latitude;
                 _this.getDirection(start, stop);
             }, function (error) {
                 _this.$toast.error("Address Not Found...");

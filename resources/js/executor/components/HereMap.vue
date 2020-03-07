@@ -94,7 +94,7 @@ import {
                         this.map.setCenter(group.getBoundingBox().getCenter());
                         //console.log(position);
                        let start = `${this.center.lat},${this.center.lng}`
-                       let stop  = `${this.position.lat},${this.position.lng}`
+                       let stop  = `${locations[0].location.displayPosition.latitude},${locations[0].location.displayPosition.latitude}`
                         this.getDirection(start,stop);
                         },
                         (error)=>{
