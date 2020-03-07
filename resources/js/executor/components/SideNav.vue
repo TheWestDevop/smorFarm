@@ -117,6 +117,11 @@ import {
 export default {
   name:'side_nav',
   props: ["executor"],
+  data(){
+    return{
+      name:''
+    }
+  },
   methods:{
 
   }
