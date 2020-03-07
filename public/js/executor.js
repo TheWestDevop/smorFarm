@@ -35879,7 +35879,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var locations = result.response.view[0].result;
                 console.log(locations);
                 //this.getDirection(locations);
-                _this.addLocationsToMap(locations);
+                //this.addLocationsToMap(locations)
+                var group = new H.map.Group(),
+                    position = void 0,
+                    i = void 0;
+
+                // Add a marker for each location found
+                for (i = 0; i < locations.length; i += 1) {
+                    position = {
+                        lat: locations[i].location.displayPosition.latitude,
+                        lng: locations[i].location.displayPosition.longitude
+                    };
+                    marker = new H.map.Marker(position);
+                    marker.label = locations[i].location.address.label;
+                    group.addObject(marker);
+                }
+
+                group.addEventListener('tap', function (evt) {
+                    this.map.setCenter(evt.target.getGeometry());
+                    openBubble(evt.target.getGeometry(), evt.target.label);
+                }, false);
+
+                // Add the locations group to the map
+                _this.map.addObject(group);
+                _this.map.setCenter(group.getBoundingBox().getCenter());
             }, function (error) {
                 alert('Can\'t reach the remote server');
             });
@@ -36031,31 +36054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
         }
     },
-    addLocationsToMap: function addLocationsToMap(locations) {
-        var group = new H.map.Group(),
-            position = void 0,
-            i = void 0;
-
-        // Add a marker for each location found
-        for (i = 0; i < locations.length; i += 1) {
-            position = {
-                lat: locations[i].location.displayPosition.latitude,
-                lng: locations[i].location.displayPosition.longitude
-            };
-            marker = new H.map.Marker(position);
-            marker.label = locations[i].location.address.label;
-            group.addObject(marker);
-        }
-
-        group.addEventListener('tap', function (evt) {
-            this.map.setCenter(evt.target.getGeometry());
-            openBubble(evt.target.getGeometry(), evt.target.label);
-        }, false);
-
-        // Add the locations group to the map
-        this.map.addObject(group);
-        this.map.setCenter(group.getBoundingBox().getCenter());
-    }
+    addLocationsToMap: function addLocationsToMap(locations) {}
 });
 
 /***/ }),
