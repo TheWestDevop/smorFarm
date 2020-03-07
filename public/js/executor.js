@@ -36387,7 +36387,7 @@ var render = function() {
                       attrs: {
                         appId: "vFeicXHJJygakyap4B5z",
                         appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
-                        width: "100%",
+                        width: "100vw",
                         height: "430px"
                       }
                     }),
