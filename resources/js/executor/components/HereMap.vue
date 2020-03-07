@@ -28,7 +28,7 @@
          });
          },
         mounted() { 
-            var defaultLayers = platform.createDefaultLayers();
+            var defaultLayers = this.platform.createDefaultLayers();
             this.map = new H.Map(this.$refs.map,defaultLayers.vector.normal.map);
             this.map.setCenter({lat:this.lat, lng:this.lng});
             this.map.setZoom(17);

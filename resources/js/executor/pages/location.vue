@@ -17,8 +17,7 @@
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                   
-                                    lat= "9.09741"
-                                    lng= "7.4932838" 
+                                     
                                     width="100%"
                                     height="400px"
                                 >
