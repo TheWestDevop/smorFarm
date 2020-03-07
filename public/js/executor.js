@@ -36353,7 +36353,28 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _vm._m(1)
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "input-group input-group-alternative ml-2"
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-primary btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.getAddress($event)
+                                  }
+                                }
+                              },
+                              [_vm._v("Get Direction")]
+                            )
+                          ]
+                        )
                       ])
                     ]
                   ),
@@ -36390,20 +36411,6 @@ var staticRenderFns = [
         _c("i", { staticClass: "fas fa-search text-black-50" })
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "input-group input-group-alternative ml-2" },
-      [
-        _c("button", { staticClass: "btn btn-primary btn-sm" }, [
-          _vm._v("Get Direction")
-        ])
-      ]
-    )
   }
 ]
 render._withStripped = true

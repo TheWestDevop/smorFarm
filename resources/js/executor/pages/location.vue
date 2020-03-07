@@ -21,7 +21,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button class="btn btn-primary btn-sm" >Get Direction</button>
+                                                    <button class="btn btn-primary btn-sm" @click.prevent="getAddress" >Get Direction</button>
                                                 </div>
                                             </div>
         </div>
