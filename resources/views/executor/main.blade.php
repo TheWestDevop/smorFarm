@@ -24,6 +24,8 @@
   <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
 
    <script>
+     
+  window.myToken = @json(csrf_token())
  if (@json($executor->id)) {
   localStorage.setItem('executor_api_token', @json($executor->api_token));
   localStorage.setItem('executor_user_id', @json($executor->id));
