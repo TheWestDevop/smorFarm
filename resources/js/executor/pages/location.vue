@@ -17,8 +17,8 @@
                                 <HereMap 
                                     appId="vFeicXHJJygakyap4B5z"
                                   
-                                    lat= this.lat
-                                    lng= this.lng 
+                                    lat= "9.09741"
+                                    lng= "7.4932838" 
                                     width="100%"
                                     height="400px"
                                 >
@@ -52,8 +52,8 @@ export default {
         HereMap
     },
     mounted() {
-         this.lat = 9.09741
-         this.lng = 7.4932838
+         this.lat = 
+         this.lng = 
     },
     computed: {
        
