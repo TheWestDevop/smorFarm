@@ -35873,6 +35873,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.center.lng = position.coords.longitude;
             _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
             _this.map.getViewModel().setLookAtData({ tilt: 45 });
+            // Add map events functionality to the map
+            var mapEvents = new H.mapevents.MapEvents(_this.map);
+
+            // Add behavior to the map: panning, zooming, dragging.
+            var behavior = new H.mapevents.Behavior(mapEvents);
             //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
             // Create an icon, an object holding the latitude and longitude, and a marker:
             var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
