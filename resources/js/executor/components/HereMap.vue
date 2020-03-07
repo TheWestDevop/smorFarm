@@ -227,7 +227,7 @@ import {
                 );
                 return;
             },
-            hi = () => {
+            hi : () => {
                 geocodingParameters = {
                     searchText:this.address,
                     jsonattributes : 1
