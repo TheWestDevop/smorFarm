@@ -52,7 +52,7 @@ import {
             this.map.setZoom(10);
             this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
-            console.log('position : lat' + this.lat + ' lng ' + this.lng )
+            console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
             this.dropMaker(9.09741,7.4932838)
          },
         methods:{
