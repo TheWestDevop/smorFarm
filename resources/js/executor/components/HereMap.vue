@@ -73,7 +73,7 @@ import {
                 let marker = new H.map.Marker(this.center,{icon: icon})
                 this.map.addObject(marker);
                 this.map.setCenter(this.center);
-                this.map.setZoom(16)
+                this.map.setZoom(18)
                 this.updatelocation(this.center);
                 //console.log(this.center);
                 });
