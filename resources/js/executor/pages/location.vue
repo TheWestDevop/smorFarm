@@ -54,6 +54,7 @@ export default {
     mounted() {
          this.lat = this.executor.center.lat.toString()
          this.lng = this.executor.center.lng.toString()
+          console.log(this.lat +" " + this.lng);
     },
     computed: {
        

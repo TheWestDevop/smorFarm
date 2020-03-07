@@ -35447,6 +35447,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.lat = this.executor.center.lat.toString();
         this.lng = this.executor.center.lng.toString();
+        console.log(this.lat + " " + this.lng);
     },
 
     computed: {},
