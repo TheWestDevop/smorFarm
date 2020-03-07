@@ -35874,6 +35874,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         height: String
     },
     created: function created() {
+
+        console.log(this.lat + " " + this.lng);
+
         this.platform = new H.service.Platform({
             "apikey": this.appCode
         });
@@ -35882,6 +35885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().vector.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
         this.map.setZoom(10);
+        this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
         this.dropMaker(this.lat, this.lng);
