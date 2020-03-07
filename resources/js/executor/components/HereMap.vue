@@ -62,18 +62,19 @@ import {
              
             this.router = this.platform.getRoutingService();
 
-            var defaultLayers = this.platform.createDefaultLayers();
+            let defaultLayers = this.platform.createDefaultLayers();
             navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
                 this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
-                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+                let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
                 let marker = new H.map.Marker(this.center,{icon: icon})
                 this.map.addObject(marker);
                 this.map.setCenter(this.center);
                 this.map.setZoom(18)
+                this.interleave()
                 this.updatelocation(this.center);
                 //console.log(this.center);
                 });
@@ -115,7 +116,7 @@ import {
 
                 // Push all the points in the shape into the linestring:
                 routeShape.forEach(function(point) {
-                    var parts = point.split(',');
+                    let parts = point.split(',');
                     linestring.pushLatLngAlt(parts[0], parts[1]);
                 });
 
@@ -125,13 +126,13 @@ import {
 
 
                 // Create a marker for the start point:
-                var startMarker = new H.map.Marker({
+                let startMarker = new H.map.Marker({
                     lat: startPoint.latitude,
                     lng: startPoint.longitude
                 });
 
                 // Create a marker for the end point:
-                var endMarker = new H.map.Marker({
+                let endMarker = new H.map.Marker({
                     lat: endPoint.latitude,
                     lng: endPoint.longitude
                 });
@@ -175,7 +176,39 @@ import {
                 function(error) {
                     alert(error.message);
                 });
+            },
+            interleave(){
+                let provider = this.map.getBaseLayer().getProvider();
+
+                // get the style object for the base layer
+                let style = provider.getStyle();
+
+                let changeListener = () => {
+                    if (style.getState() === H.map.Style.State.READY) {
+                    style.removeEventListener('change', changeListener);
+
+                    // create a provider and a layer that are placed under the buildings layer
+                    let objectProvider = new H.map.provider.LocalObjectProvider();
+                    let objectLayer = new H.map.layer.ObjectLayer(objectProvider);
+                    // add a circle to this provider the circle will appear under the buildings
+                    objectProvider.getRootGroup().addObject(new H.map.Circle(this.map.getCenter(), 500));
+                    // add the layer to the map
+                    this.map.addLayer(objectLayer);
+
+                    // extract buildings from the base layer config 
+                    // in order to inspect the config calling style.getConfig()
+                    buildings = new H.map.Style(style.extractConfig('buildings'));
+                    // create the new layer for the buildings
+                    buildingsLayer = this.platform.getOMVService().createLayer(buildings);
+                    // add the layer to the map
+                    this.map.addLayer(buildingsLayer);
+
+                    // the default object layer and its objects will remain on top of the buildings layer
+                    this.map.addObject(new H.map.Marker(this.map.getCenter()));
+                    }
+                    style.addEventListener('change', changeListener);
+                  }
+                }
             }
-        }
-    }
+       }
 </script>

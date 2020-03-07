@@ -35888,6 +35888,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.map.addObject(marker);
             _this.map.setCenter(_this.center);
             _this.map.setZoom(18);
+            _this.interleave();
             _this.updatelocation(_this.center);
             //console.log(this.center);
         });
@@ -35982,6 +35983,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             router.calculateRoute(this.routingParameters, this.onResult, function (error) {
                 alert(error.message);
             });
+        },
+        interleave: function interleave() {
+            var _this2 = this;
+
+            var provider = this.map.getBaseLayer().getProvider();
+
+            // get the style object for the base layer
+            var style = provider.getStyle();
+
+            var changeListener = function changeListener() {
+                if (style.getState() === H.map.Style.State.READY) {
+                    style.removeEventListener('change', changeListener);
+
+                    // create a provider and a layer that are placed under the buildings layer
+                    var objectProvider = new H.map.provider.LocalObjectProvider();
+                    var objectLayer = new H.map.layer.ObjectLayer(objectProvider);
+                    // add a circle to this provider the circle will appear under the buildings
+                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this2.map.getCenter(), 500));
+                    // add the layer to the map
+                    _this2.map.addLayer(objectLayer);
+
+                    // extract buildings from the base layer config 
+                    // in order to inspect the config calling style.getConfig()
+                    buildings = new H.map.Style(style.extractConfig('buildings'));
+                    // create the new layer for the buildings
+                    buildingsLayer = _this2.platform.getOMVService().createLayer(buildings);
+                    // add the layer to the map
+                    _this2.map.addLayer(buildingsLayer);
+
+                    // the default object layer and its objects will remain on top of the buildings layer
+                    _this2.map.addObject(new H.map.Marker(_this2.map.getCenter()));
+                }
+                style.addEventListener('change', changeListener);
+            };
         }
     }
 });
