@@ -44,10 +44,10 @@ import {
                 let $this = this
                 $this.center.lat = position.coords.latitude
                 $this.center.lng = position.coords.longitude
-                console.log($this.center);
+                //console.log($this.center);
                 });
             this.updatelocation(this.center);
-            console.log(this.center);
+
             this.platform = new H.service.Platform({
            "apikey":this.appCode
             });
@@ -57,17 +57,15 @@ import {
             this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
             this.map.setCenter(this.center);
             this.map.setZoom(10);
-            
+            let marker = new H.map.Maker({lat:lat,lng:lng})
+            this.map.addObject(marker);
             //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
             
             console.log('position : lat' + this.center.lat + ' lng ' + this.center.lng )
-            this.dropMaker(9.09741,7.4932838)
+            
          },
         methods:{
-            dropMaker(lat,lng){
-                let marker = new H.map.Maker({lat:lat,lng:lng})
-                this.map.addObject(marker);
-            },
+            
             updatelocation(center){
                 let id = localStorage.getItem('executor_user_id');
                 let form = new FormData();
