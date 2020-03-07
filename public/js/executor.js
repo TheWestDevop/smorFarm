@@ -35882,7 +35882,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.map = new H.Map(this.$refs.map, this.platform.createDefaultLayers().transit.normal.map);
         this.map.setCenter({ lat: this.lat, lng: this.lng });
         this.map.setZoom(10);
-        var ui = H.ui.UI.createDefault(map, this.platform.createDefaultLayers());
 
         console.log('position : lat' + this.lat + ' lng ' + this.lng);
         this.dropMaker(this.lat, this.lng);
