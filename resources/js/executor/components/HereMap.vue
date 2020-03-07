@@ -60,8 +60,16 @@ import {
 
                 this.geocoder.geocode(
                     geocodingParameters,
-                    this.onSuccess,
-                    this.onError
+                    (result) => {
+                        var locations = result.response.view[0].result;
+                        console.log(locations);
+                        //this.getDirection(locations);
+                        this.addLocationsToMap(locations)
+                    
+                        },
+                    (error) => {
+                        alert('Can\'t reach the remote server');
+                        }
                 );
             },
             init(){
@@ -212,17 +220,6 @@ import {
                   }
                 }
             },
-            onSuccess(result) {
-                var locations = result.response.view[0].result;
-                console.log(locations);
-                //this.getDirection(locations);
-                this.addLocationsToMap(locations)
-                // ... etc.
-            },
-            onError(error) {
-             alert('Can\'t reach the remote server');
-            },
-            
             addLocationsToMap(locations){
                 let group = new  H.map.Group(),
                     position,

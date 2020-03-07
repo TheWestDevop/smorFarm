@@ -35868,32 +35868,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         destination: function destination() {
+            var _this = this;
+
             var geocodingParameters = {
                 searchText: this.address,
                 jsonattributes: 1
             };
 
-            this.geocoder.geocode(geocodingParameters, this.onSuccess, this.onError);
+            this.geocoder.geocode(geocodingParameters, function (result) {
+                var locations = result.response.view[0].result;
+                console.log(locations);
+                //this.getDirection(locations);
+                _this.addLocationsToMap(locations);
+            }, function (error) {
+                alert('Can\'t reach the remote server');
+            });
         },
         init: function init() {
-            var _this = this;
+            var _this2 = this;
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                _this.center.lat = position.coords.latitude;
-                _this.center.lng = position.coords.longitude;
-                _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().vector.normal.map);
-                _this.map.getViewModel().setLookAtData({ tilt: 45 });
+                _this2.center.lat = position.coords.latitude;
+                _this2.center.lng = position.coords.longitude;
+                _this2.map = new H.Map(_this2.$refs.map, _this2.platform.createDefaultLayers().vector.normal.map);
+                _this2.map.getViewModel().setLookAtData({ tilt: 45 });
                 // Add behavior to the map: panning, zooming, dragging.
-                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this.map));
+                var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(_this2.map));
 
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 var icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png');
-                var marker = new H.map.Marker(_this.center, { icon: icon });
-                _this.map.addObject(marker);
-                _this.map.setCenter(_this.center);
-                _this.map.setZoom(18);
-                _this.interleave();
-                _this.updatelocation(_this.center);
+                var marker = new H.map.Marker(_this2.center, { icon: icon });
+                _this2.map.addObject(marker);
+                _this2.map.setCenter(_this2.center);
+                _this2.map.setZoom(18);
+                _this2.interleave();
+                _this2.updatelocation(_this2.center);
                 //console.log(this.center);
             });
         },
@@ -35988,7 +35997,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             router.calculateRoute(routingParameters, onResult, onError);
         },
         interleave: function interleave() {
-            var _this2 = this;
+            var _this3 = this;
 
             var provider = this.map.getBaseLayer().getProvider();
 
@@ -36003,34 +36012,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var objectProvider = new H.map.provider.LocalObjectProvider();
                     var objectLayer = new H.map.layer.ObjectLayer(objectProvider);
                     // add a circle to this provider the circle will appear under the buildings
-                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this2.map.getCenter(), 500));
+                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this3.map.getCenter(), 500));
                     // add the layer to the map
-                    _this2.map.addLayer(objectLayer);
+                    _this3.map.addLayer(objectLayer);
 
                     // extract buildings from the base layer config 
                     // in order to inspect the config calling style.getConfig()
                     buildings = new H.map.Style(style.extractConfig('buildings'));
                     // create the new layer for the buildings
-                    buildingsLayer = _this2.platform.getOMVService().createLayer(buildings);
+                    buildingsLayer = _this3.platform.getOMVService().createLayer(buildings);
                     // add the layer to the map
-                    _this2.map.addLayer(buildingsLayer);
+                    _this3.map.addLayer(buildingsLayer);
 
                     // the default object layer and its objects will remain on top of the buildings layer
-                    _this2.map.addObject(new H.map.Marker(_this2.map.getCenter()));
+                    _this3.map.addObject(new H.map.Marker(_this3.map.getCenter()));
                 }
                 style.addEventListener('change', changeListener);
             };
         }
-    },
-    onSuccess: function onSuccess(result) {
-        var locations = result.response.view[0].result;
-        console.log(locations);
-        //this.getDirection(locations);
-        this.addLocationsToMap(locations);
-        // ... etc.
-    },
-    onError: function onError(error) {
-        alert('Can\'t reach the remote server');
     },
     addLocationsToMap: function addLocationsToMap(locations) {
         var group = new H.map.Group(),
