@@ -40,7 +40,7 @@ import Flash from "../../util/flash"
 import Pagination from "../components/pagination";
 import {
     get
-} from '../../util/api'
+} from '../util/api'
 export default {
     name: 'location',
     props: ['executor'],

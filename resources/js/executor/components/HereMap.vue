@@ -5,6 +5,10 @@
 </template>
 
 <script>
+import {
+    get
+} from '../../util/api';
+
     export default {
         name: "HereMap",
          data() {
