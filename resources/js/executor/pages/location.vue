@@ -12,7 +12,20 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-12 card shadow">
-                        
+                        <div  class="navbar-search navbar-search-dark form-inline mr-3 mt-1 d-md-flex ml-lg-auto">
+                                            <div class="form-group mb-0">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search text-black-50"></i></span>
+                                                    </div>
+                                                    <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
+                                                </div>
+                                                <div class="input-group input-group-alternative ml-2">
+                                                    <button class="btn btn-primary btn-sm" >Get Direction</button>
+                                                </div>
+                                            </div>
+        </div>
+        <br>
                            
                                 <HereMap 
                                     ref="map"
@@ -58,12 +71,15 @@ export default {
     },
     data() {
         return {
-            flash: Flash.state
+            flash: Flash.state,
+            address:''
         }
 
     },
     methods: {
-       
+       getAddress(){
+           this.$refs.map.getAddress(this.address);
+       }
     }
 
 }
