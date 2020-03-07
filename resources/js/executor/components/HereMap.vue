@@ -65,31 +65,31 @@ import {
                         console.log(locations);
                         //this.getDirection(locations);
                         //this.addLocationsToMap(locations)
-                        let group = new  H.map.Group(),
-                    position,
-                    i;
+                        let group = new  H.map.Group()
+                        let position
+                        let i
 
-                // Add a marker for each location found
-                for (i = 0;  i < locations.length; i += 1) {
-                    position = {
-                    lat: locations[i].location.displayPosition.latitude,
-                    lng: locations[i].location.displayPosition.longitude
-                    };
-                    marker = new H.map.Marker(position);
-                    marker.label = locations[i].location.address.label;
-                    group.addObject(marker);
-                }
+                        // Add a marker for each location found
+                        for (i = 0;  i < locations.length; i += 1) {
+                            position = {
+                            lat: locations[i].location.displayPosition.latitude,
+                            lng: locations[i].location.displayPosition.longitude
+                            };
+                           let marker = new H.map.Marker(position);
+                            marker.label = locations[i].location.address.label;
+                            group.addObject(marker);
+                        }
 
-                group.addEventListener('tap', function (evt) {
-                    this.map.setCenter(evt.target.getGeometry());
-                    openBubble(
-                    evt.target.getGeometry(), evt.target.label);
-                }, false);
+                        group.addEventListener('tap', function (evt) {
+                            this.map.setCenter(evt.target.getGeometry());
+                            openBubble(
+                            evt.target.getGeometry(), evt.target.label);
+                        }, false);
 
-                // Add the locations group to the map
-                this.map.addObject(group);
-                this.map.setCenter(group.getBoundingBox().getCenter());
-                    
+                        // Add the locations group to the map
+                        this.map.addObject(group);
+                        this.map.setCenter(group.getBoundingBox().getCenter());
+                            
                         },
                     (error) => {
                         alert('Can\'t reach the remote server');

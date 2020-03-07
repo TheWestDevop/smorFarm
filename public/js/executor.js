@@ -35880,9 +35880,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(locations);
                 //this.getDirection(locations);
                 //this.addLocationsToMap(locations)
-                var group = new H.map.Group(),
-                    position = void 0,
-                    i = void 0;
+                var group = new H.map.Group();
+                var position = void 0;
+                var i = void 0;
 
                 // Add a marker for each location found
                 for (i = 0; i < locations.length; i += 1) {
@@ -35890,7 +35890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         lat: locations[i].location.displayPosition.latitude,
                         lng: locations[i].location.displayPosition.longitude
                     };
-                    marker = new H.map.Marker(position);
+                    var marker = new H.map.Marker(position);
                     marker.label = locations[i].location.address.label;
                     group.addObject(marker);
                 }
