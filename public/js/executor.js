@@ -35904,7 +35904,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // Add the locations group to the map
                 _this.map.addObject(group);
                 _this.map.setCenter(group.getBoundingBox().getCenter());
-                console.log(position);
+                //console.log(position);
                 _this.getDirection({ lat: _this.center.lat, lng: _this.center.lng }, { lat: position.lat, lng: position.lng });
             }, function (error) {
                 _this.$toast.error("Address Not Found...");
@@ -35930,7 +35930,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.interleave();
                 _this2.updatelocation(_this2.center);
                 _this2.destination();
-                console.log(_this2.center);
+                //console.log(this.center);
             });
         },
         updatelocation: function updatelocation(center) {
@@ -35943,77 +35943,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onResult: function onResult(result) {
 
             console.log(result);
-
-            var route = void 0,
-                routeShape = void 0,
-                startPoint = void 0,
-                endPoint = void 0,
-                linestring = void 0;
-            if (result.response.route > 0) {
-                // Pick the first route from the response:
-                route = result.response.route[0];
-                // Pick the route's shape:
-                routeShape = route.shape;
-
-                // Create a linestring to use as a point source for the route line
-                linestring = new H.geo.LineString();
-
-                // Push all the points in the shape into the linestring:
-                routeShape.forEach(function (point) {
-                    var parts = point.split(',');
-                    linestring.pushLatLngAlt(parts[0], parts[1]);
-                });
-
-                // Retrieve the mapped positions of the requested waypoints:
-                startPoint = route.waypoint[0].mappedPosition;
-                endPoint = route.waypoint[1].mappedPosition;
-
-                // Create a marker for the start point:
-                var startMarker = new H.map.Marker({
-                    lat: startPoint.latitude,
-                    lng: startPoint.longitude
-                });
-
-                // Create a marker for the end point:
-                var endMarker = new H.map.Marker({
-                    lat: endPoint.latitude,
-                    lng: endPoint.longitude
-                });
-
-                // Create an outline for the route polyline:
-                var routeOutline = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        strokeColor: 'rgba(0, 128, 255, 0.7)',
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head'
-                    }
-                });
-                // Create a patterned polyline:
-                var routeArrows = new H.map.Polyline(linestring, {
-                    style: {
-                        lineWidth: 10,
-                        fillColor: 'white',
-                        strokeColor: 'rgba(255, 255, 255, 1)',
-                        lineDash: [0, 2],
-                        lineTailCap: 'arrow-tail',
-                        lineHeadCap: 'arrow-head' }
-                });
-                // create a group that represents the route line and contains
-                // outline and the pattern
-                var routeLine = new H.map.Group();
-                routeLine.addObjects([routeOutline, routeArrows]);
-
-                // Add the route polyline and the two markers to the map:
-                this.map.addObjects([routeLine, startMarker, endMarker]);
-
-                // Set the map's viewport to make the whole route visible:
-                this.map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
-            } else {
-                this.$toast.error("Navigation Unavaliable ...");
-            }
         },
         getDirection: function getDirection(start, stop) {
+            var _this3 = this;
+
             console.log("start :" + start + " stop :" + stop);
             var routingParameters = {
                 // The routing mode:
@@ -36026,10 +35959,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 // representation mode 'display'
                 'representation': 'display'
             };
-            this.router.calculateRoute(routingParameters, this.onResult(), this.onError());
+            this.router.calculateRoute(routingParameters, function (data) {
+                console.log(data);
+                var route = void 0,
+                    routeShape = void 0,
+                    startPoint = void 0,
+                    endPoint = void 0,
+                    linestring = void 0;
+                if (data.response.route.length > 0) {
+                    // Pick the first route from the response:
+                    route = data.response.route[0];
+                    // Pick the route's shape:
+                    routeShape = route.shape;
+
+                    // Create a linestring to use as a point source for the route line
+                    linestring = new H.geo.LineString();
+
+                    // Push all the points in the shape into the linestring:
+                    routeShape.forEach(function (point) {
+                        var parts = point.split(',');
+                        linestring.pushLatLngAlt(parts[0], parts[1]);
+                    });
+
+                    // Retrieve the mapped positions of the requested waypoints:
+                    startPoint = route.waypoint[0].mappedPosition;
+                    endPoint = route.waypoint[1].mappedPosition;
+
+                    // Create a marker for the start point:
+                    var startMarker = new H.map.Marker({
+                        lat: startPoint.latitude,
+                        lng: startPoint.longitude
+                    });
+
+                    // Create a marker for the end point:
+                    var endMarker = new H.map.Marker({
+                        lat: endPoint.latitude,
+                        lng: endPoint.longitude
+                    });
+
+                    // Create an outline for the route polyline:
+                    var routeOutline = new H.map.Polyline(linestring, {
+                        style: {
+                            lineWidth: 10,
+                            strokeColor: 'rgba(0, 128, 255, 0.7)',
+                            lineTailCap: 'arrow-tail',
+                            lineHeadCap: 'arrow-head'
+                        }
+                    });
+                    // Create a patterned polyline:
+                    var routeArrows = new H.map.Polyline(linestring, {
+                        style: {
+                            lineWidth: 10,
+                            fillColor: 'white',
+                            strokeColor: 'rgba(255, 255, 255, 1)',
+                            lineDash: [0, 2],
+                            lineTailCap: 'arrow-tail',
+                            lineHeadCap: 'arrow-head' }
+                    });
+                    // create a group that represents the route line and contains
+                    // outline and the pattern
+                    var routeLine = new H.map.Group();
+                    routeLine.addObjects([routeOutline, routeArrows]);
+
+                    // Add the route polyline and the two markers to the map:
+                    _this3.map.addObjects([routeLine, startMarker, endMarker]);
+
+                    // Set the map's viewport to make the whole route visible:
+                    _this3.map.getViewModel().setLookAtData({ bounds: routeLine.getBoundingBox() });
+                } else {
+                    _this3.$toast.error("Navigation Unavaliable ...");
+                }
+            }, function (error) {});
         },
         interleave: function interleave() {
-            var _this3 = this;
+            var _this4 = this;
 
             var provider = this.map.getBaseLayer().getProvider();
 
@@ -36044,20 +36047,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var objectProvider = new H.map.provider.LocalObjectProvider();
                     var objectLayer = new H.map.layer.ObjectLayer(objectProvider);
                     // add a circle to this provider the circle will appear under the buildings
-                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this3.map.getCenter(), 500));
+                    objectProvider.getRootGroup().addObject(new H.map.Circle(_this4.map.getCenter(), 500));
                     // add the layer to the map
-                    _this3.map.addLayer(objectLayer);
+                    _this4.map.addLayer(objectLayer);
 
                     // extract buildings from the base layer config 
                     // in order to inspect the config calling style.getConfig()
                     buildings = new H.map.Style(style.extractConfig('buildings'));
                     // create the new layer for the buildings
-                    buildingsLayer = _this3.platform.getOMVService().createLayer(buildings);
+                    buildingsLayer = _this4.platform.getOMVService().createLayer(buildings);
                     // add the layer to the map
-                    _this3.map.addLayer(buildingsLayer);
+                    _this4.map.addLayer(buildingsLayer);
 
                     // the default object layer and its objects will remain on top of the buildings layer
-                    _this3.map.addObject(new H.map.Marker(_this3.map.getCenter()));
+                    _this4.map.addObject(new H.map.Marker(_this4.map.getCenter()));
                 }
                 style.addEventListener('change', changeListener);
             };
