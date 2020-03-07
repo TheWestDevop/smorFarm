@@ -68,7 +68,7 @@ import {
                 this.center.lng = position.coords.longitude
                 this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().vector.normal.map);
                 this.map.getViewModel().setLookAtData({tilt: 45});
-                let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+                //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')
                 let marker = new H.map.Marker(this.center,{icon: icon})
