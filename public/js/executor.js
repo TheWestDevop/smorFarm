@@ -36383,7 +36383,7 @@ var render = function() {
                         appId: "vFeicXHJJygakyap4B5z",
                         appCode: "OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc",
                         width: "100%",
-                        height: "600px"
+                        height: "430px"
                       }
                     }),
                     _vm._v(" "),
