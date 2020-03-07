@@ -38,7 +38,7 @@ import {
                     lat:0,
                     lng:0
                     },
-                    address:''
+                    address:'Osara Close,Abuja'
             }
         },
         props: {
