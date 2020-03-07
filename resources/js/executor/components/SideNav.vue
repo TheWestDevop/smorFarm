@@ -48,7 +48,7 @@
               <span>My profile</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a  href="/executor"  class="dropdown-item">
+            <a  href="/executor/logout"  class="dropdown-item">
                                     <i class="ni ni-user-run"></i>
                                     <span>Logout</span>
                                 </a>

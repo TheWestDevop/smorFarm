@@ -49,7 +49,7 @@ class AuthController extends Controller
     public function executor_logout(Request $request)
     {
         Auth::logout();
-        return redirect('/executor/login');
+        return redirect('/executor');
     }
     public function register(Request $request)
     {
