@@ -6,7 +6,7 @@
 
 <script>
 import {
-    get
+    post
 } from '../../util/api';
 
     export default {

@@ -35884,7 +35884,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var form = new FormData();
             form.append('lat', this.center.lat);
             form.append('lng', this.center.lng);
-            post(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
+            Object(__WEBPACK_IMPORTED_MODULE_0__util_api__["b" /* post */])(BASE_URL + ('/api/driver/location/' + id), form).then(function (response) {});
         },
         onResult: function onResult(result) {
 
