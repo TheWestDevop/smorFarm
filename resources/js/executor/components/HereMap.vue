@@ -9,7 +9,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button class="btn btn-primary btn-sm" @click.prevent="destination()" >Get Direction</button>
+                                                    <button class="btn btn-primary btn-sm" @click.prevent="this.destination()" >Get Direction</button>
                                                 </div>
                                             </div>
         </div>
@@ -59,6 +59,8 @@ import {
                 this.map.getViewModel().setLookAtData({tilt: 45});
                 // Add behavior to the map: panning, zooming, dragging.
                 let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
+                // Create the default UI components
+                let ui = H.ui.UI.createDefault(map, defaultLayers);
                 //let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
                 // Create an icon, an object holding the latitude and longitude, and a marker:
                 let icon = new H.map.Icon('http://maps.google.com/mapfiles/ms/icons/blue.png')

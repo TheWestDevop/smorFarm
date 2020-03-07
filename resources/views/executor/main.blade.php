@@ -54,6 +54,7 @@
         type="text/javascript" charset="utf-8"></script>
       <script src="https://js.api.here.com/v3/3.1/mapsjs-service-legacy.js"
         type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
         <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"
  type="text/javascript" charset="utf-8"></script>
  <!--   Argon JS   -->
