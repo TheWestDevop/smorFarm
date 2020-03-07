@@ -36014,6 +36014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     onSuccess: function onSuccess(result) {
         var locations = result.response.view[0].result;
+        console.log(locations);
         //this.getDirection(locations);
         addLocationsToMap(locations);
         // ... etc.
@@ -36115,7 +36116,7 @@ var render = function() {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.getAddress(this.address)
+                      return this.getAddress(this.address)
                     }
                   }
                 },

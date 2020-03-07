@@ -10,7 +10,7 @@
                                                     <input class="products form-control" placeholder="Destination Address" v-model="address" type="text">
                                                 </div>
                                                 <div class="input-group input-group-alternative ml-2">
-                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="getAddress(this.address)">Get Direction</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm" @click.prevent="this.getAddress(this.address)">Get Direction</button>
                                                 </div>
                                             </div>
         </form>
@@ -201,13 +201,14 @@ import {
                 }
             },
             onSuccess(result) {
-            var locations = result.response.view[0].result;
-            //this.getDirection(locations);
-            addLocationsToMap(locations)
-            // ... etc.
+                var locations = result.response.view[0].result;
+                console.log(locations);
+                //this.getDirection(locations);
+                addLocationsToMap(locations)
+                // ... etc.
             },
             onError(error) {
-            alert('Can\'t reach the remote server');
+             alert('Can\'t reach the remote server');
             },
             getAddress(address){
                 geocodingParameters = {
