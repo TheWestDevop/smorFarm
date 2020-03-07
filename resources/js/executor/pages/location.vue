@@ -11,7 +11,7 @@
             </div>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-12 ">
+                    <div class="col-md-12 card shadow">
                         
                             <div class="container-fluid">
                                 <HereMap 
