@@ -40,30 +40,32 @@ import {
             height: String,
         },
         created() {
+             this.platform = new H.service.Platform({
+           "apikey":this.appCode
+            });
+             
+            this.router = this.platform.getRoutingService();
+
+            var defaultLayers = this.platform.createDefaultLayers();
             navigator.geolocation.getCurrentPosition(position =>{
                 this.center.lat = position.coords.latitude
                 this.center.lng = position.coords.longitude
+                this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
+                this.map.setCenter(this.center);
+                this.map.setZoom(10)
+                let marker = new H.map.Maker(this.center)
+                this.map.addObject(marker);
+                this.updatelocation(this.center);
                 console.log(this.center);
                 });
-            this.updatelocation(this.center);
+            
 
-            this.platform = new H.service.Platform({
-           "apikey":this.appCode
-            });
-             // Get an instance of the routing service:
-             //this.router = this.platform.getRoutingService();
-            var defaultLayers = this.platform.createDefaultLayers();
-            //this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
-            this.map = new H.Map(document.getElementById('map'),
-                defaultLayers.raster.normal.transit,{
-                center: this.center,
-                zoom: 10,
-                pixelRatio: window.devicePixelRatio || 1
-                });
+           
+            //
+            //
             //this.map.setCenter(this.center);
             //this.map.setZoom(10);
-            let marker = new H.map.Maker(this.center)
-            this.map.addObject(marker);
+            
             //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
     
             

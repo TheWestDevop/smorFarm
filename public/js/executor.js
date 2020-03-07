@@ -35853,29 +35853,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var _this = this;
 
-        navigator.geolocation.getCurrentPosition(function (position) {
-            _this.center.lat = position.coords.latitude;
-            _this.center.lng = position.coords.longitude;
-            console.log(_this.center);
-        });
-        this.updatelocation(this.center);
-
         this.platform = new H.service.Platform({
             "apikey": this.appCode
         });
-        // Get an instance of the routing service:
-        //this.router = this.platform.getRoutingService();
+
+        this.router = this.platform.getRoutingService();
+
         var defaultLayers = this.platform.createDefaultLayers();
-        //this.map = new H.Map(this.$refs.map,this.platform.createDefaultLayers().raster.normal.transit);
-        this.map = new H.Map(document.getElementById('map'), defaultLayers.raster.normal.transit, {
-            center: this.center,
-            zoom: 10,
-            pixelRatio: window.devicePixelRatio || 1
+        navigator.geolocation.getCurrentPosition(function (position) {
+            _this.center.lat = position.coords.latitude;
+            _this.center.lng = position.coords.longitude;
+            _this.map = new H.Map(_this.$refs.map, _this.platform.createDefaultLayers().raster.normal.transit);
+            _this.map.setCenter(_this.center);
+            _this.map.setZoom(10);
+            var marker = new H.map.Maker(_this.center);
+            _this.map.addObject(marker);
+            _this.updatelocation(_this.center);
+            console.log(_this.center);
         });
+
+        //
+        //
         //this.map.setCenter(this.center);
         //this.map.setZoom(10);
-        var marker = new H.map.Maker(this.center);
-        this.map.addObject(marker);
+
         //this.map.addLayer(defaultLayers.vector.normal.trafficincidents);
 
     },
