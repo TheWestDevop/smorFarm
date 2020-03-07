@@ -31,7 +31,7 @@
                                     ref="map"
                                     appId="vFeicXHJJygakyap4B5z"
                                     appCode="OcTEbIGbMuGF56h_Z1E_Ammaoy-SROE8DWJsaUZBkFc"
-                                    width="100vw"
+                                    width="100%"
                                     height="430px"
                                 >
 
