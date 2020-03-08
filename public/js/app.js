@@ -61882,7 +61882,7 @@ var render = function() {
                           _c("img", {
                             staticClass: "product_img",
                             attrs: {
-                              src: "/storage/images/product/" + product.image,
+                              src: "images/product/" + product.image,
                               alt: "Li's Product Image"
                             }
                           })
@@ -62363,9 +62363,7 @@ var render = function() {
                             _c("img", {
                               staticClass: "product_img",
                               attrs: {
-                                src:
-                                  "/storage/images/product/" +
-                                  product.product_image,
+                                src: "images/product/" + product.product_image,
                                 alt: "Li's Product Image"
                               }
                             })
@@ -71737,9 +71735,7 @@ var render = function() {
                                   [
                                     _c("img", {
                                       attrs: {
-                                        src:
-                                          "/storage/images/product/" +
-                                          product.image,
+                                        src: "images/product/" + product.image,
                                         alt: "cart products"
                                       }
                                     })

@@ -25,7 +25,7 @@
                     <td class="li-product-thumbnail">
                       <a href="#">
                         <img
-                          :src="`/storage/images/product/${product.product_image}`"
+                          :src="`images/product/${product.product_image}`"
                           alt="Li's Product Image"
                           class="product_img"
                         />

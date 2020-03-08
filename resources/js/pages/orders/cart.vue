@@ -19,7 +19,7 @@
                                         <tbody>
                                             <tr v-for="(product,index) in $store.getters.CART" :key="product.id">
                                                 <td class="li-product-remove"><a href="#" @click.prevent="remove(index)"><i class="fa fa-times"></i></a></td>
-                                                <td class="li-product-thumbnail"><a href="#"><img :src="`/storage/images/product/${product.image}`" alt="Li's Product Image" class="product_img"></a></td>
+                                                <td class="li-product-thumbnail"><a href="#"><img :src="`images/product/${product.image}`" alt="Li's Product Image" class="product_img"></a></td>
                                                 <td class="li-product-name"><a href="#">{{product.name}}</a></td>
                                                 <td class="li-product-price"><span class="amount">&#8358;{{product.price}}</span></td>
                                                 <td class="quantity">

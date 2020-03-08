@@ -73,7 +73,7 @@
                       <li v-for="(product,index) in $store.getters.CART" :key="product.id">
                         <a href="#" class="minicart-product-image">
                           <img
-                            :src="`/storage/images/product/${product.image}`"
+                            :src="`images/product/${product.image}`"
                             alt="cart products"
                           />
                         </a>
