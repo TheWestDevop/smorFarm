@@ -35848,7 +35848,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 lat: 0,
                 lng: 0
             },
-            address: 'Osara Close,Abuja'
+            address: ''
         };
     },
 
