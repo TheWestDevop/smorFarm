@@ -55,7 +55,7 @@
         <div id="app"></div>
         <script>
 
-          const BASE_URL = '{{URL::to('/')}}';
+          const BASE_URL = 'http://smorfarm.herokuapp.com';
         </script>
         <script src="{{asset('js/app.js')}}"></script>
         <script src="{{asset('js/jquery.min.js')}}"></script>
