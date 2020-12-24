@@ -24,7 +24,7 @@
     },
     "dependencies": {
         "cron": "^1.8.2",
-        "date-and-time": "^0.12.0",
+        "date-and-time": "^0.14.2",
         "vue-carousel": "^0.18.0",
         "vue-dayjs": "^1.0.2",
         "vue-sweetalert2": "^3.0.1",
